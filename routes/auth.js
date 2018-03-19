@@ -58,8 +58,10 @@ router.post('/signup', function (req, res, next) {
 })
 
 router.post('/me/from/token', (req, res, next) => {
+  console.log('In the post route...')
   // Check for presence of token
   var token = req.body.token
+  console.log(token)
   if (!token) {
     res.status(401).json({message: "Must pass the token"})
   } else {
@@ -67,12 +69,16 @@ router.post('/me/from/token', (req, res, next) => {
       if (err) {
         res.status(401).send(err)
       } else {
+        console.log('FINDING BY ID')
+        console.log(user)
         User.findById({
           '_id': user._id
-        }).then( (err, user) => {
+        }, (err, user) => {
           if (err) {
+            console.log('ERROR AFTER MONGOOSE SEARCH')
             res.status(401).send(err)
           } else {
+            console.log('SUCCESS AFTER MONGOOSE')
             res.json({user, token})
           }
         })

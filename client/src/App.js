@@ -35,18 +35,22 @@ class App extends Component {
   componentDidMount() {
     var token = localStorage.getItem('mernToken')
     if (token === 'undefined' || token === null || token === '' || token === undefined) {
-      console.log(token)
+      console.log("Token was undefined in localStorage")
       localStorage.removeItem('mernToken')
       this.setState({
         token:'',
-        user:''
+        user:{}
       })
     } else {
-      console.log(token)
+      console.log("Token was FOUND!")
       axios.post('/auth/me/from/token', {
         token
       }).then( result => {
+        console.log("This is the result of /auth/me/from/token:")
+        console.log(result)
         localStorage.setItem('mernToken', result.data.token)
+        console.log(localStorage.mernToken)
+        
         this.setState({
           token: result.data.token,
           user: result.data.user
