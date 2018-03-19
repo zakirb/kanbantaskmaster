@@ -8,6 +8,8 @@ import axios from 'axios';
 import Paper from 'material-ui/Paper';
 import {GridList, GridTile} from 'material-ui/GridList';
 
+import CreateProjectForm from './CreateProjectForm';
+
 const style = {
   root: {
     display: 'flex',
