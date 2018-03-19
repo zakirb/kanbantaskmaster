@@ -40,16 +40,16 @@ class App extends Component {
       token:'',
       user: {}
     }
-    this.liftTokenToState = this.liftTokenToState.bind(this)
+    // this.liftTokenToState = this.liftTokenToState.bind(this)
     this.logout = this.logout.bind(this)
   }
 
-  liftTokenToState(data) {
-    this.setState({
-      token: data.token,
-      user: data.user
-    })
-  }
+  // liftTokenToState(data) {
+  //   this.setState({
+  //     token: data.token,
+  //     user: data.user
+  //   })
+  // }
 
   logout() {
     console.log('Logging out')
