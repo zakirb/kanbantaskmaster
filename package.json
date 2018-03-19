@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+
     "server": "nodemon server.js",
     "start": "nodemon server.js",
     "client": "cd client && npm start",
@@ -25,6 +26,7 @@
     "jsonwebtoken": "^8.2.0",
     "material-ui": "^0.20.0",
     "mongoose": "^5.0.10",
+    "react-router": "^4.2.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2"

@@ -5,6 +5,26 @@ import Login from './Login';
 import { UserProfile } from './UserProfile';
 import axios from 'axios';
 
+import Paper from 'material-ui/Paper';
+import {GridList, GridTile} from 'material-ui/GridList';
+
+const style = {
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+  },
+  gridList: {
+    width: 700,
+    height: 400,
+    display: 'inline',
+  },
+  layout: {
+    zDepth: 15,
+    margin: 10
+  }
+}
+
 class App extends Component {
   constructor(props) {
     super()
@@ -39,7 +59,9 @@ class App extends Component {
       localStorage.removeItem('mernToken')
       this.setState({
         token:'',
-        user:{}
+
+        user: {}
+
       })
     } else {
       console.log("Token was FOUND!")
@@ -63,17 +85,29 @@ class App extends Component {
     let theUser = this.state.user
     if (typeof theUser === 'object' && Object.keys(theUser).length > 0) {
       return (
-        <div>
-          <UserProfile user={theUser} logout={this.logout} />
-        </div>
+        <Paper style={style.layout}>
+          <div className='row'>
+            <div className="col s6 m6 l6">
+              <UserProfile user={theUser} logout={this.logout} />
+            </div>
+          </div>
+        </Paper>
       )
     } else {
       return (
-        <div className="App">
-          <Signup liftToken={this.liftTokenToState} />
-          <br />
-          <Login liftToken={this.liftTokenToState} />
-        </div>
+        <Paper style={style.layout}>
+          <GridTile>
+            <div className="col s6 m6 l6">
+              <Signup liftToken={this.liftTokenToState} />
+            </div>
+          </GridTile>
+
+          <GridTile>
+            <div className="col s6 m6 l6">
+              <Login liftToken={this.liftTokenToState} />
+            </div>
+          </GridTile>
+        </Paper>
       )
     }
   }
