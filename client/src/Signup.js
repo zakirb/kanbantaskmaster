@@ -1,6 +1,19 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import Paper from 'material-ui/Paper';
+import TextField from 'material-ui/TextField';
+import FlatButton from 'material-ui/FlatButton';
+
+const style = {
+  height: 300,
+  width: 300,
+  margin: 10,
+  padding: 15,
+  textAlign: 'center',
+  display: 'inline-block',
+};
+
 class Signup extends Component {
   constructor(props) {
     super()
@@ -27,7 +40,23 @@ class Signup extends Component {
     this.setState({ password: e.target.value })
   }
 
+  // prevents the submit button from firing
+  // if the criteria are not meet
+  canBeSubmitted(){
+    const { name, email, password } = this.state
+    return (
+      name.length > 0 &&
+      email.length > 4 &&
+      password.length > 7
+    );
+  }
+
+
   handleSubmit(e) {
+    if (!this.canBeSubmitted()){
+      e.preventDefault()
+      return;
+    }
     e.preventDefault()
     axios.post('/auth/signup', {
       name: this.state.name,
@@ -42,16 +71,50 @@ class Signup extends Component {
 
 
   render() {
+    const isEnabled = this.canBeSubmitted();
+
     return (
-      <form onSubmit={this.handleSubmit}>
-        Name: <input type='text' value={this.state.name} onChange={this.handleNameChange} /> <br />
-        Email: <input type='text' value={this.state.email} onChange={this.handleEmailChange} /> <br />
-        Password: <input type='password' value={this.state.password} onChange={this.handlePasswordChange} />
-        <input type='submit' value='Sign Up!' />
-      </form>
+      <Paper style={style} zDepth={4}>
+        <form onSubmit={this.handleSubmit}>
+          <TextField
+            hintText="Enter your name"
+            errorText="This field is required"
+            value={this.state.name}
+            name='name'
+            type='text'
+            onChange={this.handleNameChange}
+          />
+          {/* Name: <input type='text' value={this.state.name} name='name' onChange={this.handleNameChange} /> */}
+          <br/>
+          <TextField
+            hintText="Enter your email address"
+            errorText="This field is required"
+            value={this.state.email}
+            name='email'
+            type='email'
+            onChange={this.handleEmailChange}
+          />
+          {/* Email: <input type='text' value={this.state.email} name='email' onChange={this.handleEmailChange} /> */}
+          <br/>
+          <TextField
+            hintText="Create a password"
+            errorText="This field is required"
+            value={this.state.password}
+            name='password'
+            type='password'
+            onChange={this.handlePasswordChange}
+          />
+          {/* Password: <input type='password' value={this.state.password} name='password' onChange={this.handlePasswordChange} /> */}
+          <br/>
+          <FlatButton
+            label="Sign Up"
+            type='submit'
+            disabled={!isEnabled}
+          />
+          {/* <input type='submit' value='Sign Up' /> */}
+        </form>
+      </Paper>
     )
-
-
   }
 }
 
