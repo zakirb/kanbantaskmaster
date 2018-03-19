@@ -80,17 +80,17 @@ projectSchema.pre('save', function(next) {
   assert.equal(error.errors['title'].message,
         'Project `title` is required.');
   assert.equal(error.errors['description'].message,
-        'Project `title` is required.');
+        'Project `description` is required.');
   assert.equal(error.errors['target_date'].message,
-        'Project `title` is required.');
+        'Project `target_date` is required.');
 
       error = project.validateSync();
       assert.equal(error.errors['title'].message,
         'Project `tile` is required.');
       assert.equal(error.errors['description'].message,
-            'Project `title` is required.');
+            'Project `description` is required.');
       assert.equal(error.errors['target_date'].message,
-            'Project `title` is required.');
+            'Project `target_date` is required.');
   next();
 })
 

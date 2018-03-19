@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
 import '../css/App.css';
-import NavBar from './NavBar';
-
-
-import Home from './Home';
-
-
+// import NavBar from './NavBar';
 import Signup from './Signup';
 import Login from './Login';
 import { UserProfile } from './UserProfile';
@@ -31,7 +26,7 @@ const style = {
   }
 }
 
-class App extends Component {
+class UserAccess extends Component {
   constructor(props) {
     super()
     this.state = {
@@ -91,31 +86,26 @@ class App extends Component {
     let theUser = this.state.user
     if (typeof theUser === 'object' && Object.keys(theUser).length > 0) {
       return (
-        <div>
-          <NavBar />
-          <Paper style={style.layout}>
-            <div className='row'>
-              <div className="col s6 m6 l6">
-                {/* <UserProfile user={theUser} logout={this.logout} /> */}
-              </div>
+        <Paper style={style.layout}>
+          <div className='row'>
+            <div className="col s6 m6 l6">
+              <UserProfile user={theUser} logout={this.logout} />
             </div>
-          </Paper>
-        </div>
+          </div>
+        </Paper>
       )
     } else {
       return (
         <Paper style={style.layout}>
-          <NavBar />
-          {/* <Home /> */}
           <GridTile>
             <div className="col s6 m6 l6">
-              {/* <Signup liftToken={this.liftTokenToState} /> */}
+              <Signup liftToken={this.liftTokenToState} />
             </div>
           </GridTile>
 
           <GridTile>
             <div className="col s6 m6 l6">
-              {/* <Login liftToken={this.liftTokenToState} /> */}
+              <Login liftToken={this.liftTokenToState} />
             </div>
           </GridTile>
         </Paper>
@@ -125,4 +115,4 @@ class App extends Component {
 
 }
 
-export default App;
+export default UserAccess;
