@@ -5,7 +5,10 @@ import rootReducer from '../reducers/index';
 
 const initialState = {
     token:'',
-    user: {}
+    user: {},
+    projects: [],
+    currentProject: {},
+    currentTask: {}
   }
 
 const store = createStore(
