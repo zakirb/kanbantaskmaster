@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import '../css/App.css';
 import Signup from './Signup';
 import Login from './Login';
 import { UserProfile } from './UserProfile';
@@ -72,7 +72,7 @@ class App extends Component {
         console.log(result)
         localStorage.setItem('mernToken', result.data.token)
         console.log(localStorage.mernToken)
-        
+
         this.setState({
           token: result.data.token,
           user: result.data.user
