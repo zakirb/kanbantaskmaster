@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
-class Home extends Component {
+class ViewProjects extends Component {
   render() {
     return (
       <div>
-        <h1>Home</h1>
+        <h1>View Projects</h1>
       </div>
     );
   }
@@ -14,4 +14,4 @@ class Home extends Component {
 
 
 
-export default Home;
+export default ViewProjects;
