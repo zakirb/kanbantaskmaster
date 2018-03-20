@@ -119,7 +119,7 @@ class ConnectedApp extends Component {
     if (typeof theUser === 'object' && Object.keys(theUser).length > 0) {
       return (
         <div>
-          <NavBar state={this.state}/>
+          <NavBar state={this.state} user={theUser}/>
           {/* <Paper style={style.layout}>
             <div className='row'>
               <div className="col s6 m6 l6">
