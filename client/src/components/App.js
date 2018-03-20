@@ -2,19 +2,21 @@ import React, { Component } from 'react';
 import '../css/App.css';
 import NavBar from './NavBar';
 
-
-import Home from './Home';
-
-
-import Signup from './Signup';
 import Login from './Login';
+// import UserAccess from './UserAccess';
+import Signup from './Signup';
 import { UserProfile } from './UserProfile';
+
+// import Home from './Home';
+import Projects from './Projects';
+
 import axios from 'axios';
 
 import Paper from 'material-ui/Paper';
-import {GridList, GridTile} from 'material-ui/GridList';
+import {GridTile} from 'material-ui/GridList';
+// import {GridList, GridTile} from 'material-ui/GridList';
 
-import CreateProjectForm from './CreateProjectForm';
+// import CreateProjectForm from './CreateProjectForm';
 
 const style = {
   root: {
@@ -94,33 +96,35 @@ class App extends Component {
     if (typeof theUser === 'object' && Object.keys(theUser).length > 0) {
       return (
         <div>
-          <NavBar />
-          <Paper style={style.layout}>
+          <NavBar state={this.state}/>
+          {/* <Paper style={style.layout}>
             <div className='row'>
               <div className="col s6 m6 l6">
-                {/* <UserProfile user={theUser} logout={this.logout} /> */}
+                <UserProfile user={theUser} logout={this.logout} />
               </div>
             </div>
-          </Paper>
+          </Paper> */}
+          {/* <Projects /> */}
         </div>
       )
     } else {
       return (
-        <Paper style={style.layout}>
-          <NavBar />
-          {/* <Home /> */}
-          <GridTile>
-            <div className="col s6 m6 l6">
-              {/* <Signup liftToken={this.liftTokenToState} /> */}
-            </div>
-          </GridTile>
+        <div>
+          <NavBar state={this.state}/>
+          {/* <Paper style={style.layout}>
+            <GridTile>
+              <div className="col s6 m6 l6">
+                <Signup liftToken={this.liftTokenToState} />
+              </div>
+            </GridTile>
 
-          <GridTile>
-            <div className="col s6 m6 l6">
-              {/* <Login liftToken={this.liftTokenToState} /> */}
-            </div>
-          </GridTile>
-        </Paper>
+            <GridTile>
+              <div className="col s6 m6 l6">
+                <Login liftToken={this.liftTokenToState} />
+              </div>
+            </GridTile>
+          </Paper> */}
+        </div>
       )
     }
   }

@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import '../css/App.css';
-// import NavBar from './NavBar';
+import Projects from './Projects';
 import Signup from './Signup';
 import Login from './Login';
 import { UserProfile } from './UserProfile';
 import axios from 'axios';
 
 import Paper from 'material-ui/Paper';
-import {GridList, GridTile} from 'material-ui/GridList';
+// import {GridList, GridTile} from 'material-ui/GridList';
+import {GridTile} from 'material-ui/GridList';
 
 const style = {
   root: {
@@ -92,6 +93,7 @@ class UserAccess extends Component {
               <UserProfile user={theUser} logout={this.logout} />
             </div>
           </div>
+          <Projects />
         </Paper>
       )
     } else {
