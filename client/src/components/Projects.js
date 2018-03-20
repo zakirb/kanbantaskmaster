@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 // import CreateProjectForm from './CreateProjectForm';
+// import ProjectItem from './CreateProjectForm';
+import ProjectList from './ProjectList';
+import ProjectSearch from './ProjectSearch';
 
 import Paper from 'material-ui/Paper';
-import TextField from 'material-ui/TextField';
-import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
+// import TextField from 'material-ui/TextField';
+// import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
+// import FlatButton from 'material-ui/FlatButton';
 
-import FlatButton from 'material-ui/FlatButton';
+
 
 const style = {
   margin: 10,
@@ -15,64 +19,31 @@ const style = {
 };
 
 class Projects extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      projects: '',
+    }
+  }
   render() {
+    const projectTestData = [
+      {title: "Workflow Project Organizer", team: ["Zakir B", "Dan V", "Tim H"], tasks: ["Build Models", "Implement Redux", "Implement Material UI"]},
+      {title: "Party Bus", team: ["Zakir B", "Dan V"], tasks: ["Buy Beer", "Seek Contacts"]},
+      {title: "Project 3", team: ["Zakir B", "Dan V", "Tim H"], tasks: ["Have Fun", "Get to know each other", "Try to understand this shit"]}
+    ]
     return (
-      <div>
+      <div className='row'>
         <Paper style={style}>
-          <h1>Projects</h1>
-          {/* <form onSubmit={this.handleSubmit}> */}
-            <form >
-            <TextField
-              hintText="Search for Project"
-              // errorText="This field is required"
-              name='name'
-              type='text'
-            />
-          </form>
+          <div className='col '>
+            <h1>Projects</h1>
+            <ProjectSearch />
+            <ProjectList projects={projectTestData}/>
+          </div>
         </Paper>
-        
-          <Card>
-            <CardHeader
-              title="Project Title"
-              subtitle="Team Name or members"
-            />
-            <CardActions>
-              <FlatButton label="Edit" />
-              <FlatButton label="Delete" />
-            </CardActions>
-            <CardText>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-              Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-              Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-            </CardText>
-          </Card>
-          {/* <Card>
-            <CardHeader
-              title="Without Avatar"
-              subtitle="Subtitle"
-              actAsExpander={true}
-              showExpandableButton={true}
-            />
-            <CardActions>
-              <FlatButton label="Action1" />
-              <FlatButton label="Action2" />
-            </CardActions>
-            <CardText expandable={true}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-              Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-              Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-            </CardText>
-          </Card> */}
-        {/* </Paper> */}
+        {/* <ProjectList project={projects}/> */}
       </div>
     );
   }
 }
-
-
-
-
 
 export default Projects;

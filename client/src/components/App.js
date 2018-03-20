@@ -3,18 +3,20 @@ import '../css/App.css';
 import NavBar from './NavBar';
 import { liftTokenToState } from '../actions/index'
 import { connect } from 'react-redux';
-
-
-
-import Login from './Login';
-// import UserAccess from './UserAccess';
-import Signup from './Signup';
-import { UserProfile } from './UserProfile';
-
-// import Home from './Home';
-import Projects from './Projects';
-
+// import {
+//   BrowserRouter as Router,
+//   Route,
+//   Link
+// } from 'react-router-dom';
 import axios from 'axios';
+
+// import Login from './Login';
+// import UserAccess from './UserAccess';
+// // import Signup from './Signup';
+// import { UserProfile } from './UserProfile';
+// import Home from './Home';
+// import Projects from './Projects';
+// import ProjectItem from './ProjectItem';
 
 import Paper from 'material-ui/Paper';
 import {GridTile} from 'material-ui/GridList';
