@@ -11,6 +11,7 @@ mongoose.connect('mongodb://localhost/projectworkfloworganizer');
 // var index = require('./routes/index');
 // var users = require('./routes/users');
 var auth = require('./routes/auth');
+var projects = require('./routes/projects');
 
 var app = express();
 
@@ -27,6 +28,7 @@ app.use(function(req, res, next) {
 });
 
 app.use('/auth', auth);
+app.use('/projects', projects);
 
 const PORT = process.env.PORT || 5000;
 
