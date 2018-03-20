@@ -10,7 +10,7 @@ class Home extends Component {
     return(
       <div className='row'>
         <Paper style={style}>
-          <div className='col s6 m6 l6 z-depth-3'>
+          <div className='col s12 z-depth-3'>
           <h2>Hello </h2>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.

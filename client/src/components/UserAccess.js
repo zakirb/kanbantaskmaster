@@ -93,22 +93,22 @@ class UserAccess extends Component {
               <UserProfile user={theUser} logout={this.logout} />
             </div>
           </div>
-          <Projects />
+          {/* <Projects /> */}
         </Paper>
       )
     } else {
       return (
         <Paper style={style.layout}>
           <GridTile>
-            <div className="col s6 m6 l6">
-              <Signup  />
-            </div>
+            {/* <div className="col s6 m6 l6"> */}
+              <Signup liftToken={this.liftTokenToState} />
+            {/* </div> */}
           </GridTile>
 
           <GridTile>
-            <div className="col s6 m6 l6">
+            {/* <div className="col s6 m6 l6"> */}
               <Login liftToken={this.liftTokenToState} />
-            </div>
+            {/* </div> */}
           </GridTile>
         </Paper>
       )

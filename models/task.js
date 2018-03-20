@@ -1,9 +1,9 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 // import the task list
-var taskSchema = new Schema({ name: 'string' });
+// var taskSchema = new Schema({ name: 'string' });
 // import the team list
-var teamSchema = new Schema({ name: 'string' });
+// var teamSchema = new Schema({ name: 'string' });
 
 // schematypes mongoose
 // http://mongoosejs.com/docs/schematypes.html
@@ -20,7 +20,7 @@ var teamSchema = new Schema({ name: 'string' });
   // in mongoose >= 4.2.0
   // child: childSchema
 
-var projectSchema = new mongoose.Schema({
+var taskSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
@@ -42,12 +42,14 @@ var projectSchema = new mongoose.Schema({
     required: true,
     default: Date.now
   },
-  project_tasks: [taskSchema],
-  project_team: teamSchema
-  }
+  assigned_to: {
+    type: Number,
+    required: true
+  },
+  task_steps: [taskStepsSchema]
 })
 
-projectSchema.set('JSON', {
+taskSchema.set('JSON', {
   transform: function (doc, ret, options) {
     let returnJson = {
       _id: ret._id,
@@ -55,15 +57,15 @@ projectSchema.set('JSON', {
       description: ret.description,
       target_date: ret.target_date,
       updated: ret.updated,
-      project_tasks: ret.project_tasks,
-      project_team: ret.project_team
+      assigned_to: ret.assigned_to,
+      task_steps: ret.task_steps
     }
     return returnJson
   }
 })
 
 
-projectSchema.methods.authenticated = function(password, cb) {
+taskSchema.methods.authenticated = function(password, cb) {
   bcrypt.compare(password, this.password, (err, res) => {
     if (err) {
       cb(err)
@@ -73,7 +75,7 @@ projectSchema.methods.authenticated = function(password, cb) {
   })
 }
 
-projectSchema.pre('save', function(next) {
+taskSchema.pre('save', function(next) {
   console.log('WE ARE IN THE PRE-SAVE ROUTE')
   // var hash = bcrypt.hashSync(this.password, 10)
   // this.password = hash
@@ -92,10 +94,10 @@ projectSchema.pre('save', function(next) {
       //       'Project `description` is required.');
       // assert.equal(error.errors['target_date'].message,
       //       'Project `target_date` is required.');
-      
+
   next();
 })
 
-var Project = mongoose.model('Project', projectSchema);
+var Task = mongoose.model('Project', taskSchema);
 
-module.exports = Project;
+module.exports = Task;

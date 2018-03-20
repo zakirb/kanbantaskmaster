@@ -1,9 +1,9 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 // import the task list
-var taskSchema = new Schema({ name: 'string' });
+// var taskSchema = new Schema({ name: 'string' });
 // import the team list
-var teamSchema = new Schema({ name: 'string' });
+// var teamSchema = new Schema({ name: 'string' });
 
 // schematypes mongoose
 // http://mongoosejs.com/docs/schematypes.html
@@ -20,50 +20,40 @@ var teamSchema = new Schema({ name: 'string' });
   // in mongoose >= 4.2.0
   // child: childSchema
 
-var projectSchema = new mongoose.Schema({
-  title: {
+var teamSchema = new mongoose.Schema({
+  name: {
     type: String,
     required: true,
     minLength: 1,
     maxLength: 99
   },
-  description: {
-    type: String,
-    required: true,
-    minLength: 5,
-    maxLength: 1000
-  },
-  target_date: {
-    type: Date,
+  team_members: {
+    type: Array,
     required: true
   },
+  project_id: Object_id,
   updated: {
     type: Date,
     required: true,
     default: Date.now
-  },
-  project_tasks: [taskSchema],
-  project_team: teamSchema
   }
 })
 
-projectSchema.set('JSON', {
+teamSchema.set('JSON', {
   transform: function (doc, ret, options) {
     let returnJson = {
       _id: ret._id,
-      title: ret.title,
-      description: ret.description,
-      target_date: ret.target_date,
-      updated: ret.updated,
-      project_tasks: ret.project_tasks,
-      project_team: ret.project_team
+      name: ret.name,
+      team_members: ret.team_members,
+      project_id: ret.project_id,
+      updated: ret.updated
     }
     return returnJson
   }
 })
 
 
-projectSchema.methods.authenticated = function(password, cb) {
+teamSchema.methods.authenticated = function(password, cb) {
   bcrypt.compare(password, this.password, (err, res) => {
     if (err) {
       cb(err)
@@ -73,29 +63,29 @@ projectSchema.methods.authenticated = function(password, cb) {
   })
 }
 
-projectSchema.pre('save', function(next) {
+teamSchema.pre('save', function(next) {
   console.log('WE ARE IN THE PRE-SAVE ROUTE')
   // var hash = bcrypt.hashSync(this.password, 10)
   // this.password = hash
 
-  // assert.equal(error.errors['title'].message,
-  //       'Project `title` is required.');
-  // assert.equal(error.errors['description'].message,
-  //       'Project `description` is required.');
+  // assert.equal(error.errors['name'].message,
+  //       'Project `name` is required.');
+  // assert.equal(error.errors['team_members'].message,
+  //       'Project `team_members` is required.');
   // assert.equal(error.errors['target_date'].message,
   //       'Project `target_date` is required.');
 
       // error = project.validateSync();
-      // assert.equal(error.errors['title'].message,
+      // assert.equal(error.errors['name'].message,
       //   'Project `tile` is required.');
-      // assert.equal(error.errors['description'].message,
-      //       'Project `description` is required.');
+      // assert.equal(error.errors['team_members'].message,
+      //       'Project `team_members` is required.');
       // assert.equal(error.errors['target_date'].message,
       //       'Project `target_date` is required.');
-      
+
   next();
 })
 
-var Project = mongoose.model('Project', projectSchema);
+var ProjectTeam = mongoose.model('Project', teamSchema);
 
-module.exports = Project;
+module.exports = ProjectTeam;

@@ -3,18 +3,20 @@ import '../css/App.css';
 import NavBar from './NavBar';
 import { liftTokenToState } from '../actions/index'
 import { connect } from 'react-redux';
-
-
-
-import Login from './Login';
-// import UserAccess from './UserAccess';
-import Signup from './Signup';
-import { UserProfile } from './UserProfile';
-
-// import Home from './Home';
-import Projects from './Projects';
-
+// import {
+//   BrowserRouter as Router,
+//   Route,
+//   Link
+// } from 'react-router-dom';
 import axios from 'axios';
+
+// import Login from './Login';
+// import UserAccess from './UserAccess';
+// // import Signup from './Signup';
+// import { UserProfile } from './UserProfile';
+// import Home from './Home';
+// import Projects from './Projects';
+// import ProjectItem from './ProjectItem';
 
 import Paper from 'material-ui/Paper';
 import {GridTile} from 'material-ui/GridList';
@@ -117,7 +119,7 @@ class ConnectedApp extends Component {
     if (typeof theUser === 'object' && Object.keys(theUser).length > 0) {
       return (
         <div>
-          <NavBar state={this.state}/>
+          <NavBar state={this.state} user={theUser}/>
           {/* <Paper style={style.layout}>
             <div className='row'>
               <div className="col s6 m6 l6">
