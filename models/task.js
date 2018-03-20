@@ -1,32 +1,9 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
-// import the task list
-// var taskSchema = new Schema({ name: 'string' });
-// import the team list
-// var teamSchema = new Schema({ name: 'string' });
-
-// schematypes mongoose
-// http://mongoosejs.com/docs/schematypes.html
-
-// mongoose validation
-// http://mongoosejs.com/docs/validation.html
-
-// sub documenation from Mongoose
-// http://mongoosejs.com/docs/subdocs.html
-// var childSchema = new Schema({ name: 'string' });
-// Array of subdocuments
-  // children: [childSchema],
-  // Single nested subdocuments. Caveat: single nested subdocs only work
-  // in mongoose >= 4.2.0
-  // child: childSchema
+var Project = require('Project')
+// var projectSchema = new Schema({ name: 'string' });
 
 var taskSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true,
-    minLength: 1,
-    maxLength: 99
-  },
   description: {
     type: String,
     required: true,
@@ -37,28 +14,44 @@ var taskSchema = new mongoose.Schema({
     type: Date,
     required: true
   },
+  status: {
+    type: String,
+    required: true,
+    default: "planning"
+  },
+  assigned_to: {
+    type: String,
+    required: true
+  },
+  steps: [
+    {
+      step_number: Number,
+      required: true
+    },
+    {
+      step_action: String,
+      required: true
+    }
+  ],
+  project_id: ObjectId,
   updated: {
     type: Date,
     required: true,
     default: Date.now
-  },
-  assigned_to: {
-    type: Number,
-    required: true
-  },
-  task_steps: [taskStepsSchema]
+  }
 })
 
 taskSchema.set('JSON', {
   transform: function (doc, ret, options) {
     let returnJson = {
       _id: ret._id,
-      title: ret.title,
       description: ret.description,
       target_date: ret.target_date,
-      updated: ret.updated,
+      status: ret.status,
       assigned_to: ret.assigned_to,
-      task_steps: ret.task_steps
+      task_steps: ret.task_steps,
+      project_id: ret.project_id,
+      updated: ret.updated
     }
     return returnJson
   }
@@ -98,6 +91,6 @@ taskSchema.pre('save', function(next) {
   next();
 })
 
-var Task = mongoose.model('Project', taskSchema);
+var Task = mongoose.model('Task', taskSchema);
 
 module.exports = Task;
