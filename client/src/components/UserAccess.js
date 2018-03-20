@@ -89,13 +89,13 @@ class ConnectedUserAccess extends Component {
         <Paper style={style.layout}>
           <GridTile>
             {/* <div className="col s6 m6 l6"> */}
-              <Signup liftToken={this.liftTokenToState} />
+              <Signup />
             {/* </div> */}
           </GridTile>
 
           <GridTile>
             {/* <div className="col s6 m6 l6"> */}
-              <Login liftToken={this.liftTokenToState} />
+              <Login />
             {/* </div> */}
           </GridTile>
         </Paper>
