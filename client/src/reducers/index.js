@@ -1,24 +1,20 @@
-import { ADD_ARTICLE } from "../constants/action-types";
+// import { ADD_PROJECT } from "../constants/action-types";
+import { LIFT_TOKEN_TO_STATE } from "../constants/action-types";
 
 const initialState = {
-  articles: [],
+  user: '',
+  token:''
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-
-    
-    case ADD_ARTICLE:
-    console.log('Added article')
-      return {...state, articles: [...state.articles, action.payload]}
-      // return { Object.assign({}, ...state, {
-      //articles: [...starts ], action.payload]
-      // }
-
-
-
+    case LIFT_TOKEN_TO_STATE:
+      console.log('LIFTING TOKEN TO STATE')
+      console.log(action.payload)
+      let newState = { user: action.payload.user, token: action.payload.token }
+      return Object.assign({}, state, newState)
     default:
-    return state;
+      return state;
   }
 }
 

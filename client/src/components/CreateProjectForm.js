@@ -19,7 +19,8 @@ class CreateProjectForm extends Component {
   }
 
   handleChange = (event) => {
-    this.setState({ {event.target.name}: event.target.value})
+    var key = event.target.name
+    this.setState({ [key]: event.target.value})
   }
 
   // handleSubmit = (event) => {

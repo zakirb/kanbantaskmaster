@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { liftTokenToState } from '../actions/index'
+import { connect } from 'react-redux';
 
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
@@ -14,7 +16,15 @@ const style = {
   display: 'inline-block',
 };
 
-class Signup extends Component {
+//functions that affect state
+const mapDispatchToProps = dispatch => {
+  return {
+    liftTokenToState: userToken => dispatch(liftTokenToState(userToken)),
+  }
+}
+
+
+class ConnectedSignup extends Component {
   constructor(props) {
     super()
     this.state = {
@@ -31,11 +41,9 @@ class Signup extends Component {
   handleNameChange(e) {
     this.setState({ name: e.target.value })
   }
-
   handleEmailChange(e) {
     this.setState({ email: e.target.value })
   }
-
   handlePasswordChange(e) {
     this.setState({ password: e.target.value })
   }
@@ -64,8 +72,11 @@ class Signup extends Component {
       password: this.state.password
     }).then( result => {
       console.log(result.data)
+      console.log('THIS IS THE RESULT AFTER POST')
       localStorage.setItem('mernToken', result.data.token)
-      this.props.liftToken(result.data)
+      this.props.liftTokenToState(result.data)
+      console.log('THIS IS THE RESULT AFTER TOKEN IS LIFTED')
+      // Redirect to a react route
     })
   }
 
@@ -117,5 +128,7 @@ class Signup extends Component {
     )
   }
 }
+
+const Signup = connect(null, mapDispatchToProps)(ConnectedSignup);
 
 export default Signup;
