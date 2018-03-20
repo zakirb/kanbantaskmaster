@@ -4,40 +4,43 @@ import {
   Route,
   Link
 } from 'react-router-dom';
-import Home from './Home'
-import Login from './Login'
-import UserAccess from './UserAccess'
-import Signup from './Signup'
-import UserProfile from './UserProfile'
+import Home from './Home';
+import Login from './Login';
+import UserAccess from './UserAccess';
+import Signup from './Signup';
+import { UserProfile } from './UserProfile';
+import Projects from './Projects';
 
 class NavBar extends Component {
+  constructor(props){
+    super(props)
+  }
   render(){
     return (
       <Router>
         <div>
           <nav>
             <div className='nav-wrapper teal darken-3'>
-              {/* <a href='/' className='brand-logo'>Dino Diggz</a> */}
+              <a href='/' className='brand-logo'>Workflow Project App</a>
               <ul id='nav-mobile' className='right hide-on-med-and-down'>
                 <li><Link to='/'>Home</Link></li>
-                {/* <li><Link to='/Signup'>Sign Up</Link></li> */}
+                <li><Link to='/Projects'>Projects</Link></li>
                 <li><Link to='/UserAccess'>Access Account</Link></li>
                 <li><Link to='/UserProfile'>User Profile</Link></li>
-                {/* <li><Link to='/Search'>Search</Link></li> */}
-                {/* <li>{loggin}</li> */}
+                {/* <li><Link to='/Login'>Login</Link></li>
+                <li><Link to='/Signup'>Sign Up</Link></li> */}
               </ul>
             </div>
           </nav>
           <br />
 
           <Route exact path='/' render={() => <Home />} />
-          {/* <Route path='/Search' render={() => <Search />} /> */}
-          {/* <Route path='/Login' render={() => <Login changeName={this.handleNameChange} changeEmail={this.handleEmailChange} changePassword={this.handlePasswordChange} toggle={this.toggleLogin}/>} /> */}
-          {/* <Route path='/Login' render={() => <Login />} /> */}
-          {/* <Route path='/Signup' render={() => <Signup />} /> */}
+          <Route path='/Projects' render={() => <Projects />} />
+          <Route path='/Login' render={() => <Login liftToken={this.liftTokenToState} />} />
+          <Route path='/Signup' render={() => <Signup liftToken={this.liftTokenToState} />} />
           <Route path='/UserAccess' render={() => <UserAccess  />} />
-          {/* <Route path='/UserProfile' render={() => <UserProfile  />} /> */}
-          {/* <Route path='/Profile' render={() => <UserProfile real={this.state.realName} name={this.state.name} email={this.state.email} />} /> */}
+          {/* <Route path='/UserProfile' render={() => <UserProfile user={user} logout={this.logout} />} /> */}
+          {/* <Route path='/Profile' render={() => <UserProfile name={this.state.name} email={this.state.email} />} /> */}
         </div>
       </Router>
     )

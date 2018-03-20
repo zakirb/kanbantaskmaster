@@ -6,7 +6,7 @@ import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 
 const style = {
-  height: 200,
+  height: 300,
   width: 300,
   margin: 10,
   padding: 15,
@@ -66,6 +66,7 @@ class Login extends Component {
 
     return (
       <Paper style={style} zDepth={4}>
+        <h2>Log In</h2>
         <form onSubmit={this.handleSubmit}>
           <TextField
             hintText="Enter your email address"

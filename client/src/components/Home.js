@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
-
-
-// import UserAccess from './UserAccess';
-import Paper from 'material-ui/Paper'
+import Paper from 'material-ui/Paper';
 const style = {
   zDepth: 15,
   margin: 20,
 }
 
 class Home extends Component {
-
   render(){
     return(
       <div className='row'>
