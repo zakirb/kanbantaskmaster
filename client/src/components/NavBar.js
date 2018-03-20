@@ -12,6 +12,7 @@ import { UserProfile } from './UserProfile';
 import Projects from './Projects';
 import ProjectItem from './ProjectItem';
 import { connect } from 'react-redux';
+import CreateProjectForm from './CreateProjectForm';
 
 const mapStateToProps = state => {
   return {
@@ -61,7 +62,7 @@ class ConnectedNavBar extends Component {
         <div>
           {navigation}
           <br />
-
+          <CreateProjectForm />
           <Route exact path='/' render={() => <Home />} />
           <Route path='/Projects' render={() => <Projects />} />
           <Route path='/ProjectItem' render={() => <ProjectItem />} />

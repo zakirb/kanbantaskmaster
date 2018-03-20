@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { liftTokenToState, logout } from '../actions/index'
+import { connect } from 'react-redux';
 
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
@@ -14,7 +16,22 @@ const style = {
   display: 'inline-block',
 };
 
-class Login extends Component {
+const mapStateToProps = state => {
+  return {
+    user: state.user,
+    token: state.token
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    liftTokenToState: userToken => dispatch(liftTokenToState(userToken)),
+    logout: emptyUserToken => dispatch(logout(emptyUserToken))
+  }
+}
+
+
+class ConnectedLogin extends Component {
   constructor(props) {
     super()
     this.state = {
@@ -55,8 +72,9 @@ class Login extends Component {
       password: this.state.password
     }).then( result => {
       console.log(result.data)
+      console.log('BEFORE THIS IS THE LOG IN TOKEN')
       localStorage.setItem('mernToken', result.data.token)
-      this.props.liftToken(result.data)
+      this.props.liftTokenToState(result.data)
     }).catch( err => console.log(err))
   }
 
@@ -101,5 +119,5 @@ class Login extends Component {
 
   }
 }
-
+const Login = connect(mapStateToProps, mapDispatchToProps)(ConnectedLogin)
 export default Login;
