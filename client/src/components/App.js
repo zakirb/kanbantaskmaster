@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../css/App.css';
 import NavBar from './NavBar';
-import { liftTokenToState } from '../actions/index'
+import { liftTokenToState, logout } from '../actions/index'
 import { connect } from 'react-redux';
 // import {
 //   BrowserRouter as Router,
@@ -51,6 +51,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     liftTokenToState: userToken => dispatch(liftTokenToState(userToken)),
+    logout: emptyUserToken => dispatch(logout(emptyUserToken))
   }
 }
 
@@ -59,28 +60,7 @@ const mapDispatchToProps = dispatch => {
 class ConnectedApp extends Component {
   constructor(props) {
     super()
-    this.state = {
-      token:'',
-      user: {}
-    }
-    // this.liftTokenToState = this.liftTokenToState.bind(this)
-    this.logout = this.logout.bind(this)
-  }
 
-  // liftTokenToState(data) {
-  //   this.setState({
-  //     token: data.token,
-  //     user: data.user
-  //   })
-  // }
-
-  logout() {
-    console.log('Logging out')
-    localStorage.removeItem('mernToken')
-    this.setState({
-      token: '',
-      user: {}
-    })
   }
 
   componentDidMount() {
@@ -91,7 +71,6 @@ class ConnectedApp extends Component {
       this.setState({
         token:'',
         user: {}
-
       })
     } else {
       console.log("Token was FOUND!")
@@ -103,11 +82,6 @@ class ConnectedApp extends Component {
         console.log(result)
         localStorage.setItem('mernToken', result.data.token)
         console.log(localStorage.mernToken)
-
-        // this.setState({
-        //   token: result.data.token,
-        //   user: result.data.user
-        // })
         this.props.liftTokenToState(result.data)
       }).catch( err => console.log(err) )
     }
@@ -119,7 +93,7 @@ class ConnectedApp extends Component {
     if (typeof theUser === 'object' && Object.keys(theUser).length > 0) {
       return (
         <div>
-          <NavBar state={this.state} user={theUser}/>
+          <NavBar state={this.props} user={theUser}/>
           {/* <Paper style={style.layout}>
             <div className='row'>
               <div className="col s6 m6 l6">
@@ -133,7 +107,7 @@ class ConnectedApp extends Component {
     } else {
       return (
         <div>
-          <NavBar state={this.state}/>
+          <NavBar state={this.props}/>
           {/* <Paper style={style.layout}>
             <GridTile>
               <div className="col s6 m6 l6">

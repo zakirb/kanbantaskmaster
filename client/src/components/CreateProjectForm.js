@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addProject } from "../actions/index"
+// import { addProject } from "../actions/index"
 
 // const mapDispatchToProps = dispatch => {
 //   return {
