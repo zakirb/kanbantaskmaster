@@ -11,19 +11,25 @@ import UserAccess from './UserAccess';
 import { UserProfile } from './UserProfile';
 import Projects from './Projects';
 import ProjectItem from './ProjectItem';
+import { connect } from 'react-redux';
 
-class NavBar extends Component {
+const mapStateToProps = state => {
+  return {
+    user: state.user,
+    token: state.token
+  }
+}
+
+class ConnectedNavBar extends Component {
   constructor(props){
     super()
-    this.state = {
-      token:'',
-      user: {}
-    }
   }
   render(){
     let theUser = this.props.user
+    console.log(this.props.user)
     let navigation
     if (typeof theUser === 'object' && Object.keys(theUser).length > 0){
+      console.log("user is real")
       navigation = (
         <nav>
           <div className='nav-wrapper teal darken-3'>
@@ -62,7 +68,7 @@ class NavBar extends Component {
           {/* <Route path='/Login' render={() => <Login liftToken={this.liftTokenToState} />} /> */}
           {/* <Route path='/Signup' render={() => <Signup liftToken={this.liftTokenToState} />} /> */}
           <Route path='/UserAccess' render={() => <UserAccess  />} />
-          <Route path='/UserProfile' render={() => <UserProfile user={theUser} logout={this.logout} />} />
+          <Route path='/UserProfile' render={() => <UserProfile user={theUser} logout={this.props.logout} />} />
           {/* <Route path='/UserProfile' render={() => <UserProfile user={theUser} logout={this.logout} />} /> */}
           {/* <Route path='/Profile' render={() => <UserProfile name={this.state.name} email={this.state.email} />} /> */}
         </div>
@@ -70,4 +76,6 @@ class NavBar extends Component {
     )
   }
 }
+
+const NavBar = connect(mapStateToProps, null)(ConnectedNavBar)
 export default NavBar;
