@@ -29,27 +29,31 @@ const ProjectList = (props) => (
             <CardHeader
               title={project.title}
               subtitle={project.team}
+              actAsExpander={true}
+              showExpandableButton={true}
             />
             <CardActions>
               <FlatButton label="Edit" />
               <FlatButton label="Delete" />
             </CardActions>
-            <CardText>
-              THIS EXAMPLE DOES NOT EXPAND...
+            <CardText expandable={true}>
+              THIS EXAMPLE EXPANDS...
 
-              Project Tasks (array)
-              <ul>
-                {project.tasks.map((task, index) =>
-                    <li key={index}>{task}</li>
-                  )}
-              </ul>
+
+                Project Tasks (array)
+                <ul>
+                  {project.tasks.map((task, index) =>
+                      <li key={index}>{task}</li>
+                    )}
+                </ul>
+
 
               NOTE: div =row ends after the next Card in ProjectList . js
             </CardText>
           </Card>
         )}
 
-          <Card style={style.card_style}>
+          {/* <Card style={style.card_style}>
             <CardHeader
               title="Party Project"
               subtitle="Zakir, Dan"
@@ -66,7 +70,7 @@ const ProjectList = (props) => (
               Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
               Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
             </CardText>
-          </Card>
+          </Card> */}
       </div>
     );
 

@@ -29,15 +29,56 @@ class ProjectItem extends Component {
               subtitle="Zakir, Dan, Tim"
             />
             <CardActions>
-              <FlatButton label="Edit" />
+              <FlatButton label="Edit Project" />
+              <FlatButton label="Add Team Member" />
+              <FlatButton label="Add Task" />
               <FlatButton label="Delete" />
             </CardActions>
             <CardText>
               THIS EXAMPLE DOES NOT EXPAND...
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-              Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-              Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+              <ul>
+                <li>Task: Build App</li>
+                <li>Assigned To:</li>
+                <li>Steps:</li>
+                <FlatButton label="Edit Task" />
+                <ol>
+                  <li>Create React App</li>
+                  <li>NPM install dependencies</li>
+                  <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                  <li>Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.</li>
+                  <li>Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.</li>
+                  <li>Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.</li>
+                  <li>Create React App</li>
+                </ol>
+              </ul>
+              <ul>
+                <li>Task: Number Two</li>
+                <li>Assigned To:</li>
+                <li>Steps:</li>
+                <ol>
+                  <li>Create React App</li>
+                  <li>NPM install dependencies</li>
+                  <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                  <li>Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.</li>
+                  <li>Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.</li>
+                  <li>Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.</li>
+                  <li>Create React App</li>
+                </ol>
+              </ul>
+              <ul>
+                <li>Task: Number Three</li>
+                <li>Assigned To:</li>
+                <li>Steps:</li>
+                <ol>
+                  <li>Create React App</li>
+                  <li>NPM install dependencies</li>
+                  <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                  <li>Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.</li>
+                  <li>Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.</li>
+                  <li>Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.</li>
+                  <li>Create React App</li>
+                </ol>
+              </ul>
             </CardText>
           </Card>
       </div>
