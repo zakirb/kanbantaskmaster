@@ -92,7 +92,7 @@ projectSchema.pre('save', function(next) {
       //       'Project `description` is required.');
       // assert.equal(error.errors['target_date'].message,
       //       'Project `target_date` is required.');
-      
+
   next();
 })
 
