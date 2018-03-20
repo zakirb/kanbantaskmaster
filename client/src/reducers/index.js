@@ -13,6 +13,7 @@ const rootReducer = (state = initialState, action) => {
     case LIFT_TOKEN_TO_STATE:
       console.log('LIFTING TOKEN TO STATE (FROM REDUCER)')
       console.log(action.payload)
+      localStorage.setItem('mernToken', action.payload.token)
       let newState = { user: action.payload.user, token: action.payload.token }
       return Object.assign({}, state, newState)
 

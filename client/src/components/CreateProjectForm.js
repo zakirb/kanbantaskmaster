@@ -34,7 +34,7 @@ class CreateProjectForm extends Component {
     const { title, description} = this.state
     return (
       <form onSubmit={this.handleSubmit}>
-      <input type='text' name=='title' value={title} onChange={this.handleChange} />
+      <input type='text' name='title' value={title} onChange={this.handleChange} />
       <input type='text' name='description' value={description} onChange={this.handleChange} />
       <button type='submit'>ADD Project</button>
       </form>
