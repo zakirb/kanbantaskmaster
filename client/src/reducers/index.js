@@ -23,6 +23,9 @@ const rootReducer = (state = initialState, action) => {
       localStorage.removeItem('mernToken')
       let emptyUser = {user: '', token:''}
       return Object.assign({}, state, emptyUser)
+
+
+      
     default:
       return state;
   }
