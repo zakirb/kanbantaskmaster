@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import DatePicker from 'material-ui/DatePicker';
 // import { addProject } from "../actions/index"
 
 // const mapDispatchToProps = dispatch => {
@@ -14,7 +15,8 @@ class CreateProjectForm extends Component {
     super()
     this.state = {
       title: '',
-      description:''
+      description:'',
+      owner: ''
     }
   }
 
@@ -31,12 +33,18 @@ class CreateProjectForm extends Component {
   // }
 
   render() {
-    const { title, description} = this.state
+    const { title, description, owner } = this.state
     return (
       <form onSubmit={this.handleSubmit}>
-      <input type='text' name='title' value={title} onChange={this.handleChange} />
-      <input type='text' name='description' value={description} onChange={this.handleChange} />
-      <button type='submit'>ADD Project</button>
+        <p>Project Name</p>
+        <input type='text' placeholder="Project Name" name='title' value={title} onChange={this.handleChange} />
+        <p>Description</p>
+        <input type='text' placeholder="Description" name='description' value={description} onChange={this.handleChange} />
+        <p>Project Owner</p>
+        <input type='text' placeholder="Project Owner" name='owner' value={owner} onChange={this.handleChange} />
+        <p>End Date</p>
+        <DatePicker hintText="End Date" container="inline" />
+        <button type='submit'>Add Project</button>
       </form>
     )
   }
