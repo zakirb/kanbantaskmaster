@@ -47,9 +47,12 @@ router.post('/signup', function (req, res, next) {
         if (err) {
           res.send(err)
         } else {
+          console.log(user)
+          console.log('CREATED USER')
           var token = jwt.sign(user.toObject(), process.env.JWT_SECRET, {
             expiresIn: 60 * 60 * 24
           })
+          console.log('REACHED THE END OF SIGNUP ROUTE')
           res.json({user, token})
         }
       })

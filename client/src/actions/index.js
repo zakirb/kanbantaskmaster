@@ -6,6 +6,6 @@ import { LIFT_TOKEN_TO_STATE } from '../constants/action-types';
 //   { type: ADD_PROJECT, payload: project}
 // )
 
-export const liftTokenToState = token => (
-  { type: LIFT_TOKEN_TO_STATE, payload: token}
+export const liftTokenToState = userToken => (
+  { type: LIFT_TOKEN_TO_STATE, payload: userToken}
 )

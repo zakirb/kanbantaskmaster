@@ -19,7 +19,7 @@ const style = {
 //functions that affect state
 const mapDispatchToProps = dispatch => {
   return {
-    liftTokenToState: token => dispatch(liftTokenToState(token)),
+    liftTokenToState: userToken => dispatch(liftTokenToState(userToken)),
   }
 }
 
@@ -72,8 +72,11 @@ class ConnectedSignup extends Component {
       password: this.state.password
     }).then( result => {
       console.log(result.data)
+      console.log('THIS IS THE RESULT AFTER POST')
       localStorage.setItem('mernToken', result.data.token)
-      this.props.liftToken(result.data)
+      this.props.liftTokenToState(result.data)
+      console.log('THIS IS THE RESULT AFTER TOKEN IS LIFTED')
+      // Redirect to a react route
     })
   }
 

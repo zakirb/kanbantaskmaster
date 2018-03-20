@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import '../css/App.css';
 import NavBar from './NavBar';
+import { liftTokenToState } from '../actions/index'
+import { connect } from 'react-redux';
+
+
 
 
 import Home from './Home';
@@ -33,7 +37,22 @@ const style = {
   }
 }
 
-class App extends Component {
+const mapStateToProps = state => {
+  return {
+    user: state.user,
+    token: state.token
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    liftTokenToState: userToken => dispatch(liftTokenToState(userToken)),
+  }
+}
+
+
+
+class ConnectedApp extends Component {
   constructor(props) {
     super()
     this.state = {
@@ -72,24 +91,27 @@ class App extends Component {
       })
     } else {
       console.log("Token was FOUND!")
+      console.log(this.props.user)
       axios.post('/auth/me/from/token', {
         token
       }).then( result => {
-        console.log("This is the result of /auth/me/from/token:")
+        console.log("This is the result after /auth/me/from/token:")
         console.log(result)
         localStorage.setItem('mernToken', result.data.token)
         console.log(localStorage.mernToken)
 
-        this.setState({
-          token: result.data.token,
-          user: result.data.user
-        })
+        // this.setState({
+        //   token: result.data.token,
+        //   user: result.data.user
+        // })
+        this.props.liftTokenToState(result.data)
       }).catch( err => console.log(err) )
     }
   }
 
   render() {
-    let theUser = this.state.user
+    //this.props.user
+    let theUser = this.props.user
     if (typeof theUser === 'object' && Object.keys(theUser).length > 0) {
       return (
         <div>
@@ -126,4 +148,5 @@ class App extends Component {
 
 }
 
+const App = connect(mapStateToProps, mapDispatchToProps)(ConnectedApp)
 export default App;

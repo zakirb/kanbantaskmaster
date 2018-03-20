@@ -9,14 +9,12 @@ const initialState = {
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case LIFT_TOKEN_TO_STATE:
-    console.log('LIFTING TOKEN TO STATE')
-    return Object.assign({}, state, { token: action.payload})
-
-
-
-
+      console.log('LIFTING TOKEN TO STATE')
+      console.log(action.payload)
+      let newState = { user: action.payload.user, token: action.payload.token }
+      return Object.assign({}, state, newState)
     default:
-    return state;
+      return state;
   }
 }
 
