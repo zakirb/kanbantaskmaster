@@ -40,7 +40,6 @@ class ProjectItem extends Component {
                 <li>Task: Build App</li>
                 <li>Assigned To:</li>
                 <li>Steps:</li>
-                <FlatButton label="Edit Task" />
                 <ol>
                   <li>Create React App</li>
                   <li>NPM install dependencies</li>
@@ -50,7 +49,9 @@ class ProjectItem extends Component {
                   <li>Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.</li>
                   <li>Create React App</li>
                 </ol>
+                <FlatButton label="Edit Task" />
               </ul>
+
               <ul>
                 <li>Task: Number Two</li>
                 <li>Assigned To:</li>
@@ -64,7 +65,9 @@ class ProjectItem extends Component {
                   <li>Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.</li>
                   <li>Create React App</li>
                 </ol>
+                <FlatButton label="Edit Task" />
               </ul>
+
               <ul>
                 <li>Task: Number Three</li>
                 <li>Assigned To:</li>
@@ -78,6 +81,7 @@ class ProjectItem extends Component {
                   <li>Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.</li>
                   <li>Create React App</li>
                 </ol>
+                <FlatButton label="Edit Task" />
               </ul>
             </CardText>
           </Card>
