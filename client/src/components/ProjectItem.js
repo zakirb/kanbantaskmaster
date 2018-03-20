@@ -29,7 +29,9 @@ class ProjectItem extends Component {
               subtitle="Zakir, Dan, Tim"
             />
             <CardActions>
-              <FlatButton label="Edit" />
+              <FlatButton label="Edit Project" />
+              <FlatButton label="Add Team Member" />
+              <FlatButton label="Add Task" />
               <FlatButton label="Delete" />
             </CardActions>
             <CardText>
@@ -38,6 +40,7 @@ class ProjectItem extends Component {
                 <li>Task: Build App</li>
                 <li>Assigned To:</li>
                 <li>Steps:</li>
+                <FlatButton label="Edit Task" />
                 <ol>
                   <li>Create React App</li>
                   <li>NPM install dependencies</li>
