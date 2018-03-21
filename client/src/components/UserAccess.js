@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../css/App.css';
-import Projects from './Projects';
+// import Projects from './Projects';
 import Signup from './Signup';
 import Login from './Login';
 import { UserProfile } from './UserProfile';

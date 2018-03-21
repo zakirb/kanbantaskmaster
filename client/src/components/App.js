@@ -18,28 +18,28 @@ import axios from 'axios';
 // import Projects from './Projects';
 // import ProjectItem from './ProjectItem';
 
-import Paper from 'material-ui/Paper';
-import {GridTile} from 'material-ui/GridList';
+// import Paper from 'material-ui/Paper';
+// import {GridTile} from 'material-ui/GridList';
 // import {GridList, GridTile} from 'material-ui/GridList';
 
 // import CreateProjectForm from './CreateProjectForm';
 
-const style = {
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-  },
-  gridList: {
-    width: 700,
-    height: 400,
-    display: 'inline',
-  },
-  layout: {
-    zDepth: 15,
-    margin: 10
-  }
-}
+// const style = {
+//   root: {
+//     display: 'flex',
+//     flexWrap: 'wrap',
+//     justifyContent: 'space-around',
+//   },
+//   gridList: {
+//     width: 700,
+//     height: 400,
+//     display: 'inline',
+//   },
+//   layout: {
+//     zDepth: 15,
+//     margin: 10
+//   }
+// }
 
 const mapStateToProps = state => {
   return {

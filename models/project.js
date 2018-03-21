@@ -1,7 +1,9 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 var User = require('User');
-var Task = require('Task');
+// import User from './User';
+// var Task = require('Task');
+// import Task from './Task';
 // import the task list
 // var taskSchema = new Schema({ name: 'string' });
 // import the team list
@@ -39,7 +41,7 @@ var projectSchema = new mongoose.Schema({
     type: Date,
     required: true
   },
-  task: [taskSchema],
+  task: [Task],
   user_id: ObjectId,
   updated: {
     type: Date,
@@ -76,7 +78,7 @@ projectSchema.methods.authenticated = function(password, cb) {
 }
 
 projectSchema.pre('save', function(next) {
-  console.log('WE ARE IN THE PRE-SAVE ROUTE')
+  console.log('WE ARE IN THE projectSchema PRE-SAVE ROUTE')
   // var hash = bcrypt.hashSync(this.password, 10)
   // this.password = hash
 
