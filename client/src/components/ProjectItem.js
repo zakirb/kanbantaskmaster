@@ -1,5 +1,8 @@
 // import React, { Component } from 'react';
 import React, { Component } from 'react';
+import ViewProject from './ViewProject';
+
+
 // import TextField from 'material-ui/TextField';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
@@ -86,7 +89,7 @@ class ProjectItem extends Component {
             </CardText>
           </Card>
 
-          <h1>Project Item</h1>
+          <h1>Project Item Example #2</h1>
           <p>A single project item</p>
             <Card style={style.card_style}>
               <CardHeader
@@ -100,54 +103,12 @@ class ProjectItem extends Component {
                 <FlatButton label="Delete" />
               </CardActions>
               <CardText>
+                
+
                 THIS EXAMPLE DOES NOT EXPAND...
-                <ul>
-                  <li>Task: Build App</li>
-                  <li>Assigned To:</li>
-                  <li>Steps:</li>
-                  <ol>
-                    <li>Create React App</li>
-                    <li>NPM install dependencies</li>
-                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                    <li>Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.</li>
-                    <li>Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.</li>
-                    <li>Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.</li>
-                    <li>Create React App</li>
-                  </ol>
-                  <FlatButton label="Edit Task" />
-                </ul>
+                <ViewProject />
 
-                <ul>
-                  <li>Task: Number Two</li>
-                  <li>Assigned To:</li>
-                  <li>Steps:</li>
-                  <ol>
-                    <li>Create React App</li>
-                    <li>NPM install dependencies</li>
-                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                    <li>Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.</li>
-                    <li>Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.</li>
-                    <li>Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.</li>
-                    <li>Create React App</li>
-                  </ol>
-                  <FlatButton label="Edit Task" />
-                </ul>
 
-                <ul>
-                  <li>Task: Number Three</li>
-                  <li>Assigned To:</li>
-                  <li>Steps:</li>
-                  <ol>
-                    <li>Create React App</li>
-                    <li>NPM install dependencies</li>
-                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                    <li>Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.</li>
-                    <li>Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.</li>
-                    <li>Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.</li>
-                    <li>Create React App</li>
-                  </ol>
-                  <FlatButton label="Edit Task" />
-                </ul>
               </CardText>
             </Card>
       </div>

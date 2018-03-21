@@ -20,7 +20,7 @@ class KanbanBoard extends Component {
   render() {
     return (
       <div>
-        <h2>Project Kanban Board</h2>
+        <h2>Kanban Board</h2>
 
         {/* <h2>{Project Name}</h2> */}
         {/* <h2>Project Name</h2> */}

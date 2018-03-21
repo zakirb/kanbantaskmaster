@@ -9,29 +9,44 @@ import TextField from 'material-ui/TextField';
 
 // import FlatButton from 'material-ui/FlatButton';
 
-const style = {
-  margin: 10,
-  padding: 15,
-  textAlign: 'center',
-  display: 'inline-block',
-};
+// const style = {
+//   margin: 10,
+//   padding: 15,
+//   textAlign: 'center',
+//   display: 'inline-block',
+// };
 
 
 class ProjectSearch extends Component {
+  constructor(props){
+    super()
+    this.state = {
+      projectSearch: ''
+    }
+    this.handleSearchChange = this.handleSearchChange.bind(this);
+  }
+
+  handleSearchChange(e) {
+    console.log(e.target.value)
+    this.setState({ projectSearch: e.target.value})
+  }
+
   render() {
     return (
       <div>
         {/* <h2>Project Search</h2> */}
         <p>Search for a project title:</p>
         {/* <form onSubmit={this.handleSubmit}> */}
-          <form style={style}>
+          {/* <form style={style}> */}
           <TextField
-            hintText='Search for Project'
+            // hintText='Search for Project'
             // errorText="This field is required"
-            name='projectTitle'
+            name='projectSearch'
             type='text'
+            value={this.props.value}
+            onChange={this.handleSearchChange}
           />
-        </form>
+        {/* </form> */}
       </div>
     );
   }

@@ -30,20 +30,13 @@ class NavBar extends Component {
         <nav>
           <div className='nav-wrapper teal darken-3'>
             {/* <a href='/' className='brand-logo'>Workflow Project App</a> */}
-              <Link to='/'>Workflow Project App</Link>
-              <Link to='/'>Home</Link>
-              <Link to='/Projects'>Projects</Link>
-              <Link to='/ProjectItem'>Project Item</Link>
-              <Link to='/UserAccess'>User Profile</Link>
-              <Link to='/ViewTasks'> Tasks (tmp)</Link>
+              <Link to='/'>Workflow Project App</Link>{' '}
+              <Link to='/'>Home</Link>{' '}
+              <Link to='/Projects'>Projects</Link>{' '}
+              <Link to='/ProjectItem'>Project Item</Link>{' '}
+              <Link to='/UserAccess'>User Profile</Link>{' '}
+              <Link to='/ViewTasks'> Tasks (tmp)</Link>{' '}
               <Link to='/ViewProject'>View Project (tmp)</Link>
-            {/* <ul id='nav-mobile' className='right hide-on-med-and-down'>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-            </ul> */}
             {/* <ul id='nav-mobile' className='right hide-on-med-and-down'>
               <li><Link to='/'>Home</Link></li>
               <li><Link to='/Projects'>Projects</Link></li>
@@ -60,7 +53,7 @@ class NavBar extends Component {
           <div className='nav-wrapper teal darken-3'>
             <a href='/' className='brand-logo'>Workflow Project App</a>
             <ul id='nav-mobile' className='right hide-on-med-and-down'>
-              <li><Link to='/'>Home</Link></li>
+              <li><Link to='/'>Home</Link></li>{' '}
               <li><Link to='/UserAccess'>User Access</Link></li>
             </ul>
           </div>
