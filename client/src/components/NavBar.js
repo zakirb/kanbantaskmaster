@@ -12,15 +12,20 @@ import UserAccess from './UserAccess';
 import { UserProfile } from './UserProfile';
 import Projects from './Projects';
 import ProjectItem from './ProjectItem';
+import { connect } from 'react-redux';
+import CreateProjectForm from './CreateProjectForm';
+import CreateTasks from './CreateTasks';
 
+const mapStateToProps = state => {
+  return {
+    user: state.user,
+    token: state.token
+  }
+}
 
-class NavBar extends Component {
+class ConnectedNavBar extends Component {
   constructor(props){
     super()
-    this.state = {
-      token:'',
-      user: {}
-    }
   }
   render(){
     const projectTestData = [
@@ -29,8 +34,10 @@ class NavBar extends Component {
       {title: "Project 3", team: ["Zakir B", "Dan V", "Tim H"], tasks: ["Have Fun", "Get to know each other", "Try to understand this shit"]}
     ]
     let theUser = this.props.user
+    console.log(this.props.user)
     let navigation
     if (typeof theUser === 'object' && Object.keys(theUser).length > 0){
+      console.log("user is real")
       navigation = (
         <nav>
           <div className='nav-wrapper teal darken-3'>
@@ -70,7 +77,8 @@ class NavBar extends Component {
         <div>
           {navigation}
           <br />
-
+          <CreateProjectForm />
+          <CreateTasks />
           <Route exact path='/' render={() => <Home />} />
           <Route path='/Projects' render={() => <Projects projects={projectTestData}/>} />
           <Route path='/ProjectItem' render={() => <ProjectItem />} />
@@ -81,9 +89,12 @@ class NavBar extends Component {
           {/* <Route path='/EditTasks' render={() => <EditTasks />} /> */}
           <Route path='/UserAccess' render={() => <UserAccess  />} />
           <Route path='/UserProfile' render={() => <UserProfile user={theUser} logout={this.logout} />} />
+
         </div>
       </Router>
     )
   }
 }
+
+const NavBar = connect(mapStateToProps, null)(ConnectedNavBar)
 export default NavBar;

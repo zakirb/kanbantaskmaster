@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 // import ProjectItem from './ProjectItem';
 import ProjectList from './ProjectList';
 import ProjectSearch from './ProjectSearch';
-
+// import { LIFT_PROJECT_TO_STATE } from '../actions/index'
+import { connect } from 'react-redux';
 import Paper from 'material-ui/Paper';
 // import TextField from 'material-ui/TextField';
 // import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
@@ -16,7 +17,21 @@ const style = {
   display: 'inline-block',
 };
 
-class Projects extends Component {
+const mapStateToProps = state => {
+  return {
+    user: state.user,
+    token: state.token
+    //currentProject
+  }
+}
+
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     liftProjectToState: project => dispatch(liftProjectToState(project))
+//   }
+// }
+
+class ConnectedProjects extends Component {
   constructor(props){
     super(props)
     // let projectList = props.projects
@@ -69,5 +84,5 @@ class Projects extends Component {
     );
   }
 }
-
+const Projects = connect(mapStateToProps, null)(ConnectedProjects);
 export default Projects;
