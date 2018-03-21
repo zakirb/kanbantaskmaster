@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+// import React, { Component } from 'react';
+import React from 'react';
 // import CreateProjectForm from './CreateProjectForm';
 // import ProjectItem from './CreateProjectForm';
 // import ProjectList from './ProjectList';
@@ -16,23 +17,19 @@ import TextField from 'material-ui/TextField';
 //   display: 'inline-block',
 // };
 
+// class ProjectSearch extends Component {
+// constructor(props){
+//   super()
+//   this.state = {
+//     projectSearch: ''
+//   }
+// }
+// render() {
+//   return
 
-class ProjectSearch extends Component {
-  constructor(props){
-    super()
-    this.state = {
-      projectSearch: ''
-    }
-    this.handleSearchChange = this.handleSearchChange.bind(this);
-  }
+/// MADE THIS A DUMB COMPONENT
 
-  handleSearchChange(e) {
-    console.log(e.target.value)
-    this.setState({ projectSearch: e.target.value})
-  }
-
-  render() {
-    return (
+const ProjectSearch = props => (
       <div>
         {/* <h2>Project Search</h2> */}
         <p>Search for a project title:</p>
@@ -43,13 +40,16 @@ class ProjectSearch extends Component {
             // errorText="This field is required"
             name='projectSearch'
             type='text'
-            value={this.props.value}
-            onChange={this.handleSearchChange}
+            value={props.value}
+            onChange={props.onChange}
           />
         {/* </form> */}
       </div>
     );
-  }
-}
+
+
+
+//   }
+// }
 
 export default ProjectSearch;

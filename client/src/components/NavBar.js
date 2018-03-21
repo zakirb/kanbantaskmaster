@@ -23,6 +23,11 @@ class NavBar extends Component {
     }
   }
   render(){
+    const projectTestData = [
+      {title: "Workflow Project Organizer", team: ["Zakir B", "Dan V", "Tim H"], tasks: ["Build Models", "Implement Redux", "Implement Material UI"]},
+      {title: "Party Bus", team: ["Zakir B", "Dan V"], tasks: ["Buy Beer", "Seek Contacts"]},
+      {title: "Project 3", team: ["Zakir B", "Dan V", "Tim H"], tasks: ["Have Fun", "Get to know each other", "Try to understand this shit"]}
+    ]
     let theUser = this.props.user
     let navigation
     if (typeof theUser === 'object' && Object.keys(theUser).length > 0){
@@ -67,7 +72,7 @@ class NavBar extends Component {
           <br />
 
           <Route exact path='/' render={() => <Home />} />
-          <Route path='/Projects' render={() => <Projects />} />
+          <Route path='/Projects' render={() => <Projects projects={projectTestData}/>} />
           <Route path='/ProjectItem' render={() => <ProjectItem />} />
           <Route path='/ViewProject' render={() => <ViewProject />} />
           {/* <Route path='/CreateProjectForm' render={() => <CreateProjectForm />} /> */}
