@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import DatePicker from 'material-ui/DatePicker';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
-
 // import { addProject } from "../actions/index"
 
 // const mapDispatchToProps = dispatch => {
@@ -11,7 +10,6 @@ import FlatButton from 'material-ui/FlatButton';
 //     addProject: project => dispatch(addProject(project))
 //   }
 // }
-
 const style = {
   root: {
     display: 'flex',
@@ -19,16 +17,15 @@ const style = {
     justifyContent: 'space-around',
   },
   card_style: {
-    width: 300,
-    height: 400,
+    width: 400,
+    height: 300,
     margin: 5,
     textAlign: 'center'
   }
 }
 
 
-
-class CreateTasks extends Component {
+class EditTasks extends Component {
   constructor() {
     super()
     this.state = {
@@ -53,25 +50,16 @@ class CreateTasks extends Component {
   render() {
     const { todo, teamMember, dueDate} = this.state
     return (
-      
-      <Card style={style.card_style}>
-        <CardHeader
-          title="Create Tasks Form"
-        />
       <form onSubmit={this.handleSubmit}>
-          <p>To Do</p>
-            <input type='text' placeholder="To Do" name='todo' value={todo} onChange={this.handleChange} />
-          <p>Team Member</p>
-            <input type='text' placeholder="Team Member" name='teamMember' value={teamMember} onChange={this.handleChange} />
-          <p>Due Date</p>
-          <DatePicker hintText="Due Date" container="inline" />
-
-          <CardActions>
-            <FlatButton label="Add Task" />
-          </CardActions>
-        </form>
-      </Card>
-
+      <h3>Edit Tasks</h3>
+        <p>To Do</p>
+          <input type='text' placeholder="To Do" name='todo' value={todo} onChange={this.handleChange} />
+        <p>Team Member</p>
+          <input type='text' placeholder="Team Member" name='teamMember' value={teamMember} onChange={this.handleChange} />
+        <p>Due Date</p>
+        <DatePicker hintText="Due Date" container="inline" />
+      <button type='submit'>Add Task</button>
+      </form>
     )
   }
 
@@ -80,4 +68,4 @@ class CreateTasks extends Component {
 // const CreateProjectForm = connect(null, mapDispatchToProps)(ConnectedCreateProjectForm)
 
 
-export default CreateTasks;
+export default EditTasks;
