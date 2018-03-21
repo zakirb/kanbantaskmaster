@@ -20,7 +20,7 @@ const style = {
   },
   card_style: {
     width: 300,
-    height: 400,
+    height: 350,
     margin: 5,
     textAlign: 'center'
   }
@@ -53,12 +53,11 @@ class CreateTasks extends Component {
   render() {
     const { todo, teamMember, dueDate} = this.state
     return (
-      
+
       <Card style={style.card_style}>
-        <CardHeader
-          title="Create Tasks Form"
-        />
+
       <form onSubmit={this.handleSubmit}>
+      <h3>Create Task Form</h3>
           <p>To Do</p>
             <input type='text' placeholder="To Do" name='todo' value={todo} onChange={this.handleChange} />
           <p>Team Member</p>

@@ -17,9 +17,10 @@ const style = {
     justifyContent: 'space-around',
   },
   card_style: {
-    width: 400,
-    height: 300,
-    margin: 5
+    width: 300,
+    height: 400,
+    margin: 5,
+    textAlign: 'center'
   }
 }
 
@@ -49,18 +50,24 @@ class EditProjects extends Component {
   render() {
     const { title, description, owner } = this.state
     return (
-      <form onSubmit={this.handleSubmit}>
-        <h3>Edit Projects</h3>
-          <p>Project Name</p>
-            <input type='text' placeholder="Project Name" name='title' value={title} onChange={this.handleChange} />
-          <p>Description</p>
-            <input type='text' placeholder="Description" name='description' value={description} onChange={this.handleChange} />
-          <p>Project Owner</p>
-            <input type='text' placeholder="Project Owner" name='owner' value={owner} onChange={this.handleChange} />
-          <p>End Date</p>
-        <DatePicker hintText="End Date" container="inline" />
-          <button type='submit'>Add Project</button>
-      </form>
+      <Card style={style.card_style}>
+
+        <form onSubmit={this.handleSubmit}>
+          <h3>Edit Projects</h3>
+            <p>Edit Project Name</p>
+              <input type='text' placeholder="Project Name" name='title' value={title} onChange={this.handleChange} />
+            <p>Edit Description</p>
+              <input type='text' placeholder="Description" name='description' value={description} onChange={this.handleChange} />
+            <p>Edit Project Owner</p>
+              <input type='text' placeholder="Project Owner" name='owner' value={owner} onChange={this.handleChange} />
+            <p>Edit End Date</p>
+          <DatePicker hintText="End Date" container="inline" />
+
+          <CardActions>
+            <FlatButton label="Update Project" />
+          </CardActions>
+        </form>
+      </Card>
     )
   }
 
