@@ -1,7 +1,14 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
-var User = require('User');
-var Task = require('Task');
+
+// var User = require('User');
+var User = mongoose.model('User', userSchema);
+// import User from './User';
+
+// var Task = require('Task');
+var Task = mongoose.model('Task', taskSchema);
+// import Task from './Task';
+
 // import the task list
 // var taskSchema = new Schema({ name: 'string' });
 // import the team list
@@ -39,8 +46,20 @@ var projectSchema = new mongoose.Schema({
     type: Date,
     required: true
   },
-  task: [taskSchema],
-  user_id: ObjectId,
+  project_team: {
+    type: Array,
+    required: true
+  }
+  tasks: [{
+    type: Schema.Types.ObjectId,
+    ref:'Task',
+    required: true
+  }],
+  user_id: {
+    type: Schema.Types.ObjectId,
+    ref:'User',
+    required:true
+  },
   updated: {
     type: Date,
     required: true,
@@ -56,9 +75,10 @@ projectSchema.set('JSON', {
       title: ret.title,
       description: ret.description,
       target_date: ret.target_date,
-      updated: ret.updated,
-      project_tasks: ret.project_tasks,
-      project_team: ret.project_team
+      user_id: ret.user_id,
+      tasks: ret.tasks,
+      project_team: ret.project_team,
+      updated: ret.updated
     }
     return returnJson
   }
@@ -76,7 +96,7 @@ projectSchema.methods.authenticated = function(password, cb) {
 }
 
 projectSchema.pre('save', function(next) {
-  console.log('WE ARE IN THE PRE-SAVE ROUTE')
+  console.log('WE ARE IN THE projectSchema PRE-SAVE ROUTE')
   // var hash = bcrypt.hashSync(this.password, 10)
   // this.password = hash
 

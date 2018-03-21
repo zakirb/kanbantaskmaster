@@ -1,5 +1,8 @@
 // import React, { Component } from 'react';
 import React, { Component } from 'react';
+import ViewProject from './ViewProject';
+
+
 // import TextField from 'material-ui/TextField';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
@@ -21,7 +24,7 @@ class ProjectItem extends Component {
   render() {
     return (
       <div>
-        <h1>Project Item</h1>
+        <h2>Project Item</h2>
         <p>A single project item</p>
           <Card style={style.card_style}>
             <CardHeader
@@ -85,6 +88,29 @@ class ProjectItem extends Component {
               </ul>
             </CardText>
           </Card>
+
+          <h1>Project Item Example #2</h1>
+          <p>A single project item</p>
+            <Card style={style.card_style}>
+              <CardHeader
+                title="Workflow Project Title"
+                subtitle="Zakir, Dan, Tim"
+              />
+              <CardActions>
+                <FlatButton label="Edit Project" />
+                <FlatButton label="Add Team Member" />
+                <FlatButton label="Add Task" />
+                <FlatButton label="Delete" />
+              </CardActions>
+              <CardText>
+                
+
+                THIS EXAMPLE DOES NOT EXPAND...
+                <ViewProject />
+
+
+              </CardText>
+            </Card>
       </div>
     );
   }

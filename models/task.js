@@ -1,6 +1,9 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
-var Project = require('Project')
+
+// var Project = require('Project');
+var Project = mongoose.model('Project', projectSchema);
+// import Project from './Project';
 // var projectSchema = new Schema({ name: 'string' });
 
 var taskSchema = new mongoose.Schema({
@@ -21,7 +24,9 @@ var taskSchema = new mongoose.Schema({
   },
   assigned_to: {
     type: String,
-    required: true
+    required: true,
+    minLength: 5,
+    maxLength: 1000
   },
   steps: [
     {
@@ -30,10 +35,16 @@ var taskSchema = new mongoose.Schema({
     },
     {
       step_action: String,
-      required: true
+      required: true,
+      minLength: 5,
+      maxLength: 1000
     }
   ],
-  project_id: ObjectId,
+  project_id: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Project',
+    required: true
+  }],
   updated: {
     type: Date,
     required: true,
@@ -69,7 +80,7 @@ taskSchema.methods.authenticated = function(password, cb) {
 }
 
 taskSchema.pre('save', function(next) {
-  console.log('WE ARE IN THE PRE-SAVE ROUTE')
+  console.log('WE ARE IN THE taskSchema PRE-SAVE ROUTE')
   // var hash = bcrypt.hashSync(this.password, 10)
   // this.password = hash
 
