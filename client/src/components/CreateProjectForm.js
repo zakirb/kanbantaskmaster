@@ -94,7 +94,8 @@ class ConnectedCreateProjectForm extends Component {
   render() {
     const { title, description, owner } = this.state
     return (
-      <Paper style={style.layout}>
+      <Paper style={style.layout} zDepth={4}>
+      <Paper>
 
       <form onSubmit={this.handleSubmit}>
         <h3>Create Project Form</h3>
@@ -110,6 +111,7 @@ class ConnectedCreateProjectForm extends Component {
             <FlatButton label="Reset?" />
           </CardActions>
         </form>
+      </Paper>
       </Paper>
 
     )
