@@ -24,7 +24,7 @@ var projectSchema = new mongoose.Schema({
   project_team: {
     type: Array,
     required: true
-  }
+  },
   tasks: [{
     type: Schema.Types.ObjectId,
     ref:'Task',
