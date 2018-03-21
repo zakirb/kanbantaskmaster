@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import DatePicker from 'material-ui/DatePicker';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
+import Paper from 'material-ui/Paper';
 
 // import { addProject } from "../actions/index"
 
@@ -13,16 +14,20 @@ import FlatButton from 'material-ui/FlatButton';
 // }
 
 const style = {
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-  },
-  card_style: {
-    width: 300,
-    height: 450,
+  // root: {
+  //   display: 'flex',
+  //   flexWrap: 'wrap',
+  //   justifyContent: 'space-around',
+  // },
+  style: {
+    width: 100,
+    height: 400,
     margin: 5,
     textAlign: 'center'
+  },
+  layout: {
+    zDepth: 10,
+    margin: 10
   }
 }
 
@@ -52,11 +57,10 @@ class CreateProjectForm extends Component {
   render() {
     const { title, description, owner } = this.state
     return (
-      <Card style={style.card_style}>
-        <CardHeader
-          title="Create Project Form"
-        />
+      <Paper style={style.layout}>
+
       <form onSubmit={this.handleSubmit}>
+        <h3>Create Project Form</h3>
           <p>Project Name</p>
             <input type='text' placeholder="Project Name" name='title' value={title} onChange={this.handleChange} />
           <p>Description</p>
@@ -71,7 +75,7 @@ class CreateProjectForm extends Component {
             <FlatButton label="Reset?" />
           </CardActions>
         </form>
-      </Card>
+      </Paper>
 
     )
   }
