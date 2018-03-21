@@ -5,6 +5,7 @@ var bcrypt = require('bcrypt');
 var Task = require('./task');
 
 var projectSchema = new mongoose.Schema({
+  
     title: {
       type: String,
       required: true,
@@ -39,6 +40,7 @@ var projectSchema = new mongoose.Schema({
       default: Date.now
     }
   });
+
 
 projectSchema.set('JSON', {
   transform: function (doc, ret, options) {

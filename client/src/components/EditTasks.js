@@ -17,8 +17,8 @@ const style = {
     justifyContent: 'space-around',
   },
   card_style: {
-    width: 400,
-    height: 300,
+    width: 300,
+    height: 350,
     margin: 5,
     textAlign: 'center'
   }
@@ -50,16 +50,22 @@ class EditTasks extends Component {
   render() {
     const { todo, teamMember, dueDate} = this.state
     return (
-      <form onSubmit={this.handleSubmit}>
-      <h3>Edit Tasks</h3>
-        <p>To Do</p>
-          <input type='text' placeholder="To Do" name='todo' value={todo} onChange={this.handleChange} />
-        <p>Team Member</p>
-          <input type='text' placeholder="Team Member" name='teamMember' value={teamMember} onChange={this.handleChange} />
-        <p>Due Date</p>
-        <DatePicker hintText="Due Date" container="inline" />
-      <button type='submit'>Add Task</button>
-      </form>
+      <Card style={style.card_style}>
+
+        <form onSubmit={this.handleSubmit}>
+        <h3>Edit Tasks</h3>
+          <p>Edit To Do</p>
+            <input type='text' placeholder="To Do" name='todo' value={todo} onChange={this.handleChange} />
+          <p>Edit Team Member</p>
+            <input type='text' placeholder="Team Member" name='teamMember' value={teamMember} onChange={this.handleChange} />
+          <p>Edit Due Date</p>
+          <DatePicker hintText="Due Date" container="inline" />
+
+        <CardActions>
+          <FlatButton label="Update Task" />
+        </CardActions>
+        </form>
+      </Card>
     )
   }
 

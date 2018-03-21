@@ -28,7 +28,7 @@ app.use(function(req, res, next) {
 });
 
 app.use('/auth', auth);
-// app.use('/projects', projects);
+app.use('/create', projects);
 
 const PORT = process.env.PORT || 5000;
 
