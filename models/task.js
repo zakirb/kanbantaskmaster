@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 
-var Project = require('./project');
+// var Project = require('./project');
 
 var taskSchema = new mongoose.Schema({
   description: {
@@ -38,11 +38,10 @@ var taskSchema = new mongoose.Schema({
       maxLength: 1000
     }
   ],
-  project_id: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Project',
+  project_id: {
+    type: Number,
     required: true
-  }],
+  },
   updated: {
     type: Date,
     required: true,
@@ -79,10 +78,10 @@ taskSchema.methods.authenticated = function(password, cb) {
 
 taskSchema.pre('save', function(next) {
   console.log('WE ARE IN THE taskSchema PRE-SAVE ROUTE')
-  if (err) return handleError(err);
+  // if (err) return handleError(err);
   // var hash = bcrypt.hashSync(this.password, 10)
   // this.password = hash
-
+ console.log(Task)
   // assert.equal(error.errors['title'].message,
   //       'Project `title` is required.');
   // assert.equal(error.errors['description'].message,
