@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import DatePicker from 'material-ui/DatePicker';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
+
 // import { addProject } from "../actions/index"
 
 // const mapDispatchToProps = dispatch => {
@@ -10,6 +11,7 @@ import FlatButton from 'material-ui/FlatButton';
 //     addProject: project => dispatch(addProject(project))
 //   }
 // }
+
 const style = {
   root: {
     display: 'flex',
@@ -23,6 +25,7 @@ const style = {
     textAlign: 'center'
   }
 }
+
 
 
 class CreateTasks extends Component {
@@ -50,6 +53,7 @@ class CreateTasks extends Component {
   render() {
     const { todo, teamMember, dueDate} = this.state
     return (
+      
       <Card style={style.card_style}>
         <CardHeader
           title="Create Tasks Form"
@@ -67,6 +71,7 @@ class CreateTasks extends Component {
           </CardActions>
         </form>
       </Card>
+
     )
   }
 

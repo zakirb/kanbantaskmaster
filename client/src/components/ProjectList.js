@@ -47,7 +47,6 @@ const ProjectList = (props) => (
                     )}
                 </ul>
 
-
               NOTE: div =row ends after the next Card in ProjectList . js
             </CardText>
           </Card>

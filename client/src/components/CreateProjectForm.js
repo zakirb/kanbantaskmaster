@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import DatePicker from 'material-ui/DatePicker';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
+
 // import { addProject } from "../actions/index"
 
 // const mapDispatchToProps = dispatch => {
@@ -71,6 +72,7 @@ class CreateProjectForm extends Component {
           </CardActions>
         </form>
       </Card>
+
     )
   }
 
