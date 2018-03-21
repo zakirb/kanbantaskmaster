@@ -51,8 +51,8 @@ class ConnectedNavBar extends Component {
               <Link to='/Projects'>Projects</Link>{' '}
               <Link to='/ProjectItem'>Project Item</Link>{' '}
               <Link to='/UserAccess'>User Profile</Link>{' '}
-              <Link to='/ViewTasks'> Tasks (tmp)</Link>{' '}
-              <Link to='/ViewProject'>View Project (tmp)</Link>
+              <Link to='/ViewTasks'> Tasks</Link>{' '}
+              <Link to='/ViewProject'>View Project</Link>
             {/* <ul id='nav-mobile' className='right hide-on-med-and-down'>
               <li><Link to='/'>Home</Link></li>
               <li><Link to='/Projects'>Projects</Link></li>
