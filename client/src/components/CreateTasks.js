@@ -10,13 +10,13 @@ import DatePicker from 'material-ui/DatePicker';
 // }
 
 
-class CreateProjectForm extends Component {
+class CreateTasks extends Component {
   constructor() {
     super()
     this.state = {
-      title: '',
-      description:'',
-      owner: ''
+      todo: '',
+      teamMember:'',
+      dueDate: ''
     }
   }
 
@@ -33,18 +33,16 @@ class CreateProjectForm extends Component {
   // }
 
   render() {
-    const { title, description, owner } = this.state
+    const { todo, teamMember, dueDate} = this.state
     return (
       <form onSubmit={this.handleSubmit}>
-        <p>Project Name</p>
-        <input type='text' placeholder="Project Name" name='title' value={title} onChange={this.handleChange} />
-        <p>Description</p>
-        <input type='text' placeholder="Description" name='description' value={description} onChange={this.handleChange} />
-        <p>Project Owner</p>
-        <input type='text' placeholder="Project Owner" name='owner' value={owner} onChange={this.handleChange} />
-        <p>End Date</p>
-        <DatePicker hintText="End Date" container="inline" />
-        <button type='submit'>Add Project</button>
+        <p>To Do</p>
+        <input type='text' placeholder="To Do" name='todo' value={todo} onChange={this.handleChange} />
+        <p>Team Member</p>
+        <input type='text' placeholder="Team Member" name='teamMember' value={teamMember} onChange={this.handleChange} />
+        <p>Due Date</p>
+        <DatePicker hintText="Due Date" container="inline" />
+      <button type='submit'>Add Task</button>
       </form>
     )
   }
@@ -54,4 +52,4 @@ class CreateProjectForm extends Component {
 // const CreateProjectForm = connect(null, mapDispatchToProps)(ConnectedCreateProjectForm)
 
 
-export default CreateProjectForm;
+export default CreateTasks;

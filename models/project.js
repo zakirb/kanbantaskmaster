@@ -1,9 +1,11 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
+var User = require('User');
+var Task = require('Task');
 // import the task list
-var taskSchema = new Schema({ name: 'string' });
+// var taskSchema = new Schema({ name: 'string' });
 // import the team list
-var teamSchema = new Schema({ name: 'string' });
+// var teamSchema = new Schema({ name: 'string' });
 
 // schematypes mongoose
 // http://mongoosejs.com/docs/schematypes.html
@@ -37,13 +39,13 @@ var projectSchema = new mongoose.Schema({
     type: Date,
     required: true
   },
+  task: [taskSchema],
+  user_id: ObjectId,
   updated: {
     type: Date,
     required: true,
     default: Date.now
-  },
-  project_tasks: [taskSchema],
-  project_team: teamSchema
+  }
   }
 })
 

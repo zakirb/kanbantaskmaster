@@ -31,7 +31,7 @@ var teamSchema = new mongoose.Schema({
     type: Array,
     required: true
   },
-  project_id: Object_id,
+  project_id: project_id,
   updated: {
     type: Date,
     required: true,
