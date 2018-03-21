@@ -1,9 +1,14 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
-var User = require('User');
+
+// var User = require('User');
+var User = mongoose.model('User', userSchema);
 // import User from './User';
+
 // var Task = require('Task');
+var Task = mongoose.model('Task', taskSchema);
 // import Task from './Task';
+
 // import the task list
 // var taskSchema = new Schema({ name: 'string' });
 // import the team list
@@ -41,8 +46,20 @@ var projectSchema = new mongoose.Schema({
     type: Date,
     required: true
   },
-  task: [Task],
-  user_id: ObjectId,
+  project_team: {
+    type: Array,
+    require: true
+  }
+  tasks: [{
+    type: Schema.Types.ObjectId,
+    ref:'Task',
+    require: true
+  }],
+  user_id: {
+    type: Schema.Types.ObjectId,
+    ref:'User',
+    require:true
+  },
   updated: {
     type: Date,
     required: true,
@@ -58,9 +75,10 @@ projectSchema.set('JSON', {
       title: ret.title,
       description: ret.description,
       target_date: ret.target_date,
-      updated: ret.updated,
-      project_tasks: ret.project_tasks,
-      project_team: ret.project_team
+      user_id: ret.user_id,
+      tasks: ret.tasks,
+      project_team: ret.project_team,
+      updated: ret.updated
     }
     return returnJson
   }

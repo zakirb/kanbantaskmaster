@@ -30,8 +30,8 @@ class Projects extends Component {
   // past this down to the kids...
   handleFilterChange(event){
     event.preventDefault()
-    console.log(event.target.value)
-    console.log(this.props)
+    // console.log(event.target.value)
+    // console.log(this.props)
 
     const filterValue = event.target.value
     // not using prevState, but necessary to use
