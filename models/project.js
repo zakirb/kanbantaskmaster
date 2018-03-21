@@ -48,17 +48,17 @@ var projectSchema = new mongoose.Schema({
   },
   project_team: {
     type: Array,
-    require: true
+    required: true
   }
   tasks: [{
     type: Schema.Types.ObjectId,
     ref:'Task',
-    require: true
+    required: true
   }],
   user_id: {
     type: Schema.Types.ObjectId,
     ref:'User',
-    require:true
+    required:true
   },
   updated: {
     type: Date,
