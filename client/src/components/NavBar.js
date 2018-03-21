@@ -5,7 +5,8 @@ import {
   Link
 } from 'react-router-dom';
 import Home from './Home';
-// import Login from './Login';
+import ViewTasks from './ViewTasks';
+import ViewProject from './ViewProject';
 import UserAccess from './UserAccess';
 // import Signup from './Signup';
 import { UserProfile } from './UserProfile';
@@ -27,6 +28,11 @@ class ConnectedNavBar extends Component {
     super()
   }
   render(){
+    const projectTestData = [
+      {title: "Workflow Project Organizer", team: ["Zakir B", "Dan V", "Tim H"], tasks: ["Build Models", "Implement Redux", "Implement Material UI"]},
+      {title: "Party Bus", team: ["Zakir B", "Dan V"], tasks: ["Buy Beer", "Seek Contacts"]},
+      {title: "Project 3", team: ["Zakir B", "Dan V", "Tim H"], tasks: ["Have Fun", "Get to know each other", "Try to understand this shit"]}
+    ]
     let theUser = this.props.user
     console.log(this.props.user)
     let navigation
@@ -35,13 +41,21 @@ class ConnectedNavBar extends Component {
       navigation = (
         <nav>
           <div className='nav-wrapper teal darken-3'>
-            <a href='/' className='brand-logo'>Workflow Project App</a>
-            <ul id='nav-mobile' className='right hide-on-med-and-down'>
+            {/* <a href='/' className='brand-logo'>Workflow Project App</a> */}
+              <Link to='/'>Workflow Project App</Link>{' '}
+              <Link to='/'>Home</Link>{' '}
+              <Link to='/Projects'>Projects</Link>{' '}
+              <Link to='/ProjectItem'>Project Item</Link>{' '}
+              <Link to='/UserAccess'>User Profile</Link>{' '}
+              <Link to='/ViewTasks'> Tasks (tmp)</Link>{' '}
+              <Link to='/ViewProject'>View Project (tmp)</Link>
+            {/* <ul id='nav-mobile' className='right hide-on-med-and-down'>
               <li><Link to='/'>Home</Link></li>
               <li><Link to='/Projects'>Projects</Link></li>
               <li><Link to='/ProjectItem'>Project Item</Link></li>
               <li><Link to='/UserAccess'>User Profile</Link></li>
-            </ul>
+              <li><Link to='/ViewTasks'>View Project Tasks (temp)</Link></li>
+            </ul> */}
           </div>
         </nav>
       )
@@ -51,7 +65,7 @@ class ConnectedNavBar extends Component {
           <div className='nav-wrapper teal darken-3'>
             <a href='/' className='brand-logo'>Workflow Project App</a>
             <ul id='nav-mobile' className='right hide-on-med-and-down'>
-              <li><Link to='/'>Home</Link></li>
+              <li><Link to='/'>Home</Link></li>{' '}
               <li><Link to='/UserAccess'>User Access</Link></li>
             </ul>
           </div>
@@ -66,15 +80,16 @@ class ConnectedNavBar extends Component {
           <CreateProjectForm />
           <CreateTasks />
           <Route exact path='/' render={() => <Home />} />
-          <Route path='/Projects' render={() => <Projects />} />
+          <Route path='/Projects' render={() => <Projects projects={projectTestData}/>} />
           <Route path='/ProjectItem' render={() => <ProjectItem />} />
-          <Route path='/CreateProjectForm' render={() => <CreateProjectForm />} />
-          {/* <Route path='/Login' render={() => <Login liftToken={this.liftTokenToState} />} /> */}
-          {/* <Route path='/Signup' render={() => <Signup liftToken={this.liftTokenToState} />} /> */}
+          <Route path='/ViewProject' render={() => <ViewProject />} />
+          {/* <Route path='/CreateProjectForm' render={() => <CreateProjectForm />} /> */}
+          {/* <Route path='/EditProjectForm' render={() => <CreateProjectForm />} /> */}
+          <Route path='/ViewTasks' render={() => <ViewTasks />} />
+          {/* <Route path='/EditTasks' render={() => <EditTasks />} /> */}
           <Route path='/UserAccess' render={() => <UserAccess  />} />
-          <Route path='/UserProfile' render={() => <UserProfile user={theUser} logout={this.props.logout} />} />
-          {/* <Route path='/UserProfile' render={() => <UserProfile user={theUser} logout={this.logout} />} /> */}
-          {/* <Route path='/Profile' render={() => <UserProfile name={this.state.name} email={this.state.email} />} /> */}
+          <Route path='/UserProfile' render={() => <UserProfile user={theUser} logout={this.logout} />} />
+
         </div>
       </Router>
     )

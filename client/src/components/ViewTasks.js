@@ -3,6 +3,19 @@ import React, { Component } from 'react';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
+const style = {
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+  },
+  card_style: {
+    width: 400,
+    height: 300,
+    margin: 5
+  }
+}
+
 class ViewTasks extends Component {
   render() {
     return (

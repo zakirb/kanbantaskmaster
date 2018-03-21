@@ -1,14 +1,15 @@
-// import React from 'react';
-// import DatePicker from 'material-ui/DatePicker';
-//
-// /**
-//  * Inline Date Pickers are displayed below the input, rather than as a modal dialog.
-//  */
-// // const DatePicker = () => (
-// //   <div>
-// //     <DatePicker hintText="Portrait Inline Dialog" container="inline" />
-// //
-// //   </div>
-// // );
-//
-// export default '';
+
+import React from 'react'
+
+const datePicker = () => {
+  (
+    <div>
+     <DatePicker hintText="Portrait Dialog" />
+     <DatePicker hintText="Landscape Dialog" mode="landscape" />
+     <DatePicker hintText="Dialog Disabled" disabled={true} />
+     <DatePicker hintText="Open to Year" openToYearSelection={true} />
+   </div>
+  )
+}
+export default datePicker
+

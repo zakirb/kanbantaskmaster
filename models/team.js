@@ -1,24 +1,8 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
-// import the task list
-// var taskSchema = new Schema({ name: 'string' });
-// import the team list
-// var teamSchema = new Schema({ name: 'string' });
 
-// schematypes mongoose
-// http://mongoosejs.com/docs/schematypes.html
+var Project = mongoose.model('Project', projectSchema);
 
-// mongoose validation
-// http://mongoosejs.com/docs/validation.html
-
-// sub documenation from Mongoose
-// http://mongoosejs.com/docs/subdocs.html
-// var childSchema = new Schema({ name: 'string' });
-// Array of subdocuments
-  // children: [childSchema],
-  // Single nested subdocuments. Caveat: single nested subdocs only work
-  // in mongoose >= 4.2.0
-  // child: childSchema
 
 var teamSchema = new mongoose.Schema({
   name: {
@@ -31,7 +15,11 @@ var teamSchema = new mongoose.Schema({
     type: Array,
     required: true
   },
-  project_id: project_id,
+  project_id: {
+    type: Schema.Types.ObjectId,
+    ref: 'Project',
+    required: true
+  },
   updated: {
     type: Date,
     required: true,
@@ -86,6 +74,6 @@ teamSchema.pre('save', function(next) {
   next();
 })
 
-var ProjectTeam = mongoose.model('Project', teamSchema);
+var ProjectTeam = mongoose.model('ProjectTeam', teamSchema);
 
 module.exports = ProjectTeam;
