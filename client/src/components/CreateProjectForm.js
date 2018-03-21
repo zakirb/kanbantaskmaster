@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios';
 import DatePicker from 'material-ui/DatePicker';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
@@ -9,7 +10,7 @@ import Paper from 'material-ui/Paper';
 
 // const mapDispatchToProps = dispatch => {
 //   return {
-//     addProject: project => dispatch(addProject(project))
+//     liftProjectToState: project => dispatch(liftProjectToState(project))
 //   }
 // }
 
@@ -31,15 +32,24 @@ const style = {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    user: state.user,
+    token: state.token
+  }
+}
 
-class CreateProjectForm extends Component {
-  constructor() {
+
+class ConnectedCreateProjectForm extends Component {
+  constructor(props) {
     super()
     this.state = {
       title: '',
       description:'',
-      owner: ''
+      connectedDate: null,
+      targetDate:null
     }
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleChange = (event) => {
@@ -47,12 +57,39 @@ class CreateProjectForm extends Component {
     this.setState({ [key]: event.target.value})
   }
 
-  // handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   const { title } = this.state;
-  //   this.props.addArticle({ title });
-  //   this.setState({ title:''})
-  // }
+  handleDateChange = (event, date) => {
+    var targetDate = {
+        year: date.getFullYear(),
+        month: date.getMonth(),
+        day: date.getDate()
+      }
+      
+    this.setState({
+      connectedDate: date,
+      targetDate
+    })
+  }
+
+  handleSubmit(e) {
+    // if (!this.canBeSubmitted()){
+    //   e.preventDefault()
+    //   return;
+    // }
+
+    e.preventDefault()
+    axios.post('/create/project',{
+      title: this.state.title,
+      description: this.state.description,
+      owner: this.props.user._id,
+      targetDate:this.state.targetDate
+    }).then( result => {
+      console.log(result.data)
+      console.log('THIS IS THE RESULT AFTER POSTING FROM CreateProjectForm')
+      // this.props.liftProjectToState
+      console.log('THIS IS THE RESULT AFTER PROJECT IS LIFTED')
+      // Redirect to a react route
+    })
+  }
 
   render() {
     const { title, description, owner } = this.state
@@ -65,13 +102,11 @@ class CreateProjectForm extends Component {
             <input type='text' placeholder="Project Name" name='title' value={title} onChange={this.handleChange} />
           <p>Description</p>
             <input type='text' placeholder="Description" name='description' value={description} onChange={this.handleChange} />
-          <p>Project Owner</p>
-            <input type='text' placeholder="Project Owner" name='owner' value={owner} onChange={this.handleChange} />
           <p>End Date</p>
-          <DatePicker hintText="End Date" container="inline" />
+          <DatePicker  value={this.state.connectedDate} onChange={this.handleDateChange} hintText="End Date" container="inline" />
 
           <CardActions>
-            <FlatButton label="Add Project" />
+            <FlatButton type="submit" label="Add Project" />
             <FlatButton label="Reset?" />
           </CardActions>
         </form>
@@ -84,7 +119,6 @@ class CreateProjectForm extends Component {
 
 
 
-// const CreateProjectForm = connect(null, mapDispatchToProps)(ConnectedCreateProjectForm)
 
-
+const CreateProjectForm = connect(mapStateToProps, null)(ConnectedCreateProjectForm)
 export default CreateProjectForm;
