@@ -1,10 +1,7 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 
-// var Project = require('Project');
-var Project = mongoose.model('Project', projectSchema);
-// import Project from './Project';
-// var projectSchema = new Schema({ name: 'string' });
+var Project = require('./project');
 
 var taskSchema = new mongoose.Schema({
   description: {
@@ -20,7 +17,8 @@ var taskSchema = new mongoose.Schema({
   status: {
     type: String,
     required: true,
-    default: "planning"
+    enum: ["To Do", "In Progress", "In Review", "Completed"],
+    default: "To Do"
   },
   assigned_to: {
     type: String,
@@ -81,6 +79,7 @@ taskSchema.methods.authenticated = function(password, cb) {
 
 taskSchema.pre('save', function(next) {
   console.log('WE ARE IN THE taskSchema PRE-SAVE ROUTE')
+  if (err) return handleError(err);
   // var hash = bcrypt.hashSync(this.password, 10)
   // this.password = hash
 

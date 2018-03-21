@@ -63,11 +63,15 @@ class ConnectedNavBar extends Component {
       navigation = (
         <nav>
           <div className='nav-wrapper teal darken-3'>
-            <a href='/' className='brand-logo'>Workflow Project App</a>
+            <Link to='/'>Workflow Project App</Link>{' '}
+            <Link to='/'>Home</Link>{' '}
+            <Link to='/UserAccess'>User Access</Link>
+
+            {/* <a href='/' className='brand-logo'>Workflow Project App</a>
             <ul id='nav-mobile' className='right hide-on-med-and-down'>
               <li><Link to='/'>Home</Link></li>{' '}
               <li><Link to='/UserAccess'>User Access</Link></li>
-            </ul>
+            </ul> */}
           </div>
         </nav>
       )

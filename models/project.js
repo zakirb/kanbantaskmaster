@@ -1,33 +1,8 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 
-// var User = require('User');
-var User = mongoose.model('User', userSchema);
-// import User from './User';
-
-// var Task = require('Task');
-var Task = mongoose.model('Task', taskSchema);
-// import Task from './Task';
-
-// import the task list
-// var taskSchema = new Schema({ name: 'string' });
-// import the team list
-// var teamSchema = new Schema({ name: 'string' });
-
-// schematypes mongoose
-// http://mongoosejs.com/docs/schematypes.html
-
-// mongoose validation
-// http://mongoosejs.com/docs/validation.html
-
-// sub documenation from Mongoose
-// http://mongoosejs.com/docs/subdocs.html
-// var childSchema = new Schema({ name: 'string' });
-// Array of subdocuments
-  // children: [childSchema],
-  // Single nested subdocuments. Caveat: single nested subdocs only work
-  // in mongoose >= 4.2.0
-  // child: childSchema
+var User = require('./user');
+var Task = require('./task');
 
 var projectSchema = new mongoose.Schema({
   title: {
@@ -97,6 +72,7 @@ projectSchema.methods.authenticated = function(password, cb) {
 
 projectSchema.pre('save', function(next) {
   console.log('WE ARE IN THE projectSchema PRE-SAVE ROUTE')
+  if (err) return handleError(err);
   // var hash = bcrypt.hashSync(this.password, 10)
   // this.password = hash
 
