@@ -1,4 +1,3 @@
-require('dotenv').config();
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
@@ -21,6 +20,10 @@ router.post('/project', (req, res, next) => {
   //     console.log('REACHED THE END OF CREATE PROJECT ROUTE')
   //     res.json({project})
   // })
+  console.log(req.body)
+})
+
+router.post('/task', (req, res, next) => {
   console.log(req.body)
 })
 
