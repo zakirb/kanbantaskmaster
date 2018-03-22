@@ -65,7 +65,7 @@ class KanbanBoard extends Component {
             <Card style={style.card_styleToDo} zDepth={5}>
             <CardText>
             <p>Task #1 Title</p>
-            <p>Assigned to</p>
+            <p>Assigned to: </p>
               <CardActions>
                 <RaisedButton className="edit" label="Edit Task" />
               </CardActions>
@@ -89,7 +89,7 @@ class KanbanBoard extends Component {
             <Card style={style.card_styleProgress} zDepth={5}>
               <CardText>
                 <p>Task #3 Title</p>
-                <p>Assigned to</p>
+                <p>Assigned to: </p>
                 <CardActions>
                   <RaisedButton label="Edit Task" />
                 </CardActions>
@@ -109,7 +109,7 @@ class KanbanBoard extends Component {
             <Card style={style.card_styleReview} zDepth={5}>
               <CardText>
               <p>Task #5 Title</p>
-              <p>Assigned to</p>
+              <p>Assigned to: </p>
                 <CardActions>
                   <RaisedButton label="Edit Task" />
                 </CardActions>
@@ -129,7 +129,7 @@ class KanbanBoard extends Component {
             <Card style={style.card_styleFinished} zDepth={5}>
               <CardText>
               <p>Task #6 Title</p>
-              <p>Assigned to</p>
+              <p>Assigned to: </p>
                 <CardActions>
                   <RaisedButton label="Edit Task" />
                 </CardActions>
