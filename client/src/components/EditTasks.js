@@ -20,9 +20,10 @@ const style = {
   },
   card_style: {
     width: 300,
-    height: 350,
+    height: 400,
     margin: 5,
-    textAlign: 'center'
+    textAlign: 'center',
+    background: '#17CBF7'
   }
 }
 

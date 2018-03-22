@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 // import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import {GridList, GridTile} from 'material-ui/GridList';
 // import Grid from 'material-ui/Grid';
 import { Row, Col } from 'react-flexbox-grid';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import '../css/App.css';
-
-
+import DropDownMenuTask from './DropDownMenu';
 
 const style = {
 
@@ -40,10 +39,8 @@ const style = {
     background: '#17F76A',
     justifyContent: 'center'
 
-  },
-
+  }
 }
-
 
 class KanbanBoard extends Component {
   render() {
@@ -70,21 +67,15 @@ class KanbanBoard extends Component {
             <p>Task #1 Title</p>
             <p>Assigned to</p>
               <CardActions>
-                <FlatButton label="Edit Task" />
+                <RaisedButton className="edit" label="Edit Task" />
               </CardActions>
               </CardText>
+              <DropDownMenuTask />
             </Card>
 
 
-          <Card style={style.card_styleToDo} zDepth={5}>
-          <CardText>
-          <p>Task #2 Title</p>
-          <p>Assigned to</p>
-            <CardActions>
-              <FlatButton label="Edit Task" />
-            </CardActions>
-            </CardText>
-          </Card>
+
+
         </div>
         </Col>
 
@@ -100,16 +91,18 @@ class KanbanBoard extends Component {
                 <p>Task #3 Title</p>
                 <p>Assigned to</p>
                 <CardActions>
-                  <FlatButton label="Edit Task" />
+                  <RaisedButton label="Edit Task" />
                 </CardActions>
               </CardText>
+              <DropDownMenuTask />
             </Card>
           </div>
         </Col>
+
         <Col>
         <Row center="xs">
           <Col>
-          <h3 className="kanban">Review</h3>
+          <h3 className="kanban">In Review</h3>
           </Col>
           </Row>
           <div style={style.root} className="Review">
@@ -118,12 +111,14 @@ class KanbanBoard extends Component {
               <p>Task #5 Title</p>
               <p>Assigned to</p>
                 <CardActions>
-                  <FlatButton label="Edit Task" />
+                  <RaisedButton label="Edit Task" />
                 </CardActions>
               </CardText>
+              <DropDownMenuTask />
             </Card>
           </div>
         </Col>
+
         <Col>
         <Row center="xs">
           <Col>
@@ -136,9 +131,10 @@ class KanbanBoard extends Component {
               <p>Task #6 Title</p>
               <p>Assigned to</p>
                 <CardActions>
-                  <FlatButton label="Edit Task" />
+                  <RaisedButton label="Edit Task" />
                 </CardActions>
               </CardText>
+              <DropDownMenuTask />
             </Card>
           </div>
         </Col>
@@ -148,6 +144,7 @@ class KanbanBoard extends Component {
     );
   }
 }
+
 
 
 export default KanbanBoard;
