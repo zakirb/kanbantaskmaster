@@ -7,7 +7,7 @@ import { UserProfile } from './UserProfile';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { liftTokenToState, logout } from '../actions/index'
-import Paper from 'material-ui/Paper';
+// import {div, divActions, divHeader, divMedia, divTitle, divText} from 'material-ui/div';
 // import {GridList, GridTile} from 'material-ui/GridList';
 import {GridTile} from 'material-ui/GridList';
 
@@ -24,7 +24,7 @@ const style = {
   },
   layout: {
     zDepth: 15,
-    margin: 10
+    margin: 50
   }
 }
 
@@ -75,18 +75,18 @@ class ConnectedUserAccess extends Component {
     let theUser = this.props.user
     if (typeof theUser === 'object' && Object.keys(theUser).length > 0) {
       return (
-        <Paper style={style.layout}>
+        <div className="login" style={style.layout}>
           <div className='row'>
             <div className="col s6 m6 l6">
               <UserProfile user={theUser} logout={this.props.logout} />
             </div>
           </div>
           {/* <Projects /> */}
-        </Paper>
+        </div>
       )
     } else {
       return (
-        <Paper style={style.layout}>
+        <div className="login" style={style.layout}>
           <GridTile>
             {/* <div className="col s6 m6 l6"> */}
               <Signup />
@@ -98,7 +98,7 @@ class ConnectedUserAccess extends Component {
               <Login />
             {/* </div> */}
           </GridTile>
-        </Paper>
+        </div>
       )
     }
   }

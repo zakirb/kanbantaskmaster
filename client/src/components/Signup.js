@@ -3,7 +3,7 @@ import axios from 'axios';
 import { liftTokenToState } from '../actions/index'
 import { connect } from 'react-redux';
 
-import Paper from 'material-ui/Paper';
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 
@@ -85,7 +85,7 @@ class ConnectedSignup extends Component {
     const isEnabled = this.canBeSubmitted();
 
     return (
-      <Paper style={style} zDepth={4}>
+      <Card className="signup" style={style} zDepth={4}>
         <h2>Sign Up</h2>
         <form onSubmit={this.handleSubmit}>
           <TextField
@@ -125,7 +125,7 @@ class ConnectedSignup extends Component {
           />
           {/* <input type='submit' value='Sign Up' /> */}
         </form>
-      </Paper>
+      </Card>
     )
   }
 }
