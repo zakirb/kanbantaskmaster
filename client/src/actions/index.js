@@ -4,8 +4,8 @@ import { LOGOUT } from '../constants/action-types';
 import { LIFT_PROJECT_TO_STATE } from '../constants/action-types';
 
 
-export const addProject = project => (
-  { type: ADD_PROJECT, payload: project}
+export const liftProjectToState = project => (
+  { type: LIFT_PROJECT_TO_STATE, payload: project}
 )
 
 export const liftTokenToState = userToken => (

@@ -1,10 +1,11 @@
-// import { ADD_PROJECT } from "../constants/action-types";
+import { LIFT_PROJECT_TO_STATE } from "../constants/action-types";
 import { LIFT_TOKEN_TO_STATE } from "../constants/action-types";
 import { LOGOUT } from "../constants/action-types";
 
 const initialState = {
   user: '',
-  token:''
+  token:'',
+  currentProject: null
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -24,8 +25,12 @@ const rootReducer = (state = initialState, action) => {
       let emptyUser = {user: '', token:''}
       return Object.assign({}, state, emptyUser)
 
+    case LIFT_PROJECT_TO_STATE:
+      console.log('LIFTING PROJECT TO STATE')
+      console.log(action.payload)
+      let newProject = {currentProject: action.payload}
+      return Object.assign({}, state, newProject )
 
-      
     default:
       return state;
   }
