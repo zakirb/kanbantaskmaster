@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 // import CreateProjectForm from './CreateProjectForm';
 // import ProjectItem from './ProjectItem';
 import ProjectList from './ProjectList';
@@ -37,9 +38,23 @@ class ConnectedProjects extends Component {
     // let projectList = props.projects
     this.state = {
       filterValue: '',
-      projectsToDisplay: props.projects
+      projectsToDisplay: props.projects,
+      projectsFromDB: null
     }
     this.handleFilterChange = this.handleFilterChange.bind(this);
+  }
+
+  componentDidMount() {
+    console.log(this.props.user._id)
+    axios.post('/view/projects', {
+      userId:this.props.user._id
+    }).then( result => {
+      console.log(result)
+      this.setState({
+        projectsFromDB:result.data,
+        projectsToDisplay:result.data
+      })
+    })
   }
 
   // past this down to the kids...
@@ -53,7 +68,7 @@ class ConnectedProjects extends Component {
     // second param is props, only two params
     this.setState( (prevState, props) => {
       // remove items that don't contain the filter filterValue
-      const filteredProjectList = props.projects.filter( project =>
+      const filteredProjectList = this.state.projectsFromDB.filter( project =>
         // project.toLocaleLowerCase().includes(filterValue.toLocaleLowerCase()))
         project.title.toLocaleLowerCase().includes(filterValue.toLocaleLowerCase()))
       // return tnew state with the filtered fruit list and the now value of the filter
