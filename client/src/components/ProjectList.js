@@ -19,8 +19,8 @@ const style = {
 
 const ProjectList = (props) => (
       <div className="row">
-        <h1>Project List</h1>
-        <p>A list of all projects. Sample data = props from Projects.js</p>
+        {/* <h1>Project List</h1>
+        <p>A list of all projects. Sample data = props from Projects.js</p> */}
         {props.projects.map((project, index) =>
           <Card
             style={style.card_style}
@@ -28,7 +28,7 @@ const ProjectList = (props) => (
             >
             <CardHeader
               title={project.title}
-              subtitle={project.team}
+              subtitle={project.description}
               actAsExpander={true}
               showExpandableButton={true}
             />
@@ -36,7 +36,7 @@ const ProjectList = (props) => (
               <FlatButton label="Edit" />
               <FlatButton label="Delete" />
             </CardActions>
-            <CardText>Project Description</CardText>
+            <CardText>{project.description}</CardText>
             <CardText expandable={true}>
               THIS EXAMPLE EXPANDS...
 
