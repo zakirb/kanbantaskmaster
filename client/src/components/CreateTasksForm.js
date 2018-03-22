@@ -22,13 +22,14 @@ const style = {
     width: 300,
     height: 350,
     margin: 5,
-    textAlign: 'center'
+    textAlign: 'center',
+    background: '#17CBF7'
   }
 }
 
 
 
-class CreateTasks extends Component {
+class CreateTasksForm extends Component {
   constructor() {
     super()
     this.state = {
@@ -79,4 +80,4 @@ class CreateTasks extends Component {
 // const CreateProjectForm = connect(null, mapDispatchToProps)(ConnectedCreateProjectForm)
 
 
-export default CreateTasks;
+export default CreateTasksForm;

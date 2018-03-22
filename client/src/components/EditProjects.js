@@ -50,7 +50,7 @@ class EditProjects extends Component {
   render() {
     const { title, description, owner } = this.state
     return (
-      <Card style={style.card_style}>
+      <Card style={style.card_style} zDepth={5}>
 
         <form onSubmit={this.handleSubmit}>
           <h3>Edit Projects</h3>

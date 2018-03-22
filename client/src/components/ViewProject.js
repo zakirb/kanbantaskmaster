@@ -6,6 +6,8 @@ import {GridList, GridTile} from 'material-ui/GridList';
 // import Grid from 'material-ui/Grid';
 import { Row, Col } from 'react-flexbox-grid';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import '../css/App.css';
+
 
 
 const style = {
@@ -32,12 +34,13 @@ const style = {
 
   },
   card_styleFinished: {
-    width: 200,
+    width: 300,
     margin: 10,
     textAlign: 'center',
-    background: 'green'
+    background: '#17F76A'
 
-  }
+  },
+
 }
 
 
@@ -46,13 +49,13 @@ class KanbanBoard extends Component {
     return (
        <MuiThemeProvider>
       <div>
-        <h2>Kanban Board</h2>
+        <h2 class="kanban">Kanban Board</h2>
 
         {/* <h2>{Project Name}</h2> */}
         {/* <h2>Project Name</h2> */}
       <Row around="xs" middle="xs">
         <Col>
-          <h3>To Do</h3>
+          <h3 class="kanban">To Do</h3>
           <div className="ToDo">
             <Card style={style.card_styleToDo} zDepth={5}>
             <CardText>
@@ -78,7 +81,7 @@ class KanbanBoard extends Component {
         </Col>
 
         <Col>
-          <h3>In Progress</h3>
+          <h3 class="kanban">In Progress</h3>
           <div style={style.root} className="InProgress">
             <Card style={style.card_styleProgress} zDepth={5}>
               <CardText>
@@ -92,7 +95,7 @@ class KanbanBoard extends Component {
           </div>
         </Col>
         <Col>
-          <h3>Review</h3>
+          <h3 class="kanban">Review</h3>
           <div style={style.root} className="Review">
             <Card style={style.card_styleReview} zDepth={5}>
               <CardText>
@@ -106,7 +109,7 @@ class KanbanBoard extends Component {
           </div>
         </Col>
         <Col>
-          <h3>Finished</h3>
+          <h3 class="kanban">Finished</h3>
           <div style={style.root} className="Finished">
             <Card style={style.card_styleFinished} zDepth={5}>
               <CardText>

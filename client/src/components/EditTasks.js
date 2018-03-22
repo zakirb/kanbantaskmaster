@@ -50,7 +50,7 @@ class EditTasks extends Component {
   render() {
     const { todo, teamMember, dueDate} = this.state
     return (
-      <Card style={style.card_style}>
+      <Card style={style.card_style} zDepth={5}>
 
         <form onSubmit={this.handleSubmit}>
         <h3>Edit Tasks</h3>

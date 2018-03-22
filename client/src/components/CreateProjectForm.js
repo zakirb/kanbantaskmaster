@@ -20,11 +20,12 @@ const style = {
   //   flexWrap: 'wrap',
   //   justifyContent: 'space-around',
   // },
-  style: {
-    width: 100,
+  card_style: {
+    width: 300,
     height: 400,
     margin: 5,
-    textAlign: 'center'
+    textAlign: 'center',
+    background: 'silver'
   },
   layout: {
     zDepth: 10,
@@ -63,7 +64,7 @@ class ConnectedCreateProjectForm extends Component {
         month: date.getMonth(),
         day: date.getDate()
       }
-      
+
     this.setState({
       connectedDate: date,
       targetDate
@@ -93,9 +94,9 @@ class ConnectedCreateProjectForm extends Component {
 
   render() {
     const { title, description, owner } = this.state
+
     return (
-      <Paper style={style.layout} zDepth={4}>
-      <Paper>
+      <Card style={style.card_style} zDepth={5}>
 
       <form onSubmit={this.handleSubmit}>
         <h3>Create Project Form</h3>
@@ -111,9 +112,7 @@ class ConnectedCreateProjectForm extends Component {
             <FlatButton label="Reset?" />
           </CardActions>
         </form>
-      </Paper>
-      </Paper>
-
+      </Card>
     )
   }
 

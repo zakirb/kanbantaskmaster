@@ -14,7 +14,7 @@ import Projects from './Projects';
 import ProjectItem from './ProjectItem';
 import { connect } from 'react-redux';
 import CreateProjectForm from './CreateProjectForm';
-import CreateTasks from './CreateTasks';
+import CreateTasksForm from './CreateTasksForm';
 import EditTasks from './EditTasks';
 import EditProjects from './EditProjects';
 
@@ -86,7 +86,7 @@ class ConnectedNavBar extends Component {
           {navigation}
           <br />
           <CreateProjectForm />
-          <CreateTasks />
+          <CreateTasksForm />
           <EditTasks />
           <EditProjects />
           <Route exact path='/' render={() => <Home />} />
