@@ -1,11 +1,11 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
-
-// var User = require('./user');
-var Task = require('./task');
+var Schema = mongoose.Schema;
+var User = require('./user');
+// var Task = require('./task');
 
 var projectSchema = new mongoose.Schema({
-  
+
     title: {
       type: String,
       required: true,
@@ -27,11 +27,12 @@ var projectSchema = new mongoose.Schema({
       required: true
     },
     tasks: [{
-      type: Task.ObjectId,
+      type: Array,
       required: true
     }],
     user_id: {
-      type: String,
+      type: Schema.Types.ObjectId,
+      ref: 'User',
       required:true
     },
     updated: {

@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/projectworkfloworganizer');
 var Project = require('../models/project');
-// var Tasks = require('../models/tasks');
+// var Tasks = require('../models/task');
 
 const projectTestData = {
 	projects: [
@@ -24,7 +24,7 @@ const projectTestData = {
           updated: "2018-03-28"
         }
 			],
-			user_id: "Zakir B",
+			user_id: "5ab0156ff38fb2537955c171",
 			updated: "2018-03-28"
 		},{
 		title: "Do the thing Project 2",
@@ -56,7 +56,7 @@ const projectTestData = {
           updated: "2018-03-28"
         }
 			],
-			user_id: "Zakir B",
+			user_id: "5ab0156ff38fb2537955c171",
 			updated: "2018-03-28"
 		}
 	]
