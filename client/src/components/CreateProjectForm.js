@@ -5,6 +5,7 @@ import DatePicker from 'material-ui/DatePicker';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import Paper from 'material-ui/Paper';
+import { Row, Col } from 'react-flexbox-grid';
 
 // import { addProject } from "../actions/index"
 
@@ -97,14 +98,17 @@ class ConnectedCreateProjectForm extends Component {
     const { title, description, owner, connectedDate } = this.state
 
     return (
-      <Card style={style.card_style} zDepth={5}>
+      <Row center="xs">
+        <Col>
+      <Card className="projectForm" style={style.card_style} zDepth={5}>
 
       <form onSubmit={this.handleSubmit}>
+
         <h3>Create Project Form</h3>
           <p>Project Name</p>
-            <input type='text' placeholder="Project Name" name='title' value={title} onChange={this.handleChange} />
+            <input type='text' className="input" placeholder="Project Name" name='title' value={title} onChange={this.handleChange} />
           <p>Description</p>
-            <input type='text' placeholder="Description" name='description' value={description} onChange={this.handleChange} />
+            <input type='text' className="input" placeholder="Description" name='description' value={description} onChange={this.handleChange} />
           <p>End Date</p>
           <DatePicker  value={connectedDate} onChange={this.handleDateChange} hintText="End Date" container="inline" />
 
@@ -112,8 +116,13 @@ class ConnectedCreateProjectForm extends Component {
             <FlatButton type="submit" label="Add Project" />
             <FlatButton label="Reset?" />
           </CardActions>
-        </form>
-      </Card>
+          </form>
+          </Card>
+        </Col>
+        </Row>
+
+
+
     )
   }
 

@@ -4,6 +4,7 @@ import axios from 'axios';
 import DatePicker from 'material-ui/DatePicker';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
+import { Row, Col } from 'react-flexbox-grid';
 // import { addProject } from "../actions/index"
 
 // const mapDispatchToProps = dispatch => {
@@ -59,16 +60,18 @@ class ConnectedEditProjects extends Component {
   render() {
     const { title, description, owner } = this.state
     return (
+      <Row center="xs">
+        <Col>
       <Card style={style.card_style} zDepth={5}>
 
         <form onSubmit={this.handleSubmit}>
           <h3>Edit Projects</h3>
             <p>Edit Project Name</p>
-              <input type='text' placeholder="Project Name" name='title' value={title} onChange={this.handleChange} />
+              <input type='text' className="input" placeholder="Project Name" name='title' value={title} onChange={this.handleChange} />
             <p>Edit Description</p>
-              <input type='text' placeholder="Description" name='description' value={description} onChange={this.handleChange} />
+              <input type='text' className="input" placeholder="Description" name='description' value={description} onChange={this.handleChange} />
             <p>Edit Project Owner</p>
-              <input type='text' placeholder="Project Owner" name='owner' value={owner} onChange={this.handleChange} />
+              <input type='text' className="input" placeholder="Project Owner" name='owner' value={owner} onChange={this.handleChange} />
             <p>Edit End Date</p>
           <DatePicker hintText="End Date" container="inline" />
 
@@ -77,6 +80,8 @@ class ConnectedEditProjects extends Component {
           </CardActions>
         </form>
       </Card>
+      </Col>
+      </Row>
     )
   }
 
