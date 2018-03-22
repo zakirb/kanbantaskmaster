@@ -45,7 +45,7 @@ var taskSchema = new mongoose.Schema({
   updated: {
     type: Date,
     required: true,
-    default: Date.now
+    default: Date.now()
   }
 })
 
