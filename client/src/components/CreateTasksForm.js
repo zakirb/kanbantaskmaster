@@ -25,7 +25,8 @@ const style = {
     width: 300,
     height: 350,
     margin: 5,
-    textAlign: 'center'
+    textAlign: 'center',
+    background: '#17CBF7'
   }
 }
 
@@ -35,6 +36,7 @@ const mapStateToProps = state => {
     token: state.token
   }
 }
+
 
 
 
@@ -115,6 +117,7 @@ class ConnectedCreateTasksForm extends Component {
   }
 
 }
+
 
 
 

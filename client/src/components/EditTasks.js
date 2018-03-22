@@ -90,6 +90,7 @@ class ConnectedEditTasks extends Component {
     const { description, assignTo, connectedDate} = this.state
     return (
 
+
       <Card style={style.card_style} zDepth={5}>
 
       <form onSubmit={this.handleSubmit}>
