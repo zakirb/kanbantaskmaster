@@ -17,6 +17,9 @@ import CreateProjectForm from './CreateProjectForm';
 import CreateTasksForm from './CreateTasksForm';
 import EditTasks from './EditTasks';
 import EditProjects from './EditProjects';
+import Paper from 'material-ui/Paper';
+import Menu from 'material-ui/Menu';
+import MenuItem from 'material-ui/MenuItem';
 
 
 
@@ -43,16 +46,27 @@ class ConnectedNavBar extends Component {
     if (typeof theUser === 'object' && Object.keys(theUser).length > 0){
       console.log("user is real")
       navigation = (
-        <nav>
+        <nav className="navboxx">
           <div className='nav-wrapper teal darken-3'>
             {/* <a href='/' className='brand-logo'>Workflow Project App</a> */}
-              <Link to='/'>Workflow Project App</Link>{' '}
-              <Link to='/'>Home</Link>{' '}
-              <Link to='/Projects'>Projects</Link>{' '}
-              <Link to='/ProjectItem'>Project Item</Link>{' '}
-              <Link to='/UserAccess'>User Profile</Link>{' '}
-              <Link to='/ViewTasks'> Tasks</Link>{' '}
-              <Link to='/ViewProject'>View Project</Link>
+            <div className='navbox'>
+              <Link to='/'><MenuItem primaryText="Home" /></Link>
+              <Link to='/Projects'><MenuItem primaryText="Projects" /></Link>
+              <Link to='/UserAccess'><MenuItem primaryText="User Profile" /></Link>
+              <Link to='/ProjectItem'><MenuItem primaryText="Project Item(TEMP)" /></Link>
+            </div>
+            <div className='navbox'>
+              <Link to='/ViewProject'><MenuItem primaryText="View Project(Temp)" /></Link>
+              <Link to='/Projects/edit'><MenuItem primaryText="Edit Project(TEMP)" /></Link>
+              <Link to='/Projects/create'><MenuItem primaryText="Create Project(TEMP)" /></Link>
+            </div>
+            <div className='navbox'>
+              <Link to='/Tasks'><MenuItem primaryText="View Task(TEMP)" /></Link>
+              <Link to='/Tasks/create'><MenuItem primaryText="Create Task(TEMP)" /></Link>
+              <Link to='/Tasks/edit'><MenuItem primaryText="Edit Task(TEMP)" /></Link>
+            </div>
+
+
             {/* <ul id='nav-mobile' className='right hide-on-med-and-down'>
               <li><Link to='/'>Home</Link></li>
               <li><Link to='/Projects'>Projects</Link></li>
@@ -67,9 +81,9 @@ class ConnectedNavBar extends Component {
       navigation = (
         <nav>
           <div className='nav-wrapper teal darken-3'>
-            <Link to='/'>Workflow Project App</Link>{' '}
-            <Link to='/'>Home</Link>{' '}
-            <Link to='/UserAccess'>User Access</Link>
+            <Link to='/'><MenuItem primaryText="Workflow Project App" /></Link>
+            <Link to='/'><MenuItem primaryText="Home" /></Link>
+            <Link to='/UserAccess'><MenuItem primaryText="User Access" /></Link>
 
             {/* <a href='/' className='brand-logo'>Workflow Project App</a>
             <ul id='nav-mobile' className='right hide-on-med-and-down'>
@@ -83,20 +97,19 @@ class ConnectedNavBar extends Component {
     return (
       <Router>
         <div>
+          <Menu>
           {navigation}
+          </Menu>
           <br />
-          <CreateProjectForm />
-          <CreateTasksForm />
-          <EditTasks />
-          <EditProjects />
           <Route exact path='/' render={() => <Home />} />
-          <Route path='/Projects' render={() => <Projects projects={projectTestData}/>} />
+          <Route exact path='/Projects' render={() => <Projects projects={projectTestData}/>} />
           <Route path='/ProjectItem' render={() => <ProjectItem />} />
           <Route path='/ViewProject' render={() => <ViewProject />} />
-          {/* <Route path='/CreateProjectForm' render={() => <CreateProjectForm />} /> */}
-          {/* <Route path='/EditProjectForm' render={() => <CreateProjectForm />} /> */}
-          <Route path='/ViewTasks' render={() => <ViewTasks />} />
-          {/* <Route path='/EditTasks' render={() => <EditTasks />} /> */}
+          <Route path='/Projects/create' render={() => <CreateProjectForm />} />
+          <Route path='/Projects/edit' render={() => <EditProjects />} />
+          <Route exact path='/Tasks' render={() => <ViewTasks />} />
+          <Route path='/Tasks/create' render={() => <CreateTasksForm />} />
+          <Route path='/Tasks/edit' render={() => <EditTasks />} />
           <Route path='/UserAccess' render={() => <UserAccess  />} />
           <Route path='/UserProfile' render={() => <UserProfile user={theUser} logout={this.logout} />} />
 

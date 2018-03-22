@@ -4,6 +4,7 @@ import axios from 'axios';
 import DatePicker from 'material-ui/DatePicker';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
+import { Row, Col } from 'react-flexbox-grid';
 
 // import { addProject } from "../actions/index"
 
@@ -95,15 +96,17 @@ class ConnectedCreateTasksForm extends Component {
   render() {
     const { description, assignTo, connectedDate} = this.state
     return (
+      <Row center="xs">
+        <Col>
 
       <Card style={style.card_style} zDepth={5}>
 
       <form onSubmit={this.handleSubmit}>
       <h3>Create Task Form</h3>
           <p>To Do</p>
-            <input type='text' placeholder="To Do" name='description' value={description} onChange={this.handleChange} />
+            <input type='text' className="input" placeholder="To Do" name='description' value={description} onChange={this.handleChange} />
           <p>Team Member</p>
-            <input type='text' placeholder="Team Member" name='assignTo' value={assignTo} onChange={this.handleChange} />
+            <input type='text' className="input" placeholder="Team Member" name='assignTo' value={assignTo} onChange={this.handleChange} />
           <p>Due Date</p>
           <DatePicker hintText="Due Date" value={connectedDate} onChange={this.handleDateChange} container="inline" />
 
@@ -112,7 +115,8 @@ class ConnectedCreateTasksForm extends Component {
           </CardActions>
         </form>
       </Card>
-
+      </Col>
+      </Row>
     )
   }
 
