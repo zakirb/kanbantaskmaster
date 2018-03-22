@@ -52,7 +52,7 @@ class ConnectedProjects extends Component {
     // not using prevState, but necessary to use
     // second param is props, only two params
     this.setState( (prevState, props) => {
-      // remove fruits that don't contain the filter filterValue
+      // remove items that don't contain the filter filterValue
       const filteredProjectList = props.projects.filter( project =>
         // project.toLocaleLowerCase().includes(filterValue.toLocaleLowerCase()))
         project.title.toLocaleLowerCase().includes(filterValue.toLocaleLowerCase()))

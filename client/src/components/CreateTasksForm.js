@@ -5,6 +5,7 @@ import DatePicker from 'material-ui/DatePicker';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import { Row, Col } from 'react-flexbox-grid';
+import CreateTaskSteps from './CreateTaskSteps';
 
 // import { addProject } from "../actions/index"
 
@@ -24,7 +25,6 @@ const style = {
   },
   card_style: {
     width: 300,
-    height: 350,
     margin: 5,
     textAlign: 'center',
     background: '#17CBF7'
@@ -48,7 +48,8 @@ class ConnectedCreateTasksForm extends Component {
       description: '',
       assignTo:'',
       connectedDate: null,
-      targetDate:null
+      targetDate:null,
+      task_steps: []
     }
     this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -67,7 +68,7 @@ class ConnectedCreateTasksForm extends Component {
 
     this.setState({
       connectedDate: date,
-      targetDate
+      targetDate: date
     })
   }
 
@@ -80,7 +81,8 @@ class ConnectedCreateTasksForm extends Component {
     axios.post('/create/task',{
       description: this.state.description,
       assignTo: this.state.assignTo,
-      targetDate:this.state.targetDate
+      targetDate:this.state.targetDate,
+      task_steps: this.state.task_steps
     }).then( result => {
       console.log(result.data)
       console.log('THIS IS THE RESULT AFTER POSTING FROM CreateProjectForm')
@@ -94,7 +96,7 @@ class ConnectedCreateTasksForm extends Component {
 
 
   render() {
-    const { description, assignTo, connectedDate} = this.state
+    const { description, assignTo, connectedDate, task_steps} = this.state
     return (
       <Row center="xs">
         <Col>
@@ -109,8 +111,9 @@ class ConnectedCreateTasksForm extends Component {
             <input type='text' className="input" placeholder="Team Member" name='assignTo' value={assignTo} onChange={this.handleChange} />
           <p>Due Date</p>
           <DatePicker hintText="Due Date" value={connectedDate} onChange={this.handleDateChange} container="inline" />
-
+          {/* <CreateTaskSteps value={task_steps} onChange={this.handleChange}/> */}
           <CardActions>
+            <FlatButton type="btn " label="Add New Step" />
             <FlatButton type="submit" label="Add Task" />
           </CardActions>
         </form>

@@ -14,5 +14,10 @@ router.post('/task', (req, res, next) => {
 })
 
 
+router.get('/task/users', (req, res, next) => {
+  console.log(req.body)
+})
+
+
 
 module.exports = router
