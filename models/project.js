@@ -43,12 +43,12 @@ var taskSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    required: true,
+    required: false,
     default: "To Do"
   },
   assigned_to: {
     type: String,
-    required: true,
+    required: false,
     minLength: 5,
     maxLength: 1000
   },

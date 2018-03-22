@@ -86,7 +86,7 @@ class ConnectedCreateProjectForm extends Component {
       owner: this.props.user._id,
       targetDate: this.state.targetDate
     }).then( result => {
-      console.log(result.data)
+      // console.log(result.data)
       this.props.liftProjectToState(result.data)
 
       console.log('THIS IS THE RESULT AFTER POSTING FROM CreateProjectForm')

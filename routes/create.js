@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var Project = require('../models/project');
+var Task = require('../models/project')
 
 
 router.post('/project', (req, res, next) => {
@@ -20,29 +21,61 @@ router.post('/project', (req, res, next) => {
       console.log('REACHED THE END OF CREATE PROJECT ROUTE')
       res.json({project})
   })
-
   // console.log("create/post route hit")
   console.log(req.body)
 })
 
-router.post('/task', (req, res, next) => {
-  console.log('create/task route hit')
-  console.log(req.body)
-})
 
-router.get('/', (req, res, next) => {
-console.log('create/get route hit')
-  var userId = req.body.user.id
-  Project.find({'_id':userId}, (err, result) => {
+
+router.post('/task', (req, res, next) => {
+
+  Project.findOne({"_id":req.body.project_id}, (err, project) => {
     if (err) {
-      console.log(err)
-      console.log('IT ERRORED')
+      console.log('ERROR 1')
     } else {
-      console.log(result)
-      res.json({projects:result})
+      console.log('PROJECT SHOULD BE HERE')
+      console.log(project)
+      
+      // var newTasks = currentTasks.push(req.body)
+      // // project.tasks.push(req.body)
+      // // var tasksArray = project.tasks
+      // project.set({tasks:newTasks});
+      // project.save( function(err, updatedproject) {
+      //   if (err) {
+      //     console.log('ERROR SETTING DATABASE')
+      //   } else {
+      //     console.log('SUCCESS SETTING')
+      //     console.log(updatedProject)
     }
-  })
-})
+      })
+    })
+
+
+
+    // Project.findByIdAndUpdate(req.body.project_id, {$set: {tasks:[tasksArray]}}, (err, updatedProject) => {
+    //   if (err) {
+    //     console.log('ERROR SAVING TO DATABASE')
+    //   } else {
+    //     console.log('SUCCESS SAVING TO DB')
+    //     console.log(updatedProject)
+    //   }
+
+
+
+
+// router.get('/', (req, res, next) => {
+// console.log('create/get route hit')
+//   var userId = req.body.user.id
+//   Project.find({'_id':userId}, (err, result) => {
+//     if (err) {
+//       console.log(err)
+//       console.log('IT ERRORED')
+//     } else {
+//       console.log(result)
+//       res.json({projects:result})
+//     }
+//   })
+// })
 
 
 module.exports = router
