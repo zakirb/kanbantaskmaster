@@ -83,8 +83,7 @@ class ConnectedCreateTasksForm extends Component {
       description: this.state.description,
       assigned_to: this.state.assignTo,
       status: null,
-      task_steps: [],
-      targetDate:this.state.targetDate,
+      target_date:this.state.targetDate,
       project_id: this.props.currentProject._id
     }).then( result => {
       console.log(result.data)
