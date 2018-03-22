@@ -28,7 +28,7 @@ const ProjectList = (props) => (
             >
             <CardHeader
               title={project.title}
-              subtitle={project.team}
+              subtitle={project.description}
               actAsExpander={true}
               showExpandableButton={true}
             />

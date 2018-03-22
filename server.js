@@ -8,10 +8,11 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/projectworkfloworganizer');
 
-// var index = require('./routes/index');
-// var users = require('./routes/users');
+
 var auth = require('./routes/auth');
 var create = require('./routes/create');
+var edit = require('./routes/edit');
+var view = require('./routes/view');
 
 var app = express();
 
@@ -29,6 +30,8 @@ app.use(function(req, res, next) {
 
 app.use('/auth', auth);
 app.use('/create', create);
+app.use('/edit', edit);
+app.use('/view', view);
 
 const PORT = process.env.PORT || 5000;
 
