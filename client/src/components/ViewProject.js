@@ -50,7 +50,6 @@ class KanbanBoard extends Component {
     return (
        <MuiThemeProvider>
       <div>
-
         <h2 className="kanban">Kanban Board</h2>
 
         {/* <h2>{Project Name}</h2> */}
@@ -58,12 +57,12 @@ class KanbanBoard extends Component {
       <Row around="xs" middle="xs">
         <Col>
 
+
         <Row center="xs">
           <Col>
           <h3 className="kanban">To Do</h3>
           </Col>
           </Row>
-
 
           <div className="ToDo">
             <Card style={style.card_styleToDo} zDepth={5}>
