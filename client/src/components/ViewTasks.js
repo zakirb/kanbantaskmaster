@@ -20,7 +20,7 @@ class ViewTasks extends Component {
   render() {
     return (
       <div>
-        <h1>Edit Tasks</h1>
+        <h1>View Tasks</h1>
         <Card style={style.card_style}>
           <CardHeader
             title="Workflow Project Title"

@@ -103,10 +103,10 @@ class ProjectItem extends Component {
                 <FlatButton label="Delete" />
               </CardActions>
               <CardText>
-                
+
 
                 THIS EXAMPLE DOES NOT EXPAND...
-                <ViewProject />
+                
 
 
               </CardText>
