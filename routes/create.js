@@ -35,7 +35,30 @@ router.post('/task', (req, res, next) => {
     } else {
       console.log('PROJECT SHOULD BE HERE')
       console.log(project)
-      
+
+    var newTask =  project.tasks.create({
+        description: req.body.description,
+        assigned_to: req.body.assigned_to,
+        status: req.body.status,
+        target_date:req.body.target_date
+      })
+
+    project.tasks.push(newTask)
+    project.save( (err) => {
+      if (err) {
+        console.log('ERROR ' + err)
+      } else {
+        console.log('SUCCESS')
+        console.log(project)
+      }
+    })
+
+    console.log(newTask)
+    }
+  })
+})
+
+
       // var newTasks = currentTasks.push(req.body)
       // // project.tasks.push(req.body)
       // // var tasksArray = project.tasks
@@ -46,9 +69,7 @@ router.post('/task', (req, res, next) => {
       //   } else {
       //     console.log('SUCCESS SETTING')
       //     console.log(updatedProject)
-    }
-      })
-    })
+
 
 
 

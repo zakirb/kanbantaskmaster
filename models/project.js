@@ -5,30 +5,31 @@ var User = require('./user');
 // var Task = require('./task');
 
 ////// STEP SCHEMA ///////
-var stepSchema = new mongoose.Schema({
-  step_number: {
-    type: Number,
-    required: true
-  },
-  step_action: {
-    type: String,
-    required: true,
-    minLength: 5,
-    maxLength: 1000
-  }
-})
+// var stepSchema = new mongoose.Schema({
+//   step_number: {
+//     type: Number,
+//     required: false
+//   },
+//   step_action: {
+//     type: String,
+//     required: false,
+//     minLength: 5,
+//     maxLength: 1000
+//   }
+// })
 
-stepSchema.set('JSON', {
-  transform: function (doc, ret, options) {
-    let returnJson = {
-      _id: ret._id,
-      step_number: ret.step_number,
-      step_action: ret.step_action
-    }
-    return returnJson
-  }
-})
-
+// stepSchema.set('JSON', {
+//   transform: function (doc, ret, options) {
+//     let returnJson = {
+//       _id: ret._id,
+//       step_number: ret.step_number,
+//       step_action: ret.step_action
+//     }
+//     return returnJson
+//   }
+// })
+// steps: [ stepSchema ],
+// task_steps: ret.task_steps,
 ////// TASK SCHEMA ///////
 var taskSchema = new mongoose.Schema({
   description: {
@@ -52,7 +53,6 @@ var taskSchema = new mongoose.Schema({
     minLength: 5,
     maxLength: 1000
   },
-  steps: [ stepSchema ],
   updated: {
     type: Date,
     required: true,
@@ -68,13 +68,14 @@ taskSchema.set('JSON', {
       target_date: ret.target_date,
       status: ret.status,
       assigned_to: ret.assigned_to,
-      task_steps: ret.task_steps,
       project_id: ret.project_id,
       updated: ret.updated
     }
     return returnJson
   }
 })
+
+
 
 ////// PROJECT SCHEMA ///////
 var projectSchema = new mongoose.Schema({
@@ -96,7 +97,7 @@ var projectSchema = new mongoose.Schema({
     },
     project_team: {
       type: Array,
-      required: true
+      required: false
     },
     tasks: [ taskSchema ],
     user_id: {
@@ -146,10 +147,10 @@ projectSchema.pre('save', function(next) {
   next();
 })
 
-var Step = mongoose.model('Step', stepSchema);
+// var Step = mongoose.model('Step', stepSchema);
 var Task = mongoose.model('Task', taskSchema);
 var Project = mongoose.model('Project', projectSchema);
 
-module.exports = Step;
+// module.exports = Step;
 module.exports = Task;
 module.exports = Project;
