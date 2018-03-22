@@ -11,11 +11,10 @@ class Home extends Component {
       <div className='row'>
         <Paper style={style}>
           <div className='col s12 z-depth-3'>
-          <h2>Hello </h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-          Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-          Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.</p>
+          <h1 className="home">Task Master</h1>
+          <h2 className="home">Welcome to Task Master! Our site was developed to help organize projects more efficiently
+          based on Scrum principles. Whether you’re in a business setting or a working parent, our site helps you monitor
+          the progress of each project. Simply sign up and you can begin creating projects and assigning tasks. </h2>
         </div>
         </Paper>
       </div>

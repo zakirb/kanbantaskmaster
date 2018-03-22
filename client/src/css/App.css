@@ -4,10 +4,12 @@
 .kanban {
   align-content: center;
   text-align: center;
+  font-family: 'PT Sans Narrow', sans-serif;
 }
 .projectForm {
   /* align-content: center; */
   justify-content: center;
+  font-family: 'PT Sans Narrow', sans-serif;
 }
 .input {
   height: 20px;
@@ -19,11 +21,12 @@
   top: 50%;
   left: 50%;
   margin: -100px 0 0 -150px;
+  font-family: 'PT Sans Narrow', sans-serif;
 }
-.edit {
-  border-color: black;
+.home {
+  text-align: center;
+  font-family: 'PT Sans Narrow', sans-serif;
 }
-
 
 
 
