@@ -23,7 +23,7 @@ const style = {
 class ProjectItem extends Component {
   render() {
     return (
-      <div>
+      <div className= "item">
         <h2>Project Item</h2>
         <p>A single project item</p>
           <Card style={style.card_style}>
@@ -106,7 +106,7 @@ class ProjectItem extends Component {
 
 
                 THIS EXAMPLE DOES NOT EXPAND...
-                
+
 
 
               </CardText>

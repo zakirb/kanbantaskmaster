@@ -22,9 +22,10 @@ const style = {
   },
   card_style: {
     width: 300,
-    height: 400,
+    height: 350,
     margin: 5,
-    textAlign: 'center'
+    textAlign: 'center',
+    background: 'silver'
   }
 }
 
@@ -70,8 +71,6 @@ class ConnectedEditProjects extends Component {
               <input type='text' className="input" placeholder="Project Name" name='title' value={title} onChange={this.handleChange} />
             <p>Edit Description</p>
               <input type='text' className="input" placeholder="Description" name='description' value={description} onChange={this.handleChange} />
-            <p>Edit Project Owner</p>
-              <input type='text' className="input" placeholder="Project Owner" name='owner' value={owner} onChange={this.handleChange} />
             <p>Edit End Date</p>
           <DatePicker hintText="End Date" container="inline" />
 
