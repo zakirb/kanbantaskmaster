@@ -48,6 +48,7 @@ class ConnectedCreateProjectForm extends Component {
       title: '',
       description:'',
       connectedDate: null,
+      owner: '',
       targetDate:null
     }
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -67,7 +68,7 @@ class ConnectedCreateProjectForm extends Component {
 
     this.setState({
       connectedDate: date,
-      targetDate
+      targetDate: date
     })
   }
 
@@ -76,13 +77,12 @@ class ConnectedCreateProjectForm extends Component {
     //   e.preventDefault()
     //   return;
     // }
-
     e.preventDefault()
     axios.post('/create/project',{
       title: this.state.title,
       description: this.state.description,
       owner: this.props.user._id,
-      targetDate:this.state.targetDate
+      targetDate: this.state.targetDate
     }).then( result => {
       console.log(result.data)
       console.log('THIS IS THE RESULT AFTER POSTING FROM CreateProjectForm')
@@ -102,12 +102,11 @@ class ConnectedCreateProjectForm extends Component {
       <form onSubmit={this.handleSubmit}>
         <h3>Create Project Form</h3>
           <p>Project Name</p>
-            <input type='text' placeholder="Project Name" name='title' value={title} onChange={this.handleChange} />
+          <input type='text' placeholder="Project Name" name='title' value={title} onChange={this.handleChange} />
           <p>Description</p>
-            <input type='text' placeholder="Description" name='description' value={description} onChange={this.handleChange} />
-          <p>End Date</p>
-          <DatePicker  value={connectedDate} onChange={this.handleDateChange} hintText="End Date" container="inline" />
-
+          <input type='text' placeholder="Description" name='description' value={description} onChange={this.handleChange} />
+          <p>End Date </p>
+          <DatePicker name="connectedDate" value={connectedDate} onChange={this.handleDateChange} hintText="End Date" container="inline" />
           <CardActions>
             <FlatButton type="submit" label="Add Project" />
             <FlatButton label="Reset?" />

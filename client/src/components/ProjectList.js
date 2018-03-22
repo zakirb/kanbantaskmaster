@@ -36,6 +36,7 @@ const ProjectList = (props) => (
               <FlatButton label="Edit" />
               <FlatButton label="Delete" />
             </CardActions>
+            <CardText>Project Description</CardText>
             <CardText expandable={true}>
               THIS EXAMPLE EXPANDS...
 
