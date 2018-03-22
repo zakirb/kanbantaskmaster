@@ -6,14 +6,9 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 import FlatButton from 'material-ui/FlatButton';
 import Paper from 'material-ui/Paper';
 import { Row, Col } from 'react-flexbox-grid';
+import { liftProjectToState } from "../actions/index"
 
-// import { addProject } from "../actions/index"
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     liftProjectToState: project => dispatch(liftProjectToState(project))
-//   }
-// }
 
 const style = {
   // root: {
@@ -33,11 +28,17 @@ const style = {
     margin: 10
   }
 }
+const mapDispatchToProps = dispatch => {
+  return {
+    liftProjectToState: project => dispatch(liftProjectToState(project))
+  }
+}
 
 const mapStateToProps = state => {
   return {
     user: state.user,
-    token: state.token
+    token: state.token,
+    currentProject:state.currentProject
   }
 }
 
@@ -86,6 +87,8 @@ class ConnectedCreateProjectForm extends Component {
       targetDate: this.state.targetDate
     }).then( result => {
       console.log(result.data)
+      this.props.liftProjectToState(result.data)
+
       console.log('THIS IS THE RESULT AFTER POSTING FROM CreateProjectForm')
       // this.props.liftProjectToState
       console.log('THIS IS THE RESULT AFTER PROJECT IS LIFTED')
@@ -131,5 +134,5 @@ class ConnectedCreateProjectForm extends Component {
 
 
 
-const CreateProjectForm = connect(mapStateToProps, null)(ConnectedCreateProjectForm)
+const CreateProjectForm = connect(mapStateToProps, mapDispatchToProps)(ConnectedCreateProjectForm)
 export default CreateProjectForm;
