@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios';
 import DatePicker from 'material-ui/DatePicker';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
@@ -10,6 +11,8 @@ import FlatButton from 'material-ui/FlatButton';
 //     addProject: project => dispatch(addProject(project))
 //   }
 // }
+
+
 const style = {
   root: {
     display: 'flex',
@@ -24,8 +27,14 @@ const style = {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    user: state.user,
+    token: state.token
+  }
+}
 
-class EditProjects extends Component {
+class ConnectedEditProjects extends Component {
   constructor() {
     super()
     this.state = {
@@ -75,5 +84,5 @@ class EditProjects extends Component {
 
 // const CreateProjectForm = connect(null, mapDispatchToProps)(ConnectedCreateProjectForm)
 
-
+const EditProjects = connect(mapStateToProps, null)(ConnectedEditProjects)
 export default EditProjects;

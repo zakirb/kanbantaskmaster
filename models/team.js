@@ -53,24 +53,7 @@ teamSchema.methods.authenticated = function(password, cb) {
 
 teamSchema.pre('save', function(next) {
   console.log('WE ARE IN THE PRE-SAVE ROUTE')
-  // var hash = bcrypt.hashSync(this.password, 10)
-  // this.password = hash
-
-  // assert.equal(error.errors['name'].message,
-  //       'Project `name` is required.');
-  // assert.equal(error.errors['team_members'].message,
-  //       'Project `team_members` is required.');
-  // assert.equal(error.errors['target_date'].message,
-  //       'Project `target_date` is required.');
-
-      // error = project.validateSync();
-      // assert.equal(error.errors['name'].message,
-      //   'Project `tile` is required.');
-      // assert.equal(error.errors['team_members'].message,
-      //       'Project `team_members` is required.');
-      // assert.equal(error.errors['target_date'].message,
-      //       'Project `target_date` is required.');
-
+  
   next();
 })
 

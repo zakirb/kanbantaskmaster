@@ -61,7 +61,7 @@ class ConnectedCreateProjectForm extends Component {
   handleDateChange = (event, date) => {
     var targetDate = {
         year: date.getFullYear(),
-        month: date.getMonth(),
+        month: date.getMonth() + 1,
         day: date.getDate()
       }
 
@@ -93,7 +93,8 @@ class ConnectedCreateProjectForm extends Component {
   }
 
   render() {
-    const { title, description, owner } = this.state
+
+    const { title, description, owner, connectedDate } = this.state
 
     return (
       <Card style={style.card_style} zDepth={5}>
@@ -105,7 +106,7 @@ class ConnectedCreateProjectForm extends Component {
           <p>Description</p>
             <input type='text' placeholder="Description" name='description' value={description} onChange={this.handleChange} />
           <p>End Date</p>
-          <DatePicker  value={this.state.connectedDate} onChange={this.handleDateChange} hintText="End Date" container="inline" />
+          <DatePicker  value={connectedDate} onChange={this.handleDateChange} hintText="End Date" container="inline" />
 
           <CardActions>
             <FlatButton type="submit" label="Add Project" />
