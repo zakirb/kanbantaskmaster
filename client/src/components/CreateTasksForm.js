@@ -34,7 +34,8 @@ const style = {
 const mapStateToProps = state => {
   return {
     user: state.user,
-    token: state.token
+    token: state.token,
+    currentProject: state.currentProject
   }
 }
 
@@ -67,7 +68,7 @@ class ConnectedCreateTasksForm extends Component {
 
     this.setState({
       connectedDate: date,
-      targetDate
+      targetDate: date
     })
   }
 
@@ -79,13 +80,16 @@ class ConnectedCreateTasksForm extends Component {
     e.preventDefault()
     axios.post('/create/task',{
       description: this.state.description,
-      assignTo: this.state.assignTo,
-      targetDate:this.state.targetDate
+      assigned_to: this.state.assignTo,
+      status: null,
+      task_steps: [],
+      targetDate:this.state.targetDate,
+      project_id: this.props.currentProject._id
     }).then( result => {
       console.log(result.data)
-      console.log('THIS IS THE RESULT AFTER POSTING FROM CreateProjectForm')
+      console.log('THIS IS THE RESULT AFTER POSTING FROM CreateTaskForm')
       // this.props.liftProjectToState
-      console.log('THIS IS THE RESULT AFTER PROJECT IS LIFTED')
+
       // Redirect to a react route
     })
   }
