@@ -2,5 +2,15 @@
   text-align: center;
 }
 .kanban {
-  align-items: center;
+  align-content: center;
+  text-align: center;
+}
+.projectForm {
+  /* align-content: center; */
+  justify-content: center;
+}
+.input {
+  height: 20px;
+  width: 200px;
+  border-color: silver;
 }

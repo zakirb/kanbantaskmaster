@@ -37,7 +37,8 @@ const style = {
     width: 300,
     margin: 10,
     textAlign: 'center',
-    background: '#17F76A'
+    background: '#17F76A',
+    justifyContent: 'center'
 
   },
 
@@ -49,13 +50,19 @@ class KanbanBoard extends Component {
     return (
        <MuiThemeProvider>
       <div>
-        <h2 class="kanban">Kanban Board</h2>
+      
+        <h2 className="kanban">Kanban Board</h2>
 
         {/* <h2>{Project Name}</h2> */}
         {/* <h2>Project Name</h2> */}
       <Row around="xs" middle="xs">
         <Col>
-          <h3 class="kanban">To Do</h3>
+        <Row center="xs">
+          <Col>
+          <h3 className="kanban">To Do</h3>
+          </Col>
+          </Row>
+
           <div className="ToDo">
             <Card style={style.card_styleToDo} zDepth={5}>
             <CardText>
@@ -81,7 +88,11 @@ class KanbanBoard extends Component {
         </Col>
 
         <Col>
-          <h3 class="kanban">In Progress</h3>
+        <Row center="xs">
+          <Col>
+          <h3 className="kanban">In Progress</h3>
+          </Col>
+          </Row>
           <div style={style.root} className="InProgress">
             <Card style={style.card_styleProgress} zDepth={5}>
               <CardText>
@@ -95,7 +106,11 @@ class KanbanBoard extends Component {
           </div>
         </Col>
         <Col>
-          <h3 class="kanban">Review</h3>
+        <Row center="xs">
+          <Col>
+          <h3 className="kanban">Review</h3>
+          </Col>
+          </Row>
           <div style={style.root} className="Review">
             <Card style={style.card_styleReview} zDepth={5}>
               <CardText>
@@ -109,7 +124,11 @@ class KanbanBoard extends Component {
           </div>
         </Col>
         <Col>
-          <h3 class="kanban">Finished</h3>
+        <Row center="xs">
+          <Col>
+          <h3 className="kanban">Finished</h3>
+          </Col>
+          </Row>
           <div style={style.root} className="Finished">
             <Card style={style.card_styleFinished} zDepth={5}>
               <CardText>
