@@ -4,8 +4,80 @@ var Schema = mongoose.Schema;
 var User = require('./user');
 // var Task = require('./task');
 
-var projectSchema = new mongoose.Schema({
+////// STEP SCHEMA ///////
+var stepSchema = new mongoose.Schema({
+  step_number: {
+    type: Number,
+    required: true
+  },
+  step_action: {
+    type: String,
+    required: true,
+    minLength: 5,
+    maxLength: 1000
+  }
+})
 
+stepSchema.set('JSON', {
+  transform: function (doc, ret, options) {
+    let returnJson = {
+      _id: ret._id,
+      step_number: ret.step_number,
+      step_action: ret.step_action
+    }
+    return returnJson
+  }
+})
+
+////// TASK SCHEMA ///////
+var taskSchema = new mongoose.Schema({
+  description: {
+    type: String,
+    required: true,
+    minLength: 5,
+    maxLength: 1000
+  },
+  target_date: {
+    type: Date,
+    required: true
+  },
+  status: {
+    type: String,
+    required: true,
+    default: "To Do"
+  },
+  assigned_to: {
+    type: String,
+    required: true,
+    minLength: 5,
+    maxLength: 1000
+  },
+  steps: [ stepSchema ],
+  updated: {
+    type: Date,
+    required: true,
+    default: Date.now()
+  }
+})
+
+taskSchema.set('JSON', {
+  transform: function (doc, ret, options) {
+    let returnJson = {
+      _id: ret._id,
+      description: ret.description,
+      target_date: ret.target_date,
+      status: ret.status,
+      assigned_to: ret.assigned_to,
+      task_steps: ret.task_steps,
+      project_id: ret.project_id,
+      updated: ret.updated
+    }
+    return returnJson
+  }
+})
+
+////// PROJECT SCHEMA ///////
+var projectSchema = new mongoose.Schema({
     title: {
       type: String,
       required: true,
@@ -26,22 +98,19 @@ var projectSchema = new mongoose.Schema({
       type: Array,
       required: true
     },
-    tasks: [{
-      type: Array,
-      required: true
-    }],
+    tasks: [ taskSchema ],
     user_id: {
       type: Schema.Types.ObjectId,
       ref: 'User',
-      required:true
+      required: true
     },
     updated: {
       type: Date,
       required: true,
-      default: Date.now
+      default: Date.now()
     }
-  });
-
+  }
+)
 
 projectSchema.set('JSON', {
   transform: function (doc, ret, options) {
@@ -59,7 +128,7 @@ projectSchema.set('JSON', {
   }
 })
 
-
+////// PROJECT SCHEMA METHODS ///////
 projectSchema.methods.authenticated = function(password, cb) {
   bcrypt.compare(password, this.password, (err, res) => {
     if (err) {
@@ -70,30 +139,17 @@ projectSchema.methods.authenticated = function(password, cb) {
   })
 }
 
+////// PROJECT SCHEMA PRESAVE  ///////
 projectSchema.pre('save', function(next) {
   console.log('WE ARE IN THE projectSchema PRE-SAVE ROUTE')
-  // console.log (Project);
-  // var hash = bcrypt.hashSync(this.password, 10)
-  // this.password = hash
-
-  // assert.equal(error.errors['title'].message,
-  //       'Project `title` is required.');
-  // assert.equal(error.errors['description'].message,
-  //       'Project `description` is required.');
-  // assert.equal(error.errors['target_date'].message,
-  //       'Project `target_date` is required.');
-  //
-  //     error = project.validateSync();
-  //     assert.equal(error.errors['title'].message,
-  //       'Project `tile` is required.');
-  //     assert.equal(error.errors['description'].message,
-  //           'Project `description` is required.');
-  //     assert.equal(error.errors['target_date'].message,
-  //           'Project `target_date` is required.');
 
   next();
 })
 
+var Step = mongoose.model('Step', stepSchema);
+var Task = mongoose.model('Task', taskSchema);
 var Project = mongoose.model('Project', projectSchema);
 
+module.exports = Step;
+module.exports = Task;
 module.exports = Project;

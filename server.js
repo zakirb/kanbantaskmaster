@@ -11,7 +11,7 @@ mongoose.connect('mongodb://localhost/projectworkfloworganizer');
 // var index = require('./routes/index');
 // var users = require('./routes/users');
 var auth = require('./routes/auth');
-var projects = require('./routes/projects');
+var projects = require('./routes/create');
 
 var app = express();
 

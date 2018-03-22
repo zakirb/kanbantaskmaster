@@ -1,13 +1,23 @@
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/projectworkfloworganizer');
 var Project = require('../models/project');
-// var Tasks = require('../models/task');
+
+
+////// LOOK IN YOUR DATABASE  ///////
+////// ////////////////////// ///////
+//////   FIND USER OBJECT ID  ///////
+////// ////////////////////// ///////
+////// REPLACE ALL USER_ID  ///////
+////// ////////////////////// ///////
+//////    INSTANCES BELOW    ///////
+////// ////////////////////// ///////
+ // cd INTO /seeder AND node projects.js
 
 const projectTestData = {
 	projects: [
 		{
-		title: "Workflow Project Organizer Project 1",
-		description: "Project 3 for GA",
+		title: "Workflow Project Organizer Project 3",
+		description: "Project 3.1 for GA",
 		target_date: "2018-03-28",
 		project_team: ['Zakir B', 'Dan V', 'Tim H'],
 		tasks: [
@@ -20,12 +30,59 @@ const projectTestData = {
     				step_number: 1,
     				step_action: 'do this thing'
      			}],
-          project_id: 1,
-          updated: "2018-03-28"
+          project_id: 1
         }
 			],
-			user_id: "5ab0156ff38fb2537955c171",
-			updated: "2018-03-28"
+			user_id: "5ab0156ff38fb2537955c171"
+		},{
+		title: "Do the thing Project 4",
+		description: "Project 4 for GA",
+		target_date: "2018-03-28",
+		project_team: ['Zakir B', 'Dan V', 'Tim H'],
+		tasks: [
+  			{
+    			description: "Build the thing 1",
+    			target_date: "2018-04-12",
+    			status: "In Progress",
+    			assigned_to: "Zakir B",
+    			steps:[{
+    				step_number: 1,
+    				step_action: 'do this thing'
+     			}],
+          project_id: 1
+        },{
+    			description: "Build the thing 2",
+    			target_date: "2018-04-12",
+    			status: "In Review",
+    			assigned_to: "Zakir B",
+    			steps:[{
+    				step_number: 1,
+    				step_action: 'do this thing'
+     			}],
+          project_id: 1
+        }
+			],
+			user_id: "5ab0156ff38fb2537955c171"
+		},
+		{
+		title: "Workflow Project Organizer Project 1",
+		description: "Project 1 for GA",
+		target_date: "2018-03-28",
+		project_team: ['Zakir B', 'Dan V', 'Tim H'],
+		tasks: [
+  			{
+    			description: "Build Models",
+    			target_date: "2018-04-12",
+    			status: "To Do",
+    			assigned_to: "Zakir B",
+    			steps:[{
+    				step_number: 1,
+    				step_action: 'do this thing'
+     			}],
+          project_id: 1
+        }
+			],
+			user_id: "5ab0156ff38fb2537955c171"
 		},{
 		title: "Do the thing Project 2",
 		description: "Project 2 for GA",
@@ -41,8 +98,7 @@ const projectTestData = {
     				step_number: 1,
     				step_action: 'do this thing'
      			}],
-          project_id: 1,
-          updated: "2018-03-28"
+          project_id: 1
         },{
     			description: "Build the thing 2",
     			target_date: "2018-04-12",
@@ -52,12 +108,10 @@ const projectTestData = {
     				step_number: 1,
     				step_action: 'do this thing'
      			}],
-          project_id: 1,
-          updated: "2018-03-28"
+          project_id: 1
         }
 			],
-			user_id: "5ab0156ff38fb2537955c171",
-			updated: "2018-03-28"
+			user_id: "5ab0156ff38fb2537955c171"
 		}
 	]
 }
