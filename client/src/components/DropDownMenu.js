@@ -25,8 +25,8 @@ export default class DropDownMenuTask extends React.Component {
           value={this.state.value}
           onChange={this.handleChange}
           style={styles.customWidth}
-          autoWidth={false}
-        >
+          autoWidth={false}>
+          
           <MenuItem value={null} primaryText="Move Task To:" />
           <MenuItem value={1} primaryText="To Do" />
           <MenuItem value={2} primaryText="In Progress" />
