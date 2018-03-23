@@ -5,6 +5,7 @@ import DatePicker from 'material-ui/DatePicker';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import { Row, Col } from 'react-flexbox-grid';
+// import DropDownMenuTask from './DropDownMenu';
 // import CreateTaskSteps from './CreateTaskSteps';
 // import { addProject } from "../actions/index"
 
@@ -100,6 +101,7 @@ class ConnectedCreateTasksForm extends Component {
                 <input type='text' className="input" placeholder="To Do" name='description' value={description} onChange={this.handleChange} />
               <p>Team Member</p>
                 <input type='text' className="input" placeholder="Team Member" name='assignTo' value={assignTo} onChange={this.handleChange} />
+                {/* <DropDownMenuTask /> */}
               <p>Task Status</p>
                 <input type='text' className="input" placeholder="Task Status" name='task_status' value={task_status} onChange={this.handleChange} />
               <p>Due Date</p>
