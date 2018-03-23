@@ -115,9 +115,10 @@ class ConnectedEditTasks extends Component {
                 <input type='text' className="input" placeholder="To Do" name='description' value={description} onChange={this.handleChange} />
               <p>Edit Team Member</p>
                 <input type='text' className="input" placeholder="Team Member" name='assignTo' value={assignTo} onChange={this.handleChange} />
-                <p>Task Status</p>
-                  <input type='text' className="input" placeholder="Task Status" name='task_status' value={task_status} onChange={this.handleChange} />
-                <p>Edit Due Date</p>
+              <p>Task Status</p>
+                <input type='text' className="input" placeholder="Task Status" name='task_status' value={task_status} onChange={this.handleChange} />
+                {/* <DropDownMenuTask /> */}
+              <p>Edit Due Date</p>
               <DatePicker hintText="Due Date" value={connectedDate} onChange={this.handleDateChange} container="inline" />
               <CardActions>
                 <FlatButton type="submit" label="Update Task" />
