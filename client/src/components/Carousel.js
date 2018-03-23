@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Carousel } from 'react-responsive-carousel';
 
-class Carousel extends Component {
+class ImageCarousel extends Component {
     render() {
         return (
             <Carousel>
@@ -21,8 +21,7 @@ class Carousel extends Component {
             </Carousel>
         );
     }
-});
+};
 
-ReactDOM.render(<Carousel />, document.querySelector('.carousel')
 
-export default Carousel;
+export default ImageCarousel;

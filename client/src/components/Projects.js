@@ -38,23 +38,40 @@ class ConnectedProjects extends Component {
     // let projectList = props.projects
     this.state = {
       filterValue: '',
-      projectsToDisplay: props.projects,
+      projectsToDisplay: null,
       projectsFromDB: null
     }
     this.handleFilterChange = this.handleFilterChange.bind(this);
   }
 
-  componentDidMount() {
-    console.log(this.props.user._id)
+  getProjects = () => {
     axios.post('/view/projects', {
       userId:this.props.user._id
     }).then( result => {
-      console.log(result)
+      console.log(this.props);
+      console.log('did mount', result)
       this.setState({
         projectsFromDB:result.data,
         projectsToDisplay:result.data
       })
     })
+  }
+
+  componentDidMount() {
+    if (this.props.user._id) {
+      console.log(this.props.user._id)
+      this.getProjects()
+    } else {
+      this.setState({
+        rerender: true
+      })
+    }
+  }
+
+  componentDidUpdate() {
+    if (!this.state.projectsFromDB) {
+      this.getProjects()
+    }
   }
 
   // past this down to the kids...
@@ -94,7 +111,6 @@ class ConnectedProjects extends Component {
             <ProjectList projects={this.state.projectsToDisplay}/>
           </div>
         </Paper>
-        {/* <ProjectList project={projects}/> */}
       </div>
     );
   }

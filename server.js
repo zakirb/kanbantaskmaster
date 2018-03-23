@@ -13,6 +13,7 @@ var auth = require('./routes/auth');
 var create = require('./routes/create');
 var edit = require('./routes/edit');
 var view = require('./routes/view');
+var destroy = require('./routes/destroy');
 
 var app = express();
 
@@ -32,6 +33,7 @@ app.use('/auth', auth);
 app.use('/create', create);
 app.use('/edit', edit);
 app.use('/view', view);
+app.use('/destroy', destroy)
 
 const PORT = process.env.PORT || 5000;
 

@@ -107,12 +107,13 @@ class ConnectedNavBar extends Component {
           <Route path='/ProjectItem' render={() => <ProjectItem />} />
           <Route path='/ViewProject' render={() => <ViewProject />} />
           <Route path='/Projects/create' render={() => <CreateProjectForm />} />
-          <Route path='/Projects/edit' render={() => <EditProjects />} />
+          <Route path='/edit/Project' render={() => <EditProjects />} />
           <Route exact path='/Tasks' render={() => <ViewTasks />} />
           <Route path='/Tasks/create' render={() => <CreateTasksForm />} />
           <Route path='/Tasks/edit' render={() => <EditTasks />} />
           <Route path='/UserAccess' render={() => <UserAccess  />} />
           <Route path='/UserProfile' render={() => <UserProfile user={theUser} logout={this.logout} />} />
+          <Route path='/delete/project' render={() => <CreateProjectForm />} />
 
         </div>
       </Router>
