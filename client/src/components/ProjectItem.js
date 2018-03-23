@@ -1,6 +1,6 @@
 // import React, { Component } from 'react';
 import React, { Component } from 'react';
-import ViewProject from './ViewProject';
+import KanbanBoard from './Kanban';
 
 
 // import TextField from 'material-ui/TextField';

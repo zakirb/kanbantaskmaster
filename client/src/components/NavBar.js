@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 import Home from './Home';
 import ViewTasks from './ViewTasks';
-import ViewProject from './ViewProject';
+import KanbanBoard from './Kanban';
 import UserAccess from './UserAccess';
 // import Signup from './Signup';
 import { UserProfile } from './UserProfile';
@@ -105,9 +105,9 @@ class ConnectedNavBar extends Component {
           <Route exact path='/' render={() => <Home />} />
           <Route exact path='/Projects' render={() => <Projects projects={projectTestData}/>} />
           <Route path='/ProjectItem' render={() => <ProjectItem />} />
-          <Route path='/ViewProject' render={() => <ViewProject />} />
+          <Route path='/ViewProject' render={() => <KanbanBoard />} />
           <Route path='/Projects/create' render={() => <CreateProjectForm />} />
-          <Route path='/edit/Project' render={() => <EditProjects />} />
+          <Route path='/Projects/edit' render={() => <EditProjects />} />
           <Route exact path='/Tasks' render={() => <ViewTasks />} />
           <Route path='/Tasks/create' render={() => <CreateTasksForm />} />
           <Route path='/Tasks/edit' render={() => <EditTasks />} />
