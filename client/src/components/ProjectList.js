@@ -17,6 +17,7 @@ const style = {
     height: 300,
     margin: 5
   }
+
 }
 
 // handleDelete = (projectID) => {
@@ -39,12 +40,13 @@ const ProjectList = (props) => {
             style={style.card_style}
             key={index}
             >
-            <Link to='/ViewProject'><CardHeader
-              title={project.title}
+
+            <CardHeader
+              title={<Link style={{textDecoration: 'none', color: 'black'}}to='/ViewProject'>{project.title}</Link>}
               subtitle={project.description}
               actAsExpander={true}
               showExpandableButton={true}
-            /></Link>
+            />
             <CardActions>
               <Link to='/Projects/edit'><FlatButton label="Edit" /></Link>
               <Link to='/Projects'><FlatButton label="Delete" /></Link>
