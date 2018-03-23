@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
-import { rerender } from "../actions/index"
+import { liftAllProjectsToState } from "../actions/index"
 // import TextField from 'material-ui/TextField';
 import { liftProjectToState } from '../actions/index'
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
@@ -23,14 +23,13 @@ const style = {
 
 const mapStateToProps = state => {
   return {
-    rerender: state.rerender
+    allProjects: state.allProjects
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    rerender: () => dispatch(rerender()),
-    liftProjectToState: project => dispatch(liftProjectToState(project))
+    liftAllProjectsToState: (projects) => dispatch(liftAllProjectsToState(projects))
   }
 }
 
@@ -56,10 +55,14 @@ class ConnectedProjectList extends Component {
       {projectId}
     }).then( result => {
       console.log(result.data)
-      this.props.rerender()
-      // this.setState({
-      //   rerender:true
-      // })
+
+    var newProjects =  this.props.allProjects.filter( (project) => {
+      if (project._id !== result.data._id) {
+        return project
+      }
+    })
+    this.props.liftAllProjectsToState(newProjects)
+
 
     })
   }
@@ -116,6 +119,6 @@ class ConnectedProjectList extends Component {
 
 }
 
-const ProjectList = connect(null, mapDispatchToProps)(ConnectedProjectList)
+const ProjectList = connect(mapStateToProps, mapDispatchToProps)(ConnectedProjectList)
 
 export default ProjectList;
