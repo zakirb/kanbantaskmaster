@@ -4,11 +4,9 @@ import axios from 'axios';
 import DatePicker from 'material-ui/DatePicker';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
-import Paper from 'material-ui/Paper';
+// import Paper from 'material-ui/Paper';
 import { Row, Col } from 'react-flexbox-grid';
 import { liftProjectToState } from "../actions/index"
-
-
 
 const style = {
   // root: {
@@ -28,6 +26,8 @@ const style = {
     margin: 10
   }
 }
+
+//// REDUX ////
 const mapDispatchToProps = dispatch => {
   return {
     liftProjectToState: project => dispatch(liftProjectToState(project))
@@ -42,7 +42,7 @@ const mapStateToProps = state => {
   }
 }
 
-
+//// CREATE PROJECT FORM ////
 class ConnectedCreateProjectForm extends Component {
   constructor(props) {
     super()
@@ -88,7 +88,6 @@ class ConnectedCreateProjectForm extends Component {
     }).then( result => {
       // console.log(result.data)
       this.props.liftProjectToState(result.data)
-
       console.log('THIS IS THE RESULT AFTER POSTING FROM CreateProjectForm')
       // this.props.liftProjectToState
       console.log('THIS IS THE RESULT AFTER PROJECT IS LIFTED')
@@ -97,42 +96,30 @@ class ConnectedCreateProjectForm extends Component {
   }
 
   render() {
-
     const { title, description, owner, connectedDate } = this.state
-
     return (
       <Row center="xs">
         <Col>
-      <Card className="projectForm" style={style.card_style} zDepth={5}>
-
-      <form onSubmit={this.handleSubmit}>
-
-        <h3>Create Project Form</h3>
-          <p>Project Name</p>
-            <input type='text' className="input" placeholder="Project Name" name='title' value={title} onChange={this.handleChange} />
-          <p>Description</p>
-            <input type='text' className="input" placeholder="Description" name='description' value={description} onChange={this.handleChange} />
-          <p>End Date</p>
-          <DatePicker  value={connectedDate} onChange={this.handleDateChange} hintText="End Date" container="inline" />
-
-          <CardActions>
-            <FlatButton type="submit" label="Add Project" />
-            <FlatButton label="Reset?" />
-          </CardActions>
-          </form>
+          <Card className="projectForm" style={style.card_style} zDepth={5}>
+            <form onSubmit={this.handleSubmit}>
+              <h3>Create Project Form</h3>
+              <p>Project Name</p>
+                <input type='text' className="input" placeholder="Project Name" name='title' value={title} onChange={this.handleChange} />
+              <p>Description</p>
+                <input type='text' className="input" placeholder="Description" name='description' value={description} onChange={this.handleChange} />
+              <p>End Date</p>
+              <DatePicker  value={connectedDate} onChange={this.handleDateChange} hintText="End Date" container="inline" />
+              <CardActions>
+                <FlatButton type="submit" label="Add Project" />
+                <FlatButton label="Reset?" />
+              </CardActions>
+            </form>
           </Card>
         </Col>
-        </Row>
-
-
-
+      </Row>
     )
   }
-
 }
-
-
-
 
 const CreateProjectForm = connect(mapStateToProps, mapDispatchToProps)(ConnectedCreateProjectForm)
 export default CreateProjectForm;

@@ -5,14 +5,9 @@ import DatePicker from 'material-ui/DatePicker';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import { Row, Col } from 'react-flexbox-grid';
+import { liftProjectToState } from "../actions/index"
+
 // import { addProject } from "../actions/index"
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     addProject: project => dispatch(addProject(project))
-//   }
-// }
-
 
 const style = {
   root: {
@@ -29,20 +24,37 @@ const style = {
   }
 }
 
-const mapStateToProps = state => {
+//// REDUX ////
+const mapDispatchToProps = dispatch => {
   return {
-    user: state.user,
-    token: state.token
+    liftProjectToState: project => dispatch(liftProjectToState(project))
   }
 }
 
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     addProject: project => dispatch(addProject(project))
+//   }
+// }
+
+const mapStateToProps = state => {
+  return {
+    user: state.user,
+    token: state.token,
+    currentProject: state.currentProject
+  }
+}
+
+//// EDIT PROJECT FORM ////
 class ConnectedEditProjects extends Component {
   constructor() {
     super()
     this.state = {
       title: '',
       description:'',
-      owner: ''
+      connectedDate: null,
+      owner: '',
+      targetDate:null
     }
   }
 
@@ -51,39 +63,69 @@ class ConnectedEditProjects extends Component {
     this.setState({ [key]: event.target.value})
   }
 
-  // handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   const { title } = this.state;
-  //   this.props.addArticle({ title });
-  //   this.setState({ title:''})
-  // }
+  handleDateChange = (event, date) => {
+    var targetDate = {
+        year: date.getFullYear(),
+        month: date.getMonth() + 1,
+        day: date.getDate()
+      }
+
+    this.setState({
+      connectedDate: date,
+      targetDate: date
+    })
+  }
+
+  // ADDED //
+  componentDidMount(){
+    console.log("in componentDidMount editProject")
+    // console.log(this.props.currentProject._id)
+    // axios.post('view/findOne/project', {
+    //   project_id: this.state.project._id
+    // }).then( result => {
+    //   console.log("result ", result)
+    //   this.setState({
+    //     currentProject: result.data
+    //   })
+    // })
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    axios.post('/edit/project', {
+      title: this.state.title,
+      description: this.state.description,
+      owner: this.props.user._id,
+      targetDate: this.state.targetDate
+    }).then( result => {
+      this.props.liftProjectToState(result.data)
+      console.log('THIS IS THE RESULT AFTER EDIT PROJECT FROM EditProject.js')
+    })
+  }
 
   render() {
-    const { title, description, owner } = this.state
+    const { title, description, owner, connectedDate } = this.state
     return (
       <Row center="xs">
         <Col>
-      <Card style={style.card_style} zDepth={5}>
-
-        <form onSubmit={this.handleSubmit}>
-          <h3>Edit Projects</h3>
-            <p>Edit Project Name</p>
-              <input type='text' className="input" placeholder="Project Name" name='title' value={title} onChange={this.handleChange} />
-            <p>Edit Description</p>
-              <input type='text' className="input" placeholder="Description" name='description' value={description} onChange={this.handleChange} />
-            <p>Edit End Date</p>
-          <DatePicker hintText="End Date" container="inline" />
-
-          <CardActions>
-            <FlatButton label="Update Project" />
-          </CardActions>
-        </form>
-      </Card>
-      </Col>
+          <Card style={style.card_style} zDepth={5}>
+            <form onSubmit={this.handleSubmit}>
+              <h3>Edit Projects</h3>
+              <p>Edit Project Name</p>
+                <input type='text' className="input" placeholder="Project Name" name='title' value={title} onChange={this.handleChange} />
+              <p>Edit Description</p>
+                <input type='text' className="input" placeholder="Description" name='description' value={description} onChange={this.handleChange} />
+              <p>Edit End Date</p>
+              <DatePicker  value={connectedDate} onChange={this.handleDateChange} hintText="End Date" container="inline" />
+              <CardActions>
+                <FlatButton label="Update Project" />
+              </CardActions>
+            </form>
+          </Card>
+        </Col>
       </Row>
     )
   }
-
 }
 
 // const CreateProjectForm = connect(null, mapDispatchToProps)(ConnectedCreateProjectForm)
