@@ -1,5 +1,7 @@
 // import React, { Component } from 'react';
 import React from 'react';
+import {Link} from 'react-router-dom';
+import axios from 'axios';
 // import TextField from 'material-ui/TextField';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
@@ -17,6 +19,16 @@ const style = {
   }
 }
 
+// handleDelete = (projectID) => {
+//   axios.delete('/destroy/project', {
+//     id:projectID
+//   }).then( result => {
+//     console.log(result)
+//   })
+// }
+// onClick={ () => this.handleDelete(project._id)}
+
+
 const ProjectList = (props) => {
 
   if (props) {
@@ -27,15 +39,15 @@ const ProjectList = (props) => {
             style={style.card_style}
             key={index}
             >
-            <CardHeader
+            <Link to='/ViewProject'><CardHeader
               title={project.title}
               subtitle={project.description}
               actAsExpander={true}
               showExpandableButton={true}
-            />
+            /></Link>
             <CardActions>
-              <FlatButton label="Edit" />
-              <FlatButton label="Delete" />
+              <Link to='/Projects/edit'><FlatButton label="Edit" /></Link>
+              <Link to='/Projects'><FlatButton label="Delete" /></Link>
             </CardActions>
             <CardText>{project.description}</CardText>
             <CardText expandable={true}>
