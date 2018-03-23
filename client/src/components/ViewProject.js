@@ -8,6 +8,7 @@ import { Row, Col } from 'react-flexbox-grid';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import '../css/App.css';
 import DropDownMenuTask from './DropDownMenu';
+import {Link} from 'react-router-dom';
 
 const style = {
 
@@ -67,7 +68,7 @@ class KanbanBoard extends Component {
             <p>Task #1 Title</p>
             <p>Assigned to: </p>
               <CardActions>
-                <RaisedButton className="edit" label="Edit Task" />
+                <Link to="/Tasks/edit"><RaisedButton className="edit" label="Edit Task" /></Link>
               </CardActions>
               </CardText>
               <DropDownMenuTask />

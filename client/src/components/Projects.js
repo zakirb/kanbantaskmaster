@@ -38,7 +38,7 @@ class ConnectedProjects extends Component {
     // let projectList = props.projects
     this.state = {
       filterValue: '',
-      projectsToDisplay: props.projects,
+      projectsToDisplay: null,
       projectsFromDB: null
     }
     this.handleFilterChange = this.handleFilterChange.bind(this);
@@ -80,18 +80,18 @@ class ConnectedProjects extends Component {
   } // end handle filter change
 
   render() {
-    // const projectTestData = [
-    //   {title: "Workflow Project Organizer", team: ["Zakir B", "Dan V", "Tim H"], tasks: ["Build Models", "Implement Redux", "Implement Material UI"]},
-    //   {title: "Party Bus", team: ["Zakir B", "Dan V"], tasks: ["Buy Beer", "Seek Contacts"]},
-    //   {title: "Project 3", team: ["Zakir B", "Dan V", "Tim H"], tasks: ["Have Fun", "Get to know each other", "Try to understand this shit"]}
-    // ]
+    const projectTestData = [
+      {title: "Workflow Project Organizer", team: ["Zakir B", "Dan V", "Tim H"], tasks: ["Build Models", "Implement Redux", "Implement Material UI"]},
+      {title: "Party Bus", team: ["Zakir B", "Dan V"], tasks: ["Buy Beer", "Seek Contacts"]},
+      {title: "Project 3", team: ["Zakir B", "Dan V", "Tim H"], tasks: ["Have Fun", "Get to know each other", "Try to understand this shit"]}
+    ]
     return (
       <div className='row'>
         <Paper style={style}>
           <div className='col '>
             <h1>Projects</h1>
             <ProjectSearch value={this.state.filterValue} onChange={this.handleFilterChange}/>
-            <ProjectList projects={this.state.projectsToDisplay}/>
+            <ProjectList projects={projectTestData}/>
           </div>
         </Paper>
         {/* <ProjectList project={projects}/> */}
