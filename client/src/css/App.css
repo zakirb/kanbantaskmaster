@@ -26,6 +26,7 @@
 .home {
   text-align: center;
   font-family: 'PT Sans Narrow', sans-serif;
+  align-content: center;
 }
 .signup {
   /* position: relative; */
