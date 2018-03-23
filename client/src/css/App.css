@@ -56,6 +56,9 @@ body {
 .slide, .carousel-inner {
   height: 500px;
 }
+.TaskText {
+  font-size: 13pt;
+}
 
 
 
