@@ -4,7 +4,7 @@ import axios from 'axios';
 // import ProjectItem from './ProjectItem';
 import ProjectList from './ProjectList';
 import ProjectSearch from './ProjectSearch';
-// import { LIFT_PROJECT_TO_STATE } from '../actions/index'
+import { liftAllProjectsToState } from '../actions/index'
 import { connect } from 'react-redux';
 import Paper from 'material-ui/Paper';
 // import TextField from 'material-ui/TextField';
@@ -22,15 +22,15 @@ const mapStateToProps = state => {
   return {
     user: state.user,
     token: state.token,
-    rerender: state.rerender
+    allProjects:state.allProjects
   }
 }
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     liftProjectToState: project => dispatch(liftProjectToState(project))
-//   }
-// }
+const mapDispatchToProps = dispatch => {
+  return {
+    liftAllProjectsToState: projects => dispatch(liftAllProjectsToState(projects))
+  }
+}
 
 class ConnectedProjects extends Component {
   constructor(props){
@@ -50,10 +50,7 @@ class ConnectedProjects extends Component {
     }).then( result => {
       console.log(this.props);
       console.log('did mount', result)
-      this.setState({
-        projectsFromDB:result.data,
-        projectsToDisplay:result.data
-      })
+      this.props.liftAllProjectsToState(result.data)
     })
   }
 
@@ -73,9 +70,16 @@ class ConnectedProjects extends Component {
 
   componentDidUpdate() {
     console.log('PROJECTS UPDATED')
-    if (!this.state.projectsFromDB) {
+    if (!this.props.allProjects) {
       this.getProjects()
+      console.log(this.props.allProjects);
     }
+    // if (this.state.reload === true && this.state.projectsFromDB) {
+    //   console.log('BEFORE THE RELOADDDDD')
+    //   this.setState({
+    //     reload: false
+    //   })
+
   }
   // past this down to the kids...
   handleFilterChange(event){
@@ -88,7 +92,7 @@ class ConnectedProjects extends Component {
     // second param is props, only two params
     this.setState( (prevState, props) => {
       // remove items that don't contain the filter filterValue
-      const filteredProjectList = this.state.projectsFromDB.filter( project =>
+      const filteredProjectList = this.props.allProjects.filter( project =>
         // project.toLocaleLowerCase().includes(filterValue.toLocaleLowerCase()))
         project.title.toLocaleLowerCase().includes(filterValue.toLocaleLowerCase()))
       // return tnew state with the filtered fruit list and the now value of the filter
@@ -111,12 +115,12 @@ class ConnectedProjects extends Component {
           <div className='col '>
             <h1>Projects</h1>
             <ProjectSearch value={this.state.filterValue} onChange={this.handleFilterChange}/>
-            <ProjectList projects={this.state.projectsToDisplay}/>
+            <ProjectList projects={this.state.projectsToDisplay || this.props.allProjects}/>
           </div>
         </Paper>
       </div>
     );
   }
 }
-const Projects = connect(mapStateToProps, null)(ConnectedProjects);
+const Projects = connect(mapStateToProps, mapDispatchToProps)(ConnectedProjects);
 export default Projects;
