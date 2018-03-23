@@ -21,8 +21,8 @@ const style = {
 const mapStateToProps = state => {
   return {
     user: state.user,
-    token: state.token
-    //currentProject
+    token: state.token,
+    rerender: state.rerender
   }
 }
 
@@ -63,17 +63,20 @@ class ConnectedProjects extends Component {
       this.getProjects()
     } else {
       this.setState({
-        rerender: true
+        reload: true
       })
     }
   }
 
+
+
+
   componentDidUpdate() {
+    console.log('PROJECTS UPDATED')
     if (!this.state.projectsFromDB) {
       this.getProjects()
     }
   }
-
   // past this down to the kids...
   handleFilterChange(event){
     event.preventDefault()
