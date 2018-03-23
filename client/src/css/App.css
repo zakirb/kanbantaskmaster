@@ -40,7 +40,21 @@
 
 body {
   color: red;
-  
+
+}
+.image {
+  height: 500px;
+  width: 500px;
+}
+/* .carousel {
+  align-items: center;
+  position: fixed;
+} */
+.carousel-inner .items {
+  width: 100%;
+}
+.slide, .carousel-inner {
+  height: 500px;
 }
 
 
