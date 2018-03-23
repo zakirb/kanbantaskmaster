@@ -44,17 +44,34 @@ class ConnectedProjects extends Component {
     this.handleFilterChange = this.handleFilterChange.bind(this);
   }
 
-  componentDidMount() {
-    console.log(this.props.user._id)
+  getProjects = () => {
     axios.post('/view/projects', {
       userId:this.props.user._id
     }).then( result => {
-      console.log(result)
+      console.log(this.props);
+      console.log('did mount', result)
       this.setState({
         projectsFromDB:result.data,
         projectsToDisplay:result.data
       })
     })
+  }
+
+  componentDidMount() {
+    if (this.props.user._id) {
+      console.log(this.props.user._id)
+      this.getProjects()
+    } else {
+      this.setState({
+        rerender: true
+      })
+    }
+  }
+
+  componentDidUpdate() {
+    if (!this.state.projectsFromDB) {
+      this.getProjects()
+    }
   }
 
   // past this down to the kids...
@@ -80,21 +97,20 @@ class ConnectedProjects extends Component {
   } // end handle filter change
 
   render() {
-    const projectTestData = [
-      {title: "Workflow Project Organizer", team: ["Zakir B", "Dan V", "Tim H"], tasks: ["Build Models", "Implement Redux", "Implement Material UI"]},
-      {title: "Party Bus", team: ["Zakir B", "Dan V"], tasks: ["Buy Beer", "Seek Contacts"]},
-      {title: "Project 3", team: ["Zakir B", "Dan V", "Tim H"], tasks: ["Have Fun", "Get to know each other", "Try to understand this shit"]}
-    ]
+    // const projectTestData = [
+    //   {title: "Workflow Project Organizer", team: ["Zakir B", "Dan V", "Tim H"], tasks: ["Build Models", "Implement Redux", "Implement Material UI"]},
+    //   {title: "Party Bus", team: ["Zakir B", "Dan V"], tasks: ["Buy Beer", "Seek Contacts"]},
+    //   {title: "Project 3", team: ["Zakir B", "Dan V", "Tim H"], tasks: ["Have Fun", "Get to know each other", "Try to understand this shit"]}
+    // ]
     return (
       <div className='row'>
         <Paper style={style}>
           <div className='col '>
             <h1>Projects</h1>
             <ProjectSearch value={this.state.filterValue} onChange={this.handleFilterChange}/>
-            <ProjectList projects={projectTestData}/>
+            <ProjectList projects={this.state.projectsToDisplay}/>
           </div>
         </Paper>
-        {/* <ProjectList project={projects}/> */}
       </div>
     );
   }

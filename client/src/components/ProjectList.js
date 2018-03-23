@@ -17,11 +17,12 @@ const style = {
   }
 }
 
-const ProjectList = (props) => (
-      <div className="row">
-        {/* <h1>Project List</h1>
-        <p>A list of all projects. Sample data = props from Projects.js</p> */}
-        {props.projects.map((project, index) =>
+const ProjectList = (props) => {
+
+  if (props) {
+    if (props.projects) {
+      var projectCard = (
+        props.projects.map((project, index) => (
           <Card
             style={style.card_style}
             key={index}
@@ -38,40 +39,32 @@ const ProjectList = (props) => (
             </CardActions>
             <CardText>{project.description}</CardText>
             <CardText expandable={true}>
-              THIS EXAMPLE EXPANDS...
-
-
-                Project Tasks (array)
-                <ul>
-                  {project.tasks.map((task, index) =>
-                      <li key={index}>{task}</li>
-                    )}
-                </ul>
-
-              NOTE: div =row ends after the next Card in ProjectList . js
+              <h3>Tasks</h3>
+              <ul>
+                {project.tasks.map((task, index) => (
+                  <li key={index}>{task.description}</li>
+                ))}
+              </ul>
             </CardText>
           </Card>
-        )}
+        )
+      )
+    )
 
-          {/* <Card style={style.card_style}>
-            <CardHeader
-              title="Party Project"
-              subtitle="Zakir, Dan"
-              actAsExpander={true}
-              showExpandableButton={true}
-            />
-            <CardActions>
-              <FlatButton label="Edit" />
-              <FlatButton label="Delete" />
-            </CardActions>
-            <CardText expandable={true}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-              Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-              Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-            </CardText>
-          </Card> */}
+
+
+    }
+  }
+
+
+    return (
+      <div className="row">
+        {projectCard}
       </div>
-    );
+    )
+
+
+
+    };
 
 export default ProjectList;
