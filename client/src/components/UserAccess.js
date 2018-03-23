@@ -10,6 +10,7 @@ import { liftTokenToState, logout } from '../actions/index'
 // import {div, divActions, divHeader, divMedia, divTitle, divText} from 'material-ui/div';
 // import {GridList, GridTile} from 'material-ui/GridList';
 import {GridTile} from 'material-ui/GridList';
+import { Row, Col } from 'react-flexbox-grid';
 
 const style = {
   root: {
@@ -75,6 +76,8 @@ class ConnectedUserAccess extends Component {
     let theUser = this.props.user
     if (typeof theUser === 'object' && Object.keys(theUser).length > 0) {
       return (
+        <Row center="xs">
+          <Col>
         <div className="login" style={style.layout}>
           <div className='row'>
             <div className="col s6 m6 l6">
@@ -83,9 +86,13 @@ class ConnectedUserAccess extends Component {
           </div>
           {/* <Projects /> */}
         </div>
+        </Col>
+        </Row>
       )
     } else {
       return (
+        <Row center="xs">
+          <Col>
         <div className="login" style={style.layout}>
           <GridTile>
             {/* <div className="col s6 m6 l6"> */}
@@ -99,6 +106,8 @@ class ConnectedUserAccess extends Component {
             {/* </div> */}
           </GridTile>
         </div>
+        </Col>
+        </Row>
       )
     }
   }
