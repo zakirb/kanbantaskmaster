@@ -1,11 +1,13 @@
 import { LIFT_PROJECT_TO_STATE } from "../constants/action-types";
 import { LIFT_TOKEN_TO_STATE } from "../constants/action-types";
 import { LOGOUT } from "../constants/action-types";
+import { RERENDER } from "../constants/action-types";
 
 const initialState = {
   user: '',
   token:'',
-  currentProject: null
+  currentProject: null,
+  rerender: null
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -30,6 +32,11 @@ const rootReducer = (state = initialState, action) => {
       console.log(action.payload.project)
       let newProject = {currentProject: action.payload.project}
       return Object.assign({}, state, newProject )
+
+    case RERENDER:
+    console.log('RERENDERING APP BY REDUX STATE CHANGE')
+    let newRender = {rerender:true}
+      return Object.assign({}, state, newRender)
 
     default:
       return state;

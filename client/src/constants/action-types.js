@@ -5,3 +5,5 @@ export const LIFT_TOKEN_TO_STATE = "LIFT_TOKEN_TO_STATE"
 export const LOGOUT = "LOGOUT"
 
 export const LIFT_PROJECT_TO_STATE = "LIFT_PROJECT_TO_STATE"
+
+export const RERENDER = "RERENDER"
