@@ -47,7 +47,7 @@ const mapStateToProps = state => {
 
 //// EDIT PROJECT FORM ////
 class ConnectedEditProjects extends Component {
-  constructor() {
+  constructor(props) {
     super()
     this.state = {
       title: '',
@@ -56,6 +56,10 @@ class ConnectedEditProjects extends Component {
       owner: '',
       targetDate:null
     }
+  }
+
+  componentDidUpdate() {
+    console.log('EDIT PROJECT UPDATED')
   }
 
   handleChange = (event) => {
@@ -79,13 +83,21 @@ class ConnectedEditProjects extends Component {
   // ADDED //
   componentDidMount(){
     console.log("in componentDidMount editProject")
-    // console.log(this.props.currentProject._id)
+    // console.log("state")
+    // console.log(this.state)
+    console.log("props currentProject")
+    console.log(this.props.currentProject)
+    if (!this.props.currentProject){
+
+    } else {
+
+    }
     // axios.post('view/findOne/project', {
     //   project_id: this.state.project._id
     // }).then( result => {
     //   console.log("result ", result)
     //   this.setState({
-    //     currentProject: result.data
+        // currentProject: result.data
     //   })
     // })
   }
@@ -130,5 +142,5 @@ class ConnectedEditProjects extends Component {
 
 // const CreateProjectForm = connect(null, mapDispatchToProps)(ConnectedCreateProjectForm)
 
-const EditProjects = connect(mapStateToProps, null)(ConnectedEditProjects)
+const EditProjects = connect(mapStateToProps, mapDispatchToProps)(ConnectedEditProjects)
 export default EditProjects;

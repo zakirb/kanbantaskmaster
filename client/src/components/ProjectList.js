@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 import { liftAllProjectsToState } from "../actions/index"
 // import TextField from 'material-ui/TextField';
+import { liftProjectToState } from '../actions/index'
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import { connect } from 'react-redux';
@@ -15,7 +16,6 @@ const style = {
   },
   card_style: {
     width: 400,
-    height: 300,
     margin: 5
   }
 
@@ -33,8 +33,11 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-
-
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     liftProjectToState: project => dispatch(liftProjectToState(project))
+//   }
+// }
 
 class ConnectedProjectList extends Component {
   constructor(props) {
@@ -64,7 +67,16 @@ class ConnectedProjectList extends Component {
     })
   }
 
-
+  handleEdit = (projectId) => {
+    console.log(projectId)
+    console.log('HANDLING EDIT FUNCTION');
+    axios.get('/view/findOne/project', {
+      params: {projectId}
+    }).then( result => {
+      console.log(result.data)
+      this.props.liftProjectToState
+    }).catch( err => console.log(err))
+  }
 
   render() {
     if (this.props) {
@@ -80,7 +92,7 @@ class ConnectedProjectList extends Component {
                 actAsExpander={true}
                 showExpandableButton={true}/>
               <CardActions>
-                <Link to='/Projects/edit'><FlatButton label="Edit" /></Link>
+                <Link to='/Projects/edit'><FlatButton label="Edit" onClick={ () => this.handleEdit(project._id)} /></Link>
                 <Link to='/Projects'><FlatButton label="Delete" onClick={ () => this.handleDelete(project._id)} /></Link>
               </CardActions>
               <CardText>{project.description}</CardText>
