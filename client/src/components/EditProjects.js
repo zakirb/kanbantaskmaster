@@ -59,6 +59,7 @@ class ConnectedEditProjects extends Component {
   }
 
   componentDidUpdate() {
+    console.log('BELOW IS THE CURRENT CPROJECT', this.props.currentProject)
     console.log('EDIT PROJECT UPDATED')
   }
 

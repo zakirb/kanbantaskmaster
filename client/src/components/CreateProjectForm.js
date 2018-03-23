@@ -87,7 +87,7 @@ class ConnectedCreateProjectForm extends Component {
       targetDate: this.state.targetDate
     }).then( result => {
       // console.log(result.data)
-      this.props.liftProjectToState(result.data)
+      this.props.liftProjectToState(result.data.project)
       console.log('THIS IS THE RESULT AFTER POSTING FROM CreateProjectForm')
       // this.props.liftProjectToState
       console.log('THIS IS THE RESULT AFTER PROJECT IS LIFTED')

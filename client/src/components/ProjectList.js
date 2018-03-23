@@ -29,7 +29,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    liftAllProjectsToState: (projects) => dispatch(liftAllProjectsToState(projects))
+    liftAllProjectsToState: (projects) => dispatch(liftAllProjectsToState(projects)),
+    liftProjectToState: project => dispatch(liftProjectToState(project))
   }
 }
 
@@ -74,7 +75,7 @@ class ConnectedProjectList extends Component {
       params: {projectId}
     }).then( result => {
       console.log(result.data)
-      this.props.liftProjectToState
+      this.props.liftProjectToState(result.data)
     }).catch( err => console.log(err))
   }
 
