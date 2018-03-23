@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 // var Project = require('../models/project');
 
 
-router.post('/project', (req, res, next) => {
+router.put('/project', (req, res, next) => {
 
   console.log(req.body)
 })
