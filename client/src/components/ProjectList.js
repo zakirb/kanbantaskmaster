@@ -35,6 +35,7 @@ const mapDispatchToProps = dispatch => {
 
 
 
+
 class ConnectedProjectList extends Component {
   constructor(props) {
     super()
@@ -97,9 +98,11 @@ class ConnectedProjectList extends Component {
         {projectCard}
       </div>
     )
+
   }
 
 }
 
 const ProjectList = connect(null, mapDispatchToProps)(ConnectedProjectList)
+
 export default ProjectList;

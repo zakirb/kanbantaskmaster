@@ -103,7 +103,7 @@ class ConnectedNavBar extends Component {
           </Menu>
           <br />
           <Route exact path='/' render={() => <Home />} />
-          <Route exact path='/Projects' render={() => <Projects projects={projectTestData}/>} />
+          <Route exact path='/Projects' render={() => <Projects />} />
           <Route path='/ProjectItem' render={() => <ProjectItem />} />
           <Route path='/ViewProject' render={() => <KanbanBoard />} />
           <Route path='/Projects/create' render={() => <CreateProjectForm />} />

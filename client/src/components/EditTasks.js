@@ -6,6 +6,7 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 import FlatButton from 'material-ui/FlatButton';
 import { Row, Col } from 'react-flexbox-grid';
 // import { addProject } from "../actions/index"
+// import CreateTaskSteps from './CreateTaskSteps';
 
 // const mapDispatchToProps = dispatch => {
 //   return {
@@ -30,11 +31,12 @@ const style = {
 const mapStateToProps = state => {
   return {
     user: state.user,
-    token: state.token
+    token: state.token,
+    currentProject: state.currentProject
   }
 }
 
-
+////// EDIT TASK FORM ///////////
 class ConnectedEditTasks extends Component {
   constructor(props) {
     super()
@@ -42,11 +44,11 @@ class ConnectedEditTasks extends Component {
       description: '',
       assignTo:'',
       connectedDate: null,
-      targetDate:null
+      targetDate:null,
+      task_status: ''
     }
     this.handleSubmit = this.handleSubmit.bind(this)
   }
-
 
   handleChange = (event) => {
     var key = event.target.name
@@ -62,8 +64,21 @@ class ConnectedEditTasks extends Component {
 
     this.setState({
       connectedDate: date,
-      targetDate
+      targetDate: date
     })
+  }
+
+  // ADDED //
+  componentDidMount(){
+    console.log("in componentDidMount editTask")
+    // axios.post('view/findOne/task', {
+    //   project_id: this.state.task._id
+    // }).then( result => {
+    //   console.log("result ", result)
+    //   this.setState({
+    //     currentTask: result.data
+    //   })
+    // })
   }
 
   handleSubmit(e) {
@@ -72,10 +87,12 @@ class ConnectedEditTasks extends Component {
     //   return;
     // }
     e.preventDefault()
-    axios.post('/create/task',{
+    axios.post('/edit/task',{
       description: this.state.description,
-      assignTo: this.state.assignTo,
-      targetDate:this.state.targetDate
+      assigned_to: this.state.assignTo,
+      target_date:this.state.targetDate,
+      task_status: this.state.task_status,
+      project_id: this.props.currentProject._id
     }).then( result => {
       console.log(result.data)
       console.log('THIS IS THE RESULT AFTER POSTING FROM CreateProjectForm')
@@ -86,39 +103,33 @@ class ConnectedEditTasks extends Component {
   }
 
   //description, target_date, status [todo in progress in review completed], assignto, steps, tasks, projectid
-
-
   render() {
-    const { description, assignTo, connectedDate} = this.state
+    const { description, assignTo, connectedDate, task_status} = this.state
     return (
       <Row center="xs">
         <Col>
-
-
-      <Card style={style.card_style} zDepth={5}>
-
-      <form onSubmit={this.handleSubmit}>
-      <h3>Edit Task Form</h3>
-          <p>Edit To Do</p>
-            <input type='text' className="input" placeholder="To Do" name='description' value={description} onChange={this.handleChange} />
-          <p>Edit Team Member</p>
-            <input type='text' className="input" placeholder="Team Member" name='assignTo' value={assignTo} onChange={this.handleChange} />
-          <p>Edit Due Date</p>
-          <DatePicker hintText="Due Date" value={connectedDate} onChange={this.handleDateChange} container="inline" />
-
-          <CardActions>
-            <FlatButton type="submit" label="Update Task" />
-          </CardActions>
-        </form>
-      </Card>
-      </Col>
+          <Card style={style.card_style} zDepth={5}>
+            <form onSubmit={this.handleSubmit}>
+              <h3>Edit Task Form</h3>
+              <p>Edit To Do</p>
+                <input type='text' className="input" placeholder="To Do" name='description' value={description} onChange={this.handleChange} />
+              <p>Edit Team Member</p>
+                <input type='text' className="input" placeholder="Team Member" name='assignTo' value={assignTo} onChange={this.handleChange} />
+              <p>Task Status</p>
+                <input type='text' className="input" placeholder="Task Status" name='task_status' value={task_status} onChange={this.handleChange} />
+                {/* <DropDownMenuTask /> */}
+              <p>Edit Due Date</p>
+              <DatePicker hintText="Due Date" value={connectedDate} onChange={this.handleDateChange} container="inline" />
+              <CardActions>
+                <FlatButton type="submit" label="Update Task" />
+              </CardActions>
+            </form>
+          </Card>
+        </Col>
       </Row>
-
     )
   }
-
 }
-
 
 const EditTasks = connect(mapStateToProps, null)(ConnectedEditTasks)
 export default EditTasks;

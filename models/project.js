@@ -42,10 +42,9 @@ var taskSchema = new mongoose.Schema({
     type: Date,
     required: true
   },
-  status: {
+  task_status: {
     type: String,
-    required: false,
-    default: "To Do"
+    required: false
   },
   assigned_to: {
     type: String,
@@ -66,7 +65,7 @@ taskSchema.set('JSON', {
       _id: ret._id,
       description: ret.description,
       target_date: ret.target_date,
-      status: ret.status,
+      task_status: ret.status,
       assigned_to: ret.assigned_to,
       project_id: ret.project_id,
       updated: ret.updated

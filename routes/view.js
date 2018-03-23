@@ -13,16 +13,23 @@ router.post('/projects', (req, res, next) => {
   })
 })
 
+router.post('/findOne/project', (req, res, next) => {
+  var projectId = req.body.projectId
+  console.log(projectId)
+  Project.find({"project_id":projectId}, (err, project) => {
+    console.log(project)
+    res.json(project)
+  })
+})
 
-
-
-
-
-
-
-
-
-
+router.post('/findOne/task', (req, res, next) => {
+  var taskId = req.body.taskId
+  console.log(taskId)
+  Project.find({"task_id":taskId}, (err, task) => {
+    console.log(task)
+    res.json(task)
+  })
+})
 
 
 
