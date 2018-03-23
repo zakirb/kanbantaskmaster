@@ -23,7 +23,7 @@ router.get('/findOne/project', (req, res, next) => {
   })
 })
 
-router.post('/findOne/task', (req, res, next) => {
+router.get('/findOne/task', (req, res, next) => {
   var taskId = req.query.taskId
   console.log(req.query)
   console.log(taskId)
