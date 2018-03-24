@@ -79,6 +79,7 @@ class ConnectedProjectList extends Component {
   }
 
   render() {
+
     if (this.props) {
       if (this.props.projects) {
         var projectCard = (

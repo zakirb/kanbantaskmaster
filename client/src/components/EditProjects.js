@@ -6,7 +6,6 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 import FlatButton from 'material-ui/FlatButton';
 import { Row, Col } from 'react-flexbox-grid';
 import { liftProjectToState } from "../actions/index"
-
 // import { addProject } from "../actions/index"
 
 const style = {
@@ -48,7 +47,7 @@ const mapStateToProps = state => {
 //// EDIT PROJECT FORM ////
 class ConnectedEditProjects extends Component {
   constructor(props) {
-    super()
+    super(props)
     this.state = {
       title: '',
       description:'',
@@ -60,8 +59,25 @@ class ConnectedEditProjects extends Component {
   }
 
   componentDidUpdate() {
-    console.log('BELOW IS THE CURRENT CPROJECT', this.props.currentProject)
+    console.log('BELOW IS THE CURRENT PROJECT', this.props.currentProject)
     console.log('EDIT PROJECT UPDATED')
+    console.log('BELOW IS THE CURRENT PROJECT', this.state)
+
+  }
+
+  componentWillReceiveProps(){
+   if (this.state !== this.props){
+     console.log(this.state, this.props);
+     // this.setState((prevState, props){
+     //   title: props.currentProject.title,
+     //   description: ,
+     //   connectedDate: null,
+     //   owner: '',
+     //   targetDate:null,
+     //   project: props.currentProject
+     //   project: this.props.currentProject
+     // })
+   }
   }
 
   handleChange = (event) => {
@@ -82,18 +98,15 @@ class ConnectedEditProjects extends Component {
     })
   }
 
-  // ADDED //
   componentDidMount(){
     console.log("in componentDidMount editProject")
-    // console.log("state")
-    // console.log(this.state)
     console.log("props currentProject")
     console.log(this.props.currentProject)
-    if (!this.props.currentProject){
-
-    } else {
-
-    }
+    // if (!this.props.currentProject){
+    //
+    // } else {
+    //
+    // }
     // axios.post('view/findOne/project', {
     //   project_id: this.state.project._id
     // }).then( result => {
@@ -142,7 +155,6 @@ class ConnectedEditProjects extends Component {
   }
 }
 
-// const CreateProjectForm = connect(null, mapDispatchToProps)(ConnectedCreateProjectForm)
 
 const EditProjects = connect(mapStateToProps, mapDispatchToProps)(ConnectedEditProjects)
 export default EditProjects;
