@@ -78,6 +78,16 @@ class ConnectedProjectList extends Component {
     }).catch( err => console.log(err))
   }
 
+  handleSelectProject = projectId => {
+    console.log('Project ID being raised to state by select: ' + projectId)
+    axios.get('/view/findOne/project', {
+      params: {projectId}
+    }).then( result => {
+      console.log(result.data)
+      this.props.liftProjectToState(result.data)
+    }).catch( err => console.log(err))
+  }
+
   render() {
 
     if (this.props) {

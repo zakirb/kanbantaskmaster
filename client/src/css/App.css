@@ -42,6 +42,12 @@ body {
   color: red;
 
 }
+
+/* so there is a title in nav bar */
+h4 {
+  color: black;
+}
+
 .image {
   height: 500px;
   width: 500px;
@@ -60,21 +66,11 @@ body {
   font-size: 13pt;
 }
 
+/* not sure if this outer div
+was purposely names this way */
+nav.navboxx {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 .navbox {
   display: inline-block;

@@ -43,17 +43,16 @@ router.post('/task', (req, res, next) => {
         target_date:req.body.target_date
       })
 
+
     project.tasks.push(newTask)
     project.save( (err) => {
       if (err) {
         console.log('ERROR ' + err)
       } else {
-        console.log('SUCCESS')
-        console.log(project)
+        console.log('SUCCESS PUSHING newTask')
+        res.json(project)
       }
     })
-
-    console.log(newTask)
     }
   })
 })

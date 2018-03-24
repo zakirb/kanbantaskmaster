@@ -86,21 +86,22 @@ class ConnectedProjects extends Component {
     event.preventDefault()
     // console.log(event.target.value)
     // console.log(this.props)
-
-    const filterValue = event.target.value
-    // not using prevState, but necessary to use
-    // second param is props, only two params
-    this.setState( (prevState, props) => {
-      // remove items that don't contain the filter filterValue
-      const filteredProjectList = this.props.allProjects.filter( project =>
-        // project.toLocaleLowerCase().includes(filterValue.toLocaleLowerCase()))
-        project.title.toLocaleLowerCase().includes(filterValue.toLocaleLowerCase()))
-      // return tnew state with the filtered fruit list and the now value of the filter
-      return {
-        projectsToDisplay: filteredProjectList,
-        filterValue
-      }
-    }) // end setState
+    if (this.props.allProjects) {
+      const filterValue = event.target.value
+      // not using prevState, but necessary to use
+      // second param is props, only two params
+      this.setState( (prevState, props) => {
+        // remove items that don't contain the filter filterValue
+        const filteredProjectList = this.props.allProjects.filter( project =>
+          // project.toLocaleLowerCase().includes(filterValue.toLocaleLowerCase()))
+          project.title.toLocaleLowerCase().includes(filterValue.toLocaleLowerCase()))
+        // return tnew state with the filtered fruit list and the now value of the filter
+        return {
+          projectsToDisplay: filteredProjectList,
+          filterValue
+        }
+      }) // end setState
+    }
   } // end handle filter change
 
   render() {
