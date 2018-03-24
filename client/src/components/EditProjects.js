@@ -54,7 +54,8 @@ class ConnectedEditProjects extends Component {
       description:'',
       connectedDate: null,
       owner: '',
-      targetDate:null
+      targetDate:null,
+      project: props.currentProject
     }
   }
 

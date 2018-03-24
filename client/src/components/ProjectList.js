@@ -17,8 +17,10 @@ const style = {
   card_style: {
     width: 400,
     margin: 5
+  },
+  task_list_style: {
+    listStyleType: false
   }
-
 }
 
 const mapStateToProps = state => {
@@ -101,7 +103,7 @@ class ConnectedProjectList extends Component {
                 <h3>Tasks</h3>
                 <ul>
                   {project.tasks.map((task, index) => (
-                    <li key={index}>{task.description}</li>
+                    <li key={index}>Task: {task.description} Status: {task.task_status ? task.task_status : "not set"}</li>
                   ))}
                 </ul>
               </CardText>
