@@ -17,9 +17,6 @@ const style = {
   card_style: {
     width: 400,
     margin: 5
-  },
-  task_list_style: {
-    listStyleType: false
   }
 }
 
