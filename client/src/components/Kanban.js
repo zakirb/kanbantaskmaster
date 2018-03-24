@@ -69,6 +69,7 @@ class ConnectedKanbanBoard extends Component {
   }
 
 
+
   render() {
 
     if (this.props.currentProject) {
@@ -80,7 +81,7 @@ class ConnectedKanbanBoard extends Component {
           return task.task_status === "todo"
         })
         var ToDoTaskItems = TasksToDo.map(task => {
-          return <TaskItem style={style.card_styleToDo} />
+          return <TaskItem style={style.card_styleToDo} task={task}/>
         })
 
         // In Progress
@@ -88,7 +89,7 @@ class ConnectedKanbanBoard extends Component {
           return (task.task_status === "progress")
         })
         var InProgressTaskItems = TasksInProgress.map(task => {
-          return <TaskItem style={style.card_styleProgress} />
+          return <TaskItem style={style.card_styleProgress} task={task}/>
         })
 
         // In Review
@@ -96,7 +97,7 @@ class ConnectedKanbanBoard extends Component {
           return task.task_status === "review"
         })
         var InReviewTaskItems = TasksInReview.map(task => {
-          return <TaskItem style={style.card_styleReview} />
+          return <TaskItem style={style.card_styleReview} task={task}/>
         })
 
         // Completed
@@ -104,7 +105,7 @@ class ConnectedKanbanBoard extends Component {
           return task.task_status === "completed"
         })
         var CompletedTaskItems = TasksCompleted.map(task => {
-          return <TaskItem style={style.card_styleCompleted} />
+          return <TaskItem style={style.card_styleCompleted} task={task}/>
         })
       }
     }
