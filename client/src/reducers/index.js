@@ -1,4 +1,3 @@
-// consider refactoring
 // works like Array.prototype.reducer(reducer,  initialValue)
 // do not mutate arguments, call APIs or use non-pure functions Date.now() Math.random()
 
