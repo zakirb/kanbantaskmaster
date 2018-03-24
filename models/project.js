@@ -44,7 +44,7 @@ var taskSchema = new mongoose.Schema({
   },
   task_status: {
     type: String,
-    required: false
+    required: true
   },
   assigned_to: {
     type: String,

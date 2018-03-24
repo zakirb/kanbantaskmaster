@@ -39,7 +39,7 @@ router.post('/task', (req, res, next) => {
     var newTask =  project.tasks.create({
         description: req.body.description,
         assigned_to: req.body.assigned_to,
-        status: req.body.status,
+        task_status: req.body.task_status,
         target_date:req.body.target_date
       })
 

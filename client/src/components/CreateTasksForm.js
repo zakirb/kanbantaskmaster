@@ -103,7 +103,13 @@ class ConnectedCreateTasksForm extends Component {
                 <input type='text' className="input" placeholder="Team Member" name='assignTo' value={assignTo} onChange={this.handleChange} />
               <p>Task Status</p>
               {/* <DropDownMenuTask /> */}
-                <input type='text' className="input" placeholder="Task Status" name='task_status' value={task_status} onChange={this.handleChange} />
+                <select name="task_status" value={task_status} onChange={this.handleChange}>
+                  <option value="todo">To Do</option>
+                  <option value="progress">In Progress</option>
+                  <option value="review">In Review</option>
+                  <option value="completed">Completed</option>
+                </select>
+                {/* <input type='text' className="input" placeholder="Task Status" name='task_status' value={task_status} onChange={this.handleChange} /> */}
               <p>Due Date</p>
               <DatePicker hintText="Due Date" value={connectedDate} onChange={this.handleDateChange} container="inline" />
               {/* <CreateTaskSteps value={task_steps} onChange={this.handleChange}/> */}

@@ -1,3 +1,6 @@
+// works like Array.prototype.reducer(reducer,  initialValue)
+// do not mutate arguments, call APIs or use non-pure functions Date.now() Math.random()
+
 import { LIFT_PROJECT_TO_STATE } from "../constants/action-types";
 import { LIFT_ALL_PROJECTS_TO_STATE } from "../constants/action-types";
 import { LIFT_TOKEN_TO_STATE } from "../constants/action-types";
@@ -36,9 +39,9 @@ const rootReducer = (state = initialState, action) => {
       return Object.assign({}, state, newProject )
 
     case LIFT_ALL_PROJECTS_TO_STATE:
-    console.log('LIFTING ALL PROJECTS TO STATE')
-    let newProjects = {allProjects: action.payload}
-    return Object.assign({}, state, newProjects)
+      console.log('LIFTING ALL PROJECTS TO STATE')
+      let newProjects = {allProjects: action.payload}
+      return Object.assign({}, state, newProjects)
 
 
     default:
