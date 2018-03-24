@@ -6,7 +6,7 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 import FlatButton from 'material-ui/FlatButton';
 import { Row, Col } from 'react-flexbox-grid';
 import { liftProjectToState } from "../actions/index"
-
+import ProjectItem from './ProjectItem';
 // import { addProject } from "../actions/index"
 
 const style = {
@@ -54,14 +54,14 @@ class ConnectedEditProjects extends Component {
       description:'',
       connectedDate: null,
       owner: '',
-      targetDate:null,
+      targetDate: null,
       project: props.currentProject
     }
   }
 
   componentDidUpdate() {
-    console.log('BELOW IS THE CURRENT CPROJECT', this.props.currentProject)
-    console.log('EDIT PROJECT UPDATED')
+    console.log('BELOW IS THE CURRENT PROJECT', this.props.currentProject)
+    console.log('EDIT PROJECT ')
   }
 
   handleChange = (event) => {
@@ -85,23 +85,19 @@ class ConnectedEditProjects extends Component {
   // ADDED //
   componentDidMount(){
     console.log("in componentDidMount editProject")
-    // console.log("state")
-    // console.log(this.state)
-    console.log("props currentProject")
-    console.log(this.props.currentProject)
+    console.log("props currentProject", this.props.currentProject)
     if (!this.props.currentProject){
-
+      // axios.post('view/findOne/project', {
+      //   project_id: this.state.project._id
+      // }).then( result => {
+      //   console.log("result ", result)
+      //   this.setState({
+          // currentProject: result.data
+      //   })
+      // })
     } else {
-
+      console.log('we got state in DidMount EditProject');
     }
-    // axios.post('view/findOne/project', {
-    //   project_id: this.state.project._id
-    // }).then( result => {
-    //   console.log("result ", result)
-    //   this.setState({
-        // currentProject: result.data
-    //   })
-    // })
   }
 
   handleSubmit = (event) => {
@@ -137,6 +133,9 @@ class ConnectedEditProjects extends Component {
             </form>
           </Card>
         </Col>
+        <Col>
+          <ProjectItem project={this.state.project}/>
+      </Col>
       </Row>
     )
   }
