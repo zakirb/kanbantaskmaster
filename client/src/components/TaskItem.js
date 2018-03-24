@@ -14,7 +14,7 @@ const TaskItem = props => (
 
   <Card style={props.style} zDepth={5}>
     <CardText>
-      <p className="TaskText">{props.task.description || 'No Tasks In this status'}</p>
+      <h3 className="TaskText">{props.task.description || 'No Tasks In this status'}</h3>
       <p className="TaskText">Assigned to: {props.task.assigned_to} </p>
       <CardActions>
         <Link to="/Tasks/edit"><RaisedButton className="edit" label="Edit Task" /></Link>
