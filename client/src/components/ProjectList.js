@@ -98,7 +98,7 @@ class ConnectedProjectList extends Component {
               style={style.card_style}
               key={index}>
               <CardHeader
-                title={<Link style={{textDecoration: 'none', color: 'black'}}to='/ViewProject'>{project.title}</Link>}
+                title={<Link  onClick={() => this.handleSelectProject(project._id)} style={{textDecoration: 'none', color: 'black'}}to='/ViewProject'>{project.title}</Link>}
                 // subtitle={project.description}
                 actAsExpander={true}
                 showExpandableButton={true}/>
