@@ -69,6 +69,10 @@ class ConnectedKanbanBoard extends Component {
     this.handleEdit = this.handleEdit.bind(this)
   }
 
+  componentWillReceiveProps = (newProps) => {
+    console.log("THESE ARE THE NEW PROPS", newProps)
+  }
+
   moveTask (task, task_status) {
     if (task_status) {
       console.log('this is the task', task)
