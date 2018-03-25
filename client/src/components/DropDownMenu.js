@@ -15,9 +15,16 @@ export default class DropDownMenuTask extends React.Component {
     this.state = {value: props.dropDownValue};
   }
 
-  handleChange = (event, index, value) => this.setState({value});
+  handleChange = (event, index, value) => {
+    this.setState({value});
+    if (value) {
+      this.props.handleStatusChange(value)
+    }
+  }
+
 
   render() {
+
     return (
       <div>
 
@@ -31,7 +38,7 @@ export default class DropDownMenuTask extends React.Component {
           <MenuItem value={1} primaryText="To Do" />
           <MenuItem value={2} primaryText="In Progress" />
           <MenuItem value={3} primaryText="In Review" />
-          <MenuItem value={4} primaryText="Finished" />
+          <MenuItem value={4} primaryText="Completed" />
         </DropDownMenu>
       </div>
     );
