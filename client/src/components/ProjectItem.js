@@ -1,5 +1,6 @@
 // import React, { Component } from 'react';
 import React, { Component } from 'react';
+import { Row, Col } from 'react-flexbox-grid';
 // import Kanban from './Kanban';
 
 
@@ -16,7 +17,8 @@ const style = {
   card_style: {
     width: 700,
     display: 'inline',
-    margin: 10
+    margin: 10,
+    justifyContent: 'space-around',
   }
 }
 
@@ -30,8 +32,12 @@ class ProjectItem extends Component {
   render() {
     return (
       <div>
-        <h2>Project Item</h2>
-        <p>A single project item</p>
+
+        <h2 className="ProjItem">Project Item</h2>
+        <Row>
+    <Col xs={12}>
+      <Row center="xs">
+        {/* <p>A single project item</p> */}
           <Card style={style.card_style}>
             <CardHeader
               title="Workflow Project Title"
@@ -47,6 +53,9 @@ class ProjectItem extends Component {
               {/* <Kanban /> */}
             </CardText>
           </Card>
+        </Row>
+    </Col>
+    </Row>
       </div>
     );
   }

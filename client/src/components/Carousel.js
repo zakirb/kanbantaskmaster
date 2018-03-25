@@ -59,9 +59,9 @@ class ImageCarousel extends React.Component {
                 ref={r=>this.slider=r}
                 className="carousel-fade"
               >
-                <div style={{height:450}}>
-                  <img
-                    style={{width:"100%",height:"100%"}}
+                <div style={{height:500}}>
+                  <img className="carouselImage"
+                    style={{width:"60%",height:"60%"}}
                     src= {one}
                   />
                   <div className="carousel-caption">
@@ -69,9 +69,9 @@ class ImageCarousel extends React.Component {
                   </div>
                 </div>
 
-                <div style={{height:450}}>
-                  <img
-                    style={{width:"100%",height:"100%"}}
+                <div style={{height:500}}>
+                  <img className="carouselImage"
+                    style={{width:"60%",height:"60%"}}
                     src= {two}
                   />
                   <div className="carousel-caption">
@@ -79,9 +79,9 @@ class ImageCarousel extends React.Component {
                   </div>
                 </div>
 
-                <div style={{height:450}}>
-                  <img
-                    style={{width:"100%",height:"100%"}}
+                <div style={{height:500}}>
+                  <img className="carouselImage"
+                    style={{width:"60%",height:"60%"}}
                     src= {three}
                   />
                   <div className="carousel-caption">
