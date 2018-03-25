@@ -80,36 +80,44 @@ class ConnectedKanbanBoard extends Component {
         var TasksToDo = this.props.currentProject.tasks.filter( task => {
           return task.task_status === "todo"
         })
-        var ToDoTaskItems = TasksToDo.map(task => {
-          return <TaskItem style={style.card_styleToDo} task={task}/>
-        })
-
+        if (TasksToDo.length > 0) {
+          var ToDoTaskItems = TasksToDo.map(task => {
+            return <TaskItem style={style.card_styleToDo} task={task}/>
+          })
+        }
         // In Progress
         var TasksInProgress = this.props.currentProject.tasks.filter( task => {
-          return (task.task_status === "progress")
+          return task.task_status === "progress"
         })
-        var InProgressTaskItems = TasksInProgress.map(task => {
-          return <TaskItem style={style.card_styleProgress} task={task}/>
-        })
-
+        if (TasksInProgress.length > 0) {
+          var InProgressTaskItems = TasksInProgress.map(task => {
+            return <TaskItem style={style.card_styleProgress} task={task}/>
+          })
+        }
         // In Review
         var TasksInReview = this.props.currentProject.tasks.filter( task => {
           return task.task_status === "review"
         })
-        var InReviewTaskItems = TasksInReview.map(task => {
-          return <TaskItem style={style.card_styleReview} task={task}/>
-        })
-
+        if (TasksInReview.length > 0) {
+          var InReviewTaskItems = TasksInReview.map(task => {
+            return <TaskItem style={style.card_styleReview} task={task}/>
+          })
+        }
         // Completed
         var TasksCompleted = this.props.currentProject.tasks.filter( task => {
           return task.task_status === "completed"
         })
-        var CompletedTaskItems = TasksCompleted.map(task => {
-          return <TaskItem style={style.card_styleCompleted} task={task}/>
-        })
+        if (TasksCompleted.length > 0) {
+          var CompletedTaskItems = TasksCompleted.map(task => {
+            return <TaskItem style={style.card_styleCompleted} task={task} />
+          })
+        }
+
+
+
+        console.log('Here are the four item lists',TasksToDo ,InProgressTaskItems, TasksInReview, TasksCompleted )
       }
     }
-
 
 
 
@@ -125,7 +133,7 @@ class ConnectedKanbanBoard extends Component {
                   <h3 className="kanban">To Do</h3>
                 </Col>
               </Row>
-              {ToDoTaskItems || (<TaskItem style={style.card_styleToDo} />)}
+              {ToDoTaskItems || <TaskItem style={style.card_styleToDo}/>}
           </Col>
 
         <Col>
