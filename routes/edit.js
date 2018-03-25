@@ -11,22 +11,11 @@ router.put('/project', (req, res, next) => {
 
 router.put('/taskstatus', (req, res, next) => {
   console.log(req.body)
-  let dropDownValue
-  switch (req.body.dropDownValue) {
-    case 1: dropDownValue = "todo"
-    break;
-    case 2: dropDownValue = "progress"
-    break;
-    case 3: dropDownValue = "review"
-    break;
-    case 4: dropDownValue = "completed"
-    break;
-  }
 
-  console.log('THIS IS THE DROPDOWN VALUE IN TEXT: ' + dropDownValue)
+  console.log('THIS IS THE DROPDOWN VALUE IN TEXT: ' + req.body.task_status)
 
   Project.findOneAndUpdate(
-    { "tasks._id": req.body.task._id }, { "$set": {"tasks.$.task_status": dropDownValue}},
+    { "tasks._id": req.body.task._id }, { "$set": {"tasks.$.task_status": req.body.task_status}}, {new:true},
     (err, project) => {
       if (err) {
         console.log('ERROR' + err)

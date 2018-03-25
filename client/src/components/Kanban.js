@@ -12,6 +12,9 @@ import {Link} from 'react-router-dom';
 import TaskItem from './TaskItem';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import { changeTaskStatus, liftProjectToState } from '../actions/index'
+
+
 
 const style = {
 
@@ -48,6 +51,12 @@ const style = {
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    liftProjectToState: project => dispatch(liftProjectToState(project))
+  }
+}
+
 const mapStateToProps = state => {
   return {
     user: state.user,
@@ -62,18 +71,22 @@ class ConnectedKanbanBoard extends Component {
     this.state = {
       currentProject: props.currentProject
     }
+    this.moveTask = this.moveTask.bind(this)
   }
 
-handleStatusChange (task, dropDownValue) {
-  console.log('this is the task', task)
-  console.log('this is the dropDownValue', dropDownValue);
-  axios.put('/edit/taskstatus', {
-    task,
-    dropDownValue
-  }).then( result => {
-    console.log(result)
-  })
-}
+  moveTask (task, task_status) {
+    if (task_status) {
+      console.log('this is the task', task)
+      console.log('this is the task_status', task_status);
+      axios.put('/edit/taskstatus', {
+        task,
+        task_status
+      }).then( result => {
+        console.log(result.data)
+        this.props.liftProjectToState(result.data)
+      })
+    }
+  }
 
   componentWillMount() {
     console.log('BELOW IS STATE/PROJECT BEFORE MOUNT', this.props.currentProject)
@@ -94,7 +107,7 @@ handleStatusChange (task, dropDownValue) {
         })
         if (TasksToDo.length > 0) {
           var ToDoTaskItems = TasksToDo.map( (task, index) => {
-            return <TaskItem style={style.card_styleToDo} task={task} handleStatusChange={this.handleStatusChange} key={index} />
+            return <TaskItem style={style.card_styleToDo} task={task} moveTask={this.moveTask} key={index} />
           })
         }
         // In Progress
@@ -103,7 +116,7 @@ handleStatusChange (task, dropDownValue) {
         })
         if (TasksInProgress.length > 0) {
           var InProgressTaskItems = TasksInProgress.map( (task, index) => {
-            return <TaskItem style={style.card_styleProgress} task={task} handleStatusChange={this.handleStatusChange} key={index} />
+            return <TaskItem style={style.card_styleProgress} task={task} moveTask={this.moveTask} key={index} />
           })
         }
         // In Review
@@ -112,7 +125,7 @@ handleStatusChange (task, dropDownValue) {
         })
         if (TasksInReview.length > 0) {
           var InReviewTaskItems = TasksInReview.map( (task, index) => {
-            return <TaskItem style={style.card_styleReview} task={task} handleStatusChange={this.handleStatusChange} key={index} />
+            return <TaskItem style={style.card_styleReview} task={task} moveTask={this.moveTask} key={index} />
           })
         }
         // Completed
@@ -121,7 +134,7 @@ handleStatusChange (task, dropDownValue) {
         })
         if (TasksCompleted.length > 0) {
           var CompletedTaskItems = TasksCompleted.map( (task, index) => {
-            return <TaskItem style={style.card_styleCompleted} task={task} handleStatusChange={this.handleStatusChange} key={index} />
+            return <TaskItem style={style.card_styleCompleted} task={task} moveTask={this.moveTask} key={index} />
           })
         }
       }
@@ -179,5 +192,5 @@ handleStatusChange (task, dropDownValue) {
 }
 
 
-const KanbanBoard = connect(mapStateToProps, null)(ConnectedKanbanBoard)
+const KanbanBoard = connect(mapStateToProps, mapDispatchToProps)(ConnectedKanbanBoard)
 export default KanbanBoard;

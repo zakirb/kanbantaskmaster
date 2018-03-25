@@ -5,6 +5,7 @@ import { LIFT_TOKEN_TO_STATE } from '../constants/action-types';
 import { LOGOUT } from '../constants/action-types';
 import { LIFT_PROJECT_TO_STATE } from '../constants/action-types';
 import { LIFT_ALL_PROJECTS_TO_STATE} from '../constants/action-types';
+import { CHANGE_TASK_STATUS } from '../constants/action-types';
 
 
 export const liftProjectToState = project => (
@@ -21,6 +22,10 @@ export const liftTokenToState = userToken => (
 
 export const logout = () => (
   { type: LOGOUT, payload: "logout payload"}
+)
+
+export const changeTaskStatus = task => (
+  { type: CHANGE_TASK_STATUS, payload: task}
 )
 
 // export const editProject = currentProject => (

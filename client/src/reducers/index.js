@@ -7,6 +7,7 @@ import { LIFT_PROJECT_TO_STATE } from "../constants/action-types";
 import { LIFT_ALL_PROJECTS_TO_STATE } from "../constants/action-types";
 import { LIFT_TOKEN_TO_STATE } from "../constants/action-types";
 import { LOGOUT } from "../constants/action-types";
+import { CHANGE_TASK_STATUS } from "../constants/action-types";
 
 
 const initialState = {
@@ -45,6 +46,11 @@ const rootReducer = (state = initialState, action) => {
       // console.log(action.payload)
       let newProjects = {allProjects: action.payload}
       return Object.assign({}, state, newProjects)
+
+    case CHANGE_TASK_STATUS:
+      console.log('UPDATING TASK STATUS')
+      let newCurrentProject = {currentProject: action.payload}
+      return Object.assign({}, state, newCurrentProject)
 
     // case EDIT_PROJECT:
     //   console.log('EDIT PROJECT (reducer)')
