@@ -42,7 +42,7 @@ const rootReducer = (state = initialState, action) => {
 
     case LIFT_ALL_PROJECTS_TO_STATE:
       console.log('LIFTING ALL PROJECTS TO STATE')
-      console.log(action.payload)
+      // console.log(action.payload)
       let newProjects = {allProjects: action.payload}
       return Object.assign({}, state, newProjects)
 

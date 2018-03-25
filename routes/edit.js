@@ -9,14 +9,12 @@ router.put('/project', (req, res, next) => {
   console.log(req.body)
 })
 
-router.post('/task', (req, res, next) => {
+router.put('/taskstatus', (req, res, next) => {
   console.log(req.body)
 })
 
 
-router.get('/task/users', (req, res, next) => {
-  console.log(req.body)
-})
+
 
 
 

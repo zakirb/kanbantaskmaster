@@ -35,7 +35,7 @@ const TaskItem = props => {
             <Link to="/Tasks/edit"><RaisedButton className="edit" label="Edit Task" /></Link>
           </CardActions>
         </CardText>
-        <DropDownMenuTask dropDownValue={dropDownValue}/>
+        <DropDownMenuTask dropDownValue={dropDownValue} task={props.task} handleStatusChange={props.handleStatusChange}/>
       </Card>
     )
   } else {

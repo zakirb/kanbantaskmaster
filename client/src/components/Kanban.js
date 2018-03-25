@@ -63,7 +63,16 @@ class ConnectedKanbanBoard extends Component {
     }
   }
 
-
+handleStatusChange (task, dropDownValue) {
+  // axios.put('/edit/taskstatus', {
+  //   task,
+  //   dropDownValue
+  // }).then( result => {
+  //   console.log(result)
+  // })
+  console.log('this is the task', task)
+  console.log('this is the dropDownValue', dropDownValue);
+}
 
   componentWillMount() {
     console.log('BELOW IS STATE/PROJECT BEFORE MOUNT', this.props.currentProject)
@@ -83,8 +92,8 @@ class ConnectedKanbanBoard extends Component {
           return task.task_status === "todo"
         })
         if (TasksToDo.length > 0) {
-          var ToDoTaskItems = TasksToDo.map(task => {
-            return <TaskItem style={style.card_styleToDo} task={task}/>
+          var ToDoTaskItems = TasksToDo.map( (task, index) => {
+            return <TaskItem style={style.card_styleToDo} task={task} handleStatusChange={this.handleStatusChange} key={index} />
           })
         }
         // In Progress
@@ -92,8 +101,8 @@ class ConnectedKanbanBoard extends Component {
           return task.task_status === "progress"
         })
         if (TasksInProgress.length > 0) {
-          var InProgressTaskItems = TasksInProgress.map(task => {
-            return <TaskItem style={style.card_styleProgress} task={task}/>
+          var InProgressTaskItems = TasksInProgress.map( (task, index) => {
+            return <TaskItem style={style.card_styleProgress} task={task} handleStatusChange={this.handleStatusChange} key={index} />
           })
         }
         // In Review
@@ -101,8 +110,8 @@ class ConnectedKanbanBoard extends Component {
           return task.task_status === "review"
         })
         if (TasksInReview.length > 0) {
-          var InReviewTaskItems = TasksInReview.map(task => {
-            return <TaskItem style={style.card_styleReview} task={task}/>
+          var InReviewTaskItems = TasksInReview.map( (task, index) => {
+            return <TaskItem style={style.card_styleReview} task={task} handleStatusChange={this.handleStatusChange} key={index} />
           })
         }
         // Completed
@@ -110,14 +119,10 @@ class ConnectedKanbanBoard extends Component {
           return task.task_status === "completed"
         })
         if (TasksCompleted.length > 0) {
-          var CompletedTaskItems = TasksCompleted.map(task => {
-            return <TaskItem style={style.card_styleCompleted} task={task} />
+          var CompletedTaskItems = TasksCompleted.map( (task, index) => {
+            return <TaskItem style={style.card_styleCompleted} task={task} handleStatusChange={this.handleStatusChange} key={index} />
           })
         }
-
-
-
-        console.log('Here are the four item lists',TasksToDo ,InProgressTaskItems, TasksInReview, TasksCompleted )
       }
     }
 

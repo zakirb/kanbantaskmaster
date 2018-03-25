@@ -15,7 +15,13 @@ export default class DropDownMenuTask extends React.Component {
     this.state = {value: props.dropDownValue};
   }
 
-  handleChange = (event, index, value) => this.setState({value});
+  handleChange = (event, index, value) => {
+    this.setState({value});
+    if (value) {
+      this.props.handleStatusChange(this.props.task,this.state.value)
+    }
+  }
+
 
   render() {
     return (
