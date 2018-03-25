@@ -1,5 +1,6 @@
 // import React, { Component } from 'react';
-import React from 'react';
+import React, { Component } from 'react';
+import { Row, Col } from 'react-flexbox-grid';
 // import Kanban from './Kanban';
 
 
@@ -16,19 +17,53 @@ const style = {
   card_style: {
     width: 700,
     display: 'inline',
-    margin: 10
+    margin: 10,
+    justifyContent: 'space-around',
   }
 }
 
-// class ProjectItem extends Component {
-//   constructor(props){
-//     super()
-//     this.state = {
-//       currentProject: ''
-//     }
-//   }
-//   render() {
-//     return (
+class ProjectItem extends Component {
+  constructor(props){
+    super()
+    this.state = {
+      currentProject: ''
+    }
+  }
+  render() {
+    return (
+      <div>
+
+        <h2 className="ProjItem">Project Item</h2>
+        <Row>
+    <Col xs={12}>
+      <Row center="xs">
+        {/* <p>A single project item</p> */}
+          <Card style={style.card_style}>
+            <CardHeader
+              title="Workflow Project Title"
+              subtitle="Zakir, Dan, Tim"
+            />
+            <CardActions>
+              <FlatButton label="Edit Project" />
+              <FlatButton label="Add Team Member" />
+              <FlatButton label="Add Task" />
+              <FlatButton label="Delete" />
+            </CardActions>
+            <CardText>
+              {/* <Kanban /> */}
+            </CardText>
+          </Card>
+        </Row>
+    </Col>
+    </Row>
+      </div>
+    );
+  }
+}
+
+
+// const ProjectItem = (props) => (
+
 //       <div>
 //         <h2>Project Item</h2>
 //         <p>A single project item</p>

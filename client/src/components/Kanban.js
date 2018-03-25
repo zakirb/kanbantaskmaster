@@ -15,7 +15,6 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import { changeTaskStatus, liftProjectToState } from '../actions/index'
 
-
 const style = {
   card_styleToDo: {
     width: 340,
@@ -35,18 +34,13 @@ const style = {
     textAlign: 'center',
     background: '#ff7455'
   },
+
   card_styleCompleted: {
     width: 340,
     margin: 10,
     textAlign: 'center',
     background: '#17F76A',
     justifyContent: 'center'
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    liftProjectToState: project => dispatch(liftProjectToState(project))
   }
 }
 
@@ -60,10 +54,11 @@ const mapStateToProps = state => {
 
 class ConnectedKanbanBoard extends Component {
   constructor(props){
-    super(props)
+    super()
     this.state = {
       currentProject: props.currentProject
     }
+
     this.moveTask = this.moveTask.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
     this.handleEdit = this.handleEdit.bind(this)
@@ -72,25 +67,7 @@ class ConnectedKanbanBoard extends Component {
   componentWillReceiveProps = (newProps) => {
     console.log("THESE ARE THE NEW PROPS", newProps)
   }
-
-  moveTask (task, task_status) {
-    if (task_status) {
-      console.log('this is the task', task)
-      console.log('this is the task_status', task_status);
-      axios.put('/edit/taskstatus', {
-        task,
-        task_status
-      }).then( result => {
-        console.log(result.data)
-        this.props.liftProjectToState(result.data)
-      })
-    }
-  }
-
-  componentWillMount() {
-    console.log('BELOW IS STATE/PROJECT BEFORE MOUNT', this.props.currentProject)
-
-  }
+  render() {
 
   handleDelete = (projectId) => {
     console.log(projectId)
@@ -197,7 +174,7 @@ class ConnectedKanbanBoard extends Component {
                   <h3 className="kanban">To Do</h3>
                 </Col>
               </Row>
-              {ToDoTaskItems || <TaskItem style={style.card_styleToDo}/>}
+                <TaskItem style={style.card_styleToDo} />
           </Col>
 
         <Col>
@@ -206,7 +183,7 @@ class ConnectedKanbanBoard extends Component {
               <h3 className="kanban">In Progress</h3>
             </Col>
           </Row>
-            {InProgressTaskItems || (<TaskItem style={style.card_styleProgress} />)}
+            <TaskItem style={style.card_styleProgress} />
         </Col>
 
         <Col>
@@ -215,16 +192,16 @@ class ConnectedKanbanBoard extends Component {
               <h3 className="kanban">In Review</h3>
             </Col>
           </Row>
-            {InReviewTaskItems || (<TaskItem style={style.card_styleReview} />)}
+            <TaskItem style={style.card_styleReview} />
         </Col>
 
         <Col>
           <Row center="xs">
             <Col>
-              <h3 className="kanban">Completed</h3>
+              <h3 className="kanban">Finished</h3>
             </Col>
           </Row>
-            {CompletedTaskItems || (<TaskItem style={style.card_styleCompleted} />)}
+            <TaskItem style={style.card_styleFinished} />
 
         </Col>
       </Row>
@@ -235,5 +212,5 @@ class ConnectedKanbanBoard extends Component {
 }
 
 
-const KanbanBoard = connect(mapStateToProps, mapDispatchToProps)(ConnectedKanbanBoard)
+const KanbanBoard = connect(mapStateToProps, null)(ConnectedKanbanBoard)
 export default KanbanBoard;
