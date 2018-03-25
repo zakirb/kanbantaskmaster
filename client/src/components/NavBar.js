@@ -34,11 +34,11 @@ class ConnectedNavBar extends Component {
     super()
   }
   render(){
-    const projectTestData = [
-      {title: "Workflow Project Organizer", description: "Workflow Project Organizer Description", team: ["Zakir B", "Dan V", "Tim H"], tasks: ["Build Models", "Implement Redux", "Implement Material UI"]},
-      {title: "Party Bus", description: "Party Bus Description", team: ["Zakir B", "Dan V"], tasks: ["Buy Beer", "Seek Contacts"]},
-      {title: "Project 3", description: "Project 3 Description",team: ["Zakir B", "Dan V", "Tim H"], tasks: ["Have Fun", "Get to know each other", "Try to understand this shit"]}
-    ]
+    // const projectTestData = [
+    //   {title: "Workflow Project Organizer", description: "Workflow Project Organizer Description", team: ["Zakir B", "Dan V", "Tim H"], tasks: ["Build Models", "Implement Redux", "Implement Material UI"]},
+    //   {title: "Party Bus", description: "Party Bus Description", team: ["Zakir B", "Dan V"], tasks: ["Buy Beer", "Seek Contacts"]},
+    //   {title: "Project 3", description: "Project 3 Description",team: ["Zakir B", "Dan V", "Tim H"], tasks: ["Have Fun", "Get to know each other", "Try to understand this shit"]}
+    // ]
     let theUser = this.props.user
     console.log(this.props.user)
     let navigation

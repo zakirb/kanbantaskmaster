@@ -6,6 +6,7 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 import FlatButton from 'material-ui/FlatButton';
 import { Row, Col } from 'react-flexbox-grid';
 import { liftProjectToState } from "../actions/index"
+// import { liftProjectToState, editProject } from "../actions/index"
 // import { addProject } from "../actions/index"
 
 const style = {
@@ -29,6 +30,13 @@ const mapDispatchToProps = dispatch => {
     liftProjectToState: project => dispatch(liftProjectToState(project))
   }
 }
+
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     liftProjectToState: project => dispatch(liftProjectToState(project)),
+//     editProject: project => dispatch(editProject(project))
+//   }
+// }
 
 // const mapDispatchToProps = dispatch => {
 //   return {
@@ -100,14 +108,15 @@ class ConnectedEditProjects extends Component {
 
   componentDidMount(){
     console.log("in componentDidMount editProject")
-    console.log("props currentProject")
-    console.log(this.props.currentProject)
+    console.log("props currentProject", this.props.currentProject)
     // if (!this.props.currentProject){
-    //
+
     // } else {
     //
     // }
-    // axios.post('view/findOne/project', {
+    //
+
+    //axios.post('view/findOne/project', {
     //   project_id: this.state.project._id
     // }).then( result => {
     //   console.log("result ", result)
@@ -137,7 +146,7 @@ class ConnectedEditProjects extends Component {
         <Col>
           <Card style={style.card_style} zDepth={5}>
             <form onSubmit={this.handleSubmit}>
-              <h3>Edit Projects</h3>
+              <h3>Edit Project</h3>
               <p>Edit Project Name</p>
                 <input type='text' className="input" placeholder="Project Name" name='title' value={title} onChange={this.handleChange} />
               <p>Edit Description</p>

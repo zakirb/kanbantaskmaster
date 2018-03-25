@@ -1,6 +1,6 @@
 // import React, { Component } from 'react';
 import React, { Component } from 'react';
-import KanbanBoard from './Kanban';
+// import Kanban from './Kanban';
 
 
 // import TextField from 'material-ui/TextField';
@@ -21,9 +21,15 @@ const style = {
 }
 
 class ProjectItem extends Component {
+  constructor(props){
+    super()
+    this.state = {
+      currentProject: ''
+    }
+  }
   render() {
     return (
-      <div className= "item">
+      <div>
         <h2>Project Item</h2>
         <p>A single project item</p>
           <Card style={style.card_style}>
@@ -38,79 +44,9 @@ class ProjectItem extends Component {
               <FlatButton label="Delete" />
             </CardActions>
             <CardText>
-              THIS EXAMPLE DOES NOT EXPAND...
-              <ul>
-                <li>Task: Build App</li>
-                <li>Assigned To:</li>
-                <li>Steps:</li>
-                <ol>
-                  <li>Create React App</li>
-                  <li>NPM install dependencies</li>
-                  <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                  <li>Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.</li>
-                  <li>Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.</li>
-                  <li>Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.</li>
-                  <li>Create React App</li>
-                </ol>
-                <FlatButton label="Edit Task" />
-              </ul>
-
-              <ul>
-                <li>Task: Number Two</li>
-                <li>Assigned To:</li>
-                <li>Steps:</li>
-                <ol>
-                  <li>Create React App</li>
-                  <li>NPM install dependencies</li>
-                  <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                  <li>Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.</li>
-                  <li>Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.</li>
-                  <li>Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.</li>
-                  <li>Create React App</li>
-                </ol>
-                <FlatButton label="Edit Task" />
-              </ul>
-
-              <ul>
-                <li>Task: Number Three</li>
-                <li>Assigned To:</li>
-                <li>Steps:</li>
-                <ol>
-                  <li>Create React App</li>
-                  <li>NPM install dependencies</li>
-                  <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                  <li>Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.</li>
-                  <li>Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.</li>
-                  <li>Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.</li>
-                  <li>Create React App</li>
-                </ol>
-                <FlatButton label="Edit Task" />
-              </ul>
+              {/* <Kanban /> */}
             </CardText>
           </Card>
-
-          <h1>Project Item Example #2</h1>
-          <p>A single project item</p>
-            <Card style={style.card_style}>
-              <CardHeader
-                title="Workflow Project Title"
-                subtitle="Zakir, Dan, Tim"
-              />
-              <CardActions>
-                <FlatButton label="Edit Project" />
-                <FlatButton label="Add Team Member" />
-                <FlatButton label="Add Task" />
-                <FlatButton label="Delete" />
-              </CardActions>
-              <CardText>
-
-
-                THIS EXAMPLE DOES NOT EXPAND...
-
-
-
-              </CardText>
-            </Card>
       </div>
     );
   }
