@@ -99,7 +99,7 @@ class ConnectedProjectList extends Component {
               key={index}>
               <CardHeader
                 title={<Link style={{textDecoration: 'none', color: 'black'}}to='/ViewProject'>{project.title}</Link>}
-                subtitle={project.description}
+                // subtitle={project.description}
                 actAsExpander={true}
                 showExpandableButton={true}/>
               <CardActions>
@@ -111,7 +111,7 @@ class ConnectedProjectList extends Component {
                 <h3>Tasks</h3>
                 <ul>
                   {project.tasks.map((task, index) => (
-                    <li key={index}>Task: {task.description} Status: {task.task_status ? task.task_status : "not set"}</li>
+                    <li key={index}>Task: {task.description} Status: {task.task_status ? task.task_status : "not set"} </li>
                   ))}
                 </ul>
               </CardText>

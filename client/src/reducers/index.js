@@ -1,6 +1,8 @@
 // works like Array.prototype.reducer(reducer,  initialValue)
 // do not mutate arguments, call APIs or use non-pure functions Date.now() Math.random()
 
+// import { EDIT_PROJECT } from "../constants/action-types";
+
 import { LIFT_PROJECT_TO_STATE } from "../constants/action-types";
 import { LIFT_ALL_PROJECTS_TO_STATE } from "../constants/action-types";
 import { LIFT_TOKEN_TO_STATE } from "../constants/action-types";
@@ -43,6 +45,12 @@ const rootReducer = (state = initialState, action) => {
       console.log(action.payload)
       let newProjects = {allProjects: action.payload}
       return Object.assign({}, state, newProjects)
+
+    // case EDIT_PROJECT:
+    //   console.log('EDIT PROJECT (reducer)')
+    //   console.log(action.payload)
+      // let editProjects = {currentProject: action.payload}
+      // return Object.assign({}, state, editProjects)
 
 
     default:
