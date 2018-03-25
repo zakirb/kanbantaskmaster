@@ -60,13 +60,13 @@ Researched topics new to the team
 -
 
 #### Day 6 (Friday)
-- 
+-
 
 #### Day 7 (Saturday)
 -
 
 #### Day 8 (Sunday)
--
+- 
 
 
 #### unsolved problems && major hurdles
