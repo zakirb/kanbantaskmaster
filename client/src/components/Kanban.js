@@ -15,28 +15,30 @@ import { connect } from 'react-redux';
 const style = {
 
   card_styleToDo: {
-    width: 300,
+    width: 340,
     margin: 10,
     textAlign: 'center',
     background: '#FFFFA5'
 
   },
   card_styleProgress: {
-    width: 300,
+    width: 340,
     margin: 10,
     textAlign: 'center',
     background: '#1ba8b1'
 
   },
   card_styleReview: {
-    width: 300,
+    width: 340,
     margin: 10,
     textAlign: 'center',
     background: '#ff7455'
 
   },
+
   card_styleCompleted: {
-    width: 300,
+    width: 340,
+
     margin: 10,
     textAlign: 'center',
     background: '#17F76A',

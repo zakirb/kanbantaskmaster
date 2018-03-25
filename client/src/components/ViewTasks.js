@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // import TextField from 'material-ui/TextField';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
+import { Row, Col } from 'react-flexbox-grid';
 
 const style = {
   root: {
@@ -11,7 +12,7 @@ const style = {
   },
   card_style: {
     width: 400,
-    height: 300,
+    height: 600,
     margin: 5
   }
 }
@@ -19,9 +20,12 @@ const style = {
 class ViewTasks extends Component {
   render() {
     return (
+
       <div>
-        <h1>View Tasks</h1>
-        <Card style={style.card_style}>
+        <Row center="xs">
+          <Col>
+        <h1 className= "view">View Tasks</h1>
+        <Card  className= "view" style={style.card_style}>
           <CardHeader
             title="Workflow Project Title"
             subtitle="Zakir, Dan, Tim"
@@ -48,7 +52,10 @@ class ViewTasks extends Component {
             </ul>
           </CardText>
         </Card>
+      </Col>
+    </Row>
       </div>
+
     );
   }
 }

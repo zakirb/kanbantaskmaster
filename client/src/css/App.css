@@ -2,7 +2,7 @@
   text-align: center;
 }
 .kanban {
-  align-content: center;
+  /* align-content: center; */
   text-align: center;
   font-family: 'PT Sans Narrow', sans-serif;
 }
@@ -50,7 +50,7 @@ h4 {
 
 .image {
   height: 500px;
-  width: 500px;
+  width: 1200px;
 }
 /* .carousel {
   align-items: center;
@@ -60,15 +60,17 @@ h4 {
   width: 100%;
 }
 .slide, .carousel-inner {
-  height: 500px;
+  height: 450px;
 }
 .TaskText {
   font-size: 13pt;
 }
-
-/* not sure if this outer div
-was purposely names this way */
-nav.navboxx {
+.col {
+  align-items: center;
+}
+.view {
+  /* align-items: center; */
+  justify-content: center;
 
 }
 
