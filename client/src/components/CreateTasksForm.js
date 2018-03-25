@@ -45,7 +45,7 @@ class ConnectedCreateTasksForm extends Component {
       assignTo:'',
       connectedDate: null,
       targetDate:null,
-      task_status: ''
+      task_status: "todo"
     }
     this.handleSubmit = this.handleSubmit.bind(this)
   }
