@@ -8,46 +8,39 @@ import { Row, Col } from 'react-flexbox-grid';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import '../css/App.css';
 import DropDownMenuTask from './DropDownMenu';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import TaskItem from './TaskItem';
+import ProjectItem from './ProjectItem';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { changeTaskStatus, liftProjectToState } from '../actions/index'
 
 
-
 const style = {
-
   card_styleToDo: {
     width: 340,
     margin: 10,
     textAlign: 'center',
     background: '#FFFFA5'
-
   },
   card_styleProgress: {
     width: 340,
     margin: 10,
     textAlign: 'center',
     background: '#1ba8b1'
-
   },
   card_styleReview: {
     width: 340,
     margin: 10,
     textAlign: 'center',
     background: '#ff7455'
-
   },
-
   card_styleCompleted: {
     width: 340,
-
     margin: 10,
     textAlign: 'center',
     background: '#17F76A',
     justifyContent: 'center'
-
   }
 }
 
@@ -72,6 +65,8 @@ class ConnectedKanbanBoard extends Component {
       currentProject: props.currentProject
     }
     this.moveTask = this.moveTask.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
+    this.handleEdit = this.handleEdit.bind(this)
   }
 
   moveTask (task, task_status) {
@@ -93,11 +88,43 @@ class ConnectedKanbanBoard extends Component {
 
   }
 
+  handleDelete = (projectId) => {
+    console.log(projectId)
+    console.log('HANDLING DELETE FUNCTION');
+    axios.delete('/destroy/project', {params:
+      {projectId}
+    }).then( result => {
+      console.log(result.data)
+
+      console.log(this.props.currentProject)
+
+    var newProjects =  this.props.currentProject.filter( (project) => {
+      if (project._id !== result.data._id) {
+        return project
+      }
+    })
+    this.props.liftAllProjectsToState(newProjects)
+    this.props.liftProjectToState()
+    })
+  }
+
+  handleEdit = (projectId) => {
+    console.log(projectId)
+    console.log('HANDLING EDIT FUNCTION');
+    axios.get('/view/findOne/project', {
+      params: {projectId}
+    }).then( result => {
+      console.log(result.data)
+      this.props.liftProjectToState(result.data)
+    }).catch( err => console.log(err))
+  }
 
 
   render() {
+    const {title, description} = this.props.currentProject
 
     if (this.props.currentProject) {
+
       if (this.props.currentProject.tasks) {
         console.log('currentProject at RENDER',this.props.currentProject )
 
@@ -141,10 +168,22 @@ class ConnectedKanbanBoard extends Component {
     }
 
 
-
-
     return (
   <MuiThemeProvider>
+    <div>
+      <Card style={style.card_style}>
+        <CardHeader
+          title={title}
+        />
+        <CardText>
+          <p>{description}</p>
+        </CardText>
+        <CardActions>
+            <Link to='/Projects/edit'><RaisedButton label="Edit" onClick={ () => this.handleEdit(this.state.currentProject._id)} /></Link>
+            <Link to='/Projects'><RaisedButton label="Delete" onClick={ () => this.handleDelete(this.state.currentProject._id)} /></Link>
+        </CardActions>
+      </Card>
+    </div>
       <div>
         <h2 className="kanban">Kanban Board</h2>
           <Row around="xs" middle="xs">

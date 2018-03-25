@@ -6,7 +6,7 @@ var Project = require('../models/project');
 
 router.put('/project', (req, res, next) => {
 
-  console.log(req.body)
+  console.log("in the project edit path",req.body)
 })
 
 router.put('/taskstatus', (req, res, next) => {

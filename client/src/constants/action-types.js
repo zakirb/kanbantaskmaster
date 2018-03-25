@@ -1,5 +1,5 @@
 // export const ADD_PROJECT = "ADD_PROJECT";
-// export const EDIT_PROJECT = "EDIT_PROJECT";
+export const EDIT_PROJECT = "EDIT_PROJECT";
 
 export const LIFT_TOKEN_TO_STATE = "LIFT_TOKEN_TO_STATE"
 export const CHANGE_TASK_STATUS = "CHANGE_TASK_STATUS"

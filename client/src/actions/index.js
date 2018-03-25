@@ -1,5 +1,5 @@
 // import { ADD_PROJECT } from '../constants/action-types';
-// import { EDIT_PROJECT } from '../constants/action-types';
+import { EDIT_PROJECT } from '../constants/action-types';
 
 import { LIFT_TOKEN_TO_STATE } from '../constants/action-types';
 import { LOGOUT } from '../constants/action-types';
@@ -28,6 +28,6 @@ export const changeTaskStatus = task => (
   { type: CHANGE_TASK_STATUS, payload: task}
 )
 
-// export const editProject = currentProject => (
-//   { type: EDIT_PROJECT, payload: currentProject}
-// )
+export const editProject = currentProject => (
+  { type: EDIT_PROJECT, payload: currentProject}
+)
