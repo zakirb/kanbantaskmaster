@@ -9,20 +9,36 @@ import {Link} from 'react-router-dom';
 
 
 
-const TaskItem = props => (
+const TaskItem = props => {
 
-
-  <Card style={props.style} zDepth={5}>
-    <CardText>
-      <h3 className="TaskText">{props.task.description || 'No Tasks In this status'}</h3>
-      <p className="TaskText">Assigned to: {props.task.assigned_to} </p>
-      <CardActions>
-        <Link to="/Tasks/edit"><RaisedButton className="edit" label="Edit Task" /></Link>
-      </CardActions>
-    </CardText>
-    <DropDownMenuTask />
-  </Card>
-)
+  if (props.task) {
+    return (
+      <Card style={props.style} zDepth={5}>
+        <CardText>
+          <h3 className="TaskText">{props.task.description}</h3>
+          <p className="TaskText">Assigned to: {props.task.assigned_to} </p>
+          <CardActions>
+            <Link to="/Tasks/edit"><RaisedButton className="edit" label="Edit Task" /></Link>
+          </CardActions>
+        </CardText>
+        <DropDownMenuTask />
+      </Card>
+    )
+  } else {
+    return (
+      <Card style={props.style} zDepth={5}>
+        <CardText>
+          <h3 className="TaskText">No Tasks In this category</h3>
+          <p className="TaskText"></p>
+          <CardActions>
+            {/* <Link to="/Tasks/edit"><RaisedButton className="edit" label="Edit Task" /></Link> */}
+          </CardActions>
+        </CardText>
+        {/* <DropDownMenuTask /> */}
+      </Card>
+    )
+  }
+}
 
 
 
