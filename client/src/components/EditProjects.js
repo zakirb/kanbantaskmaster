@@ -116,6 +116,29 @@ class ConnectedEditProjects extends Component {
     // }
     //
 
+    // this is our dispatcher
+    // this is how to handle
+    // redux thnnk allows us to do this
+    // how to handle async actions
+
+    // Learncode Academy redux tutorials
+    // link in Google Document
+
+    // https://www.youtube.com/playlist?list=PLoYCgNOIyGADILc3iUJzygCqC8Tt3bRXt
+
+
+    // store.dispatch( (dispatch) => {
+    //   dispatch({type: "GET_PROJECT"})
+    //   axios.get("GET/POST/PUT?")
+    //   .then((response) => {
+    //     dispatch({type: "RECEIVE_PROJECT", payload: response.data})
+    //   })
+    //   .catch((err) => {
+    //     dispatch({type: "GET_PROJECT_ERROR", payload: err})
+    //   })
+    // })
+
+
     //axios.post('view/findOne/project', {
     //   project_id: this.state.project._id
     // }).then( result => {
