@@ -85,24 +85,24 @@ class ProjectItem extends Component {
 // }
 
 
-const ProjectItem = (props) => (
-      <div>
-        <h1>PROJECT TITLE</h1>
-        <h1>{props.project.title}</h1>
-        <p>A single project item</p>
-          <Card style={style.card_style}>
-            <CardHeader
-              title={props.project.title}
-            />
-            <CardActions>
-              <FlatButton label="Edit" />
-            </CardActions>
-            <CardText>
-              THIS EXAMPLE DOES NOT EXPAND...
-            </CardText>
-          </Card>
-      </div>
-    );
+// const ProjectItem = (props) => (
+//       <div>
+//         <h1>PROJECT TITLE</h1>
+//         <h1>{props.project.title}</h1>
+//         <p>A single project item</p>
+//           <Card style={style.card_style}>
+//             <CardHeader
+//               title={props.project.title}
+//             />
+//             <CardActions>
+//               <FlatButton label="Edit" />
+//             </CardActions>
+//             <CardText>
+//               THIS EXAMPLE DOES NOT EXPAND...
+//             </CardText>
+//           </Card>
+//       </div>
+//     );
 
 
 export default ProjectItem;

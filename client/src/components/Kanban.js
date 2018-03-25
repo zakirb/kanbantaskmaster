@@ -8,39 +8,40 @@ import { Row, Col } from 'react-flexbox-grid';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import '../css/App.css';
 import DropDownMenuTask from './DropDownMenu';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import TaskItem from './TaskItem';
-import ProjectItem from './ProjectItem';
 import { connect } from 'react-redux';
-import axios from 'axios';
-import { changeTaskStatus, liftProjectToState } from '../actions/index'
 
 const style = {
+
   card_styleToDo: {
     width: 340,
     margin: 10,
     textAlign: 'center',
     background: '#FFFFA5'
+
   },
   card_styleProgress: {
     width: 340,
     margin: 10,
     textAlign: 'center',
     background: '#1ba8b1'
+
   },
   card_styleReview: {
     width: 340,
     margin: 10,
     textAlign: 'center',
     background: '#ff7455'
-  },
 
-  card_styleCompleted: {
+  },
+  card_styleFinished: {
     width: 340,
     margin: 10,
     textAlign: 'center',
     background: '#17F76A',
     justifyContent: 'center'
+
   }
 }
 
@@ -58,113 +59,52 @@ class ConnectedKanbanBoard extends Component {
     this.state = {
       currentProject: props.currentProject
     }
-
-    this.moveTask = this.moveTask.bind(this)
-    this.handleDelete = this.handleDelete.bind(this)
-    this.handleEdit = this.handleEdit.bind(this)
-  }
-
-  componentWillReceiveProps = (newProps) => {
-    console.log("THESE ARE THE NEW PROPS", newProps)
   }
   render() {
+    console.log('currentProject')
+    console.log(this.state.currentProject)
 
-  handleDelete = (projectId) => {
-    console.log(projectId)
-    console.log('HANDLING DELETE FUNCTION');
-    axios.delete('/destroy/project', {params:
-      {projectId}
-    }).then( result => {
-      console.log(result.data)
+  To Do
+  var TasksToDo = this.props.currentProject.tasks.filter( task => {
+    return task.task_status === "ToDo"
+  })
+  var ToDoTaskItems = TasksToDo.map(task => {
+    return <TaskItem style={style.card_styleToDo} />
+  })
 
-      console.log(this.props.currentProject)
+  In Progress
+  var TasksInProgress = this.props.currentProject.tasks.filter( task => {
+    return task.task_status === "InProgress"
+  })
+  var InProgressTaskItems = TasksInProgress.map(task => {
+    <TaskItem style={style.card_styleProgress} />
+  })
 
-    var newProjects =  this.props.currentProject.filter( (project) => {
-      if (project._id !== result.data._id) {
-        return project
-      }
-    })
-    this.props.liftAllProjectsToState(newProjects)
-    this.props.liftProjectToState()
-    })
-  }
+  In Review
+  var TasksInReview = this.props.currentProject.tasks.filter( task => {
+    return task.task_status === "InReview"
+  })
+  var InReviewTaskItems = TasksInReview.map(task => {
+    <TaskItem style={style.card_styleReview} />
+  })
 
-  handleEdit = (projectId) => {
-    console.log(projectId)
-    console.log('HANDLING EDIT FUNCTION');
-    axios.get('/view/findOne/project', {
-      params: {projectId}
-    }).then( result => {
-      console.log(result.data)
-      this.props.liftProjectToState(result.data)
-    }).catch( err => console.log(err))
-  }
+  Finished
+  var TasksFinished = this.props.currentProject.tasks.filter( task => {
+    return task.task_status === "Finished"
+  })
+  var FinishedTaskItems = TasksFinished.map(task => {
+    <TaskItem style={style.card_styleFinished} />
+  })
 
 
-  render() {
-    const {title, description} = this.props.currentProject
 
-    if (this.props.currentProject) {
+// console.log(ToDoTaskItems)
 
-      if (this.props.currentProject.tasks) {
-        console.log('currentProject at RENDER',this.props.currentProject )
 
-        // To Do
-        var TasksToDo = this.props.currentProject.tasks.filter( task => {
-          return task.task_status === "todo"
-        })
-        if (TasksToDo.length > 0) {
-          var ToDoTaskItems = TasksToDo.map( (task, index) => {
-            return <TaskItem style={style.card_styleToDo} task={task} moveTask={this.moveTask} key={index} />
-          })
-        }
-        // In Progress
-        var TasksInProgress = this.props.currentProject.tasks.filter( task => {
-          return task.task_status === "progress"
-        })
-        if (TasksInProgress.length > 0) {
-          var InProgressTaskItems = TasksInProgress.map( (task, index) => {
-            return <TaskItem style={style.card_styleProgress} task={task} moveTask={this.moveTask} key={index} />
-          })
-        }
-        // In Review
-        var TasksInReview = this.props.currentProject.tasks.filter( task => {
-          return task.task_status === "review"
-        })
-        if (TasksInReview.length > 0) {
-          var InReviewTaskItems = TasksInReview.map( (task, index) => {
-            return <TaskItem style={style.card_styleReview} task={task} moveTask={this.moveTask} key={index} />
-          })
-        }
-        // Completed
-        var TasksCompleted = this.props.currentProject.tasks.filter( task => {
-          return task.task_status === "completed"
-        })
-        if (TasksCompleted.length > 0) {
-          var CompletedTaskItems = TasksCompleted.map( (task, index) => {
-            return <TaskItem style={style.card_styleCompleted} task={task} moveTask={this.moveTask} key={index} />
-          })
-        }
-      }
-    }
 
 
     return (
   <MuiThemeProvider>
-    <div>
-      <Card style={style.card_style}>
-        <CardHeader
-          title={title}
-        />
-        <CardText>
-          <p>{description}</p>
-        </CardText>
-        <CardActions>
-            <Link to='/Projects/edit'><RaisedButton label="Edit" onClick={ () => this.handleEdit(this.state.currentProject._id)} /></Link>
-            <Link to='/Projects'><RaisedButton label="Delete" onClick={ () => this.handleDelete(this.state.currentProject._id)} /></Link>
-        </CardActions>
-      </Card>
-    </div>
       <div>
         <h2 className="kanban">Kanban Board</h2>
           <Row around="xs" middle="xs">
@@ -209,7 +149,7 @@ class ConnectedKanbanBoard extends Component {
   </MuiThemeProvider>
     );
   }
-}
+
 
 
 const KanbanBoard = connect(mapStateToProps, null)(ConnectedKanbanBoard)
