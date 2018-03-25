@@ -12,6 +12,20 @@ import {Link} from 'react-router-dom';
 const TaskItem = props => {
 
   if (props.task) {
+    let dropDownValue = 0
+    switch (props.task.task_status) {
+      case ("todo"): dropDownValue = 1;
+      break;
+      case ("progress"): dropDownValue = 2;
+      break;
+      case ("review"): dropDownValue = 3;
+      break;
+      case ("completed"): dropDownValue = 4;
+      break;
+      default: dropDownValue = null
+    }
+
+
     return (
       <Card style={props.style} zDepth={5}>
         <CardText>
@@ -21,7 +35,7 @@ const TaskItem = props => {
             <Link to="/Tasks/edit"><RaisedButton className="edit" label="Edit Task" /></Link>
           </CardActions>
         </CardText>
-        <DropDownMenuTask />
+        <DropDownMenuTask dropDownValue={dropDownValue}/>
       </Card>
     )
   } else {

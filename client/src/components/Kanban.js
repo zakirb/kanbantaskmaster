@@ -109,7 +109,7 @@ class ConnectedKanbanBoard extends Component {
         })
         if (TasksCompleted.length > 0) {
           var CompletedTaskItems = TasksCompleted.map(task => {
-            return <TaskItem style={style.card_styleCompleted} task={task}/>
+            return <TaskItem style={style.card_styleCompleted} task={task} />
           })
         }
 
