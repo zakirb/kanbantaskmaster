@@ -42,6 +42,12 @@ body {
   color: red;
 
 }
+
+/* so there is a title in nav bar */
+h4 {
+  color: black;
+}
+
 .image {
   height: 500px;
   width: 1200px;
@@ -67,21 +73,6 @@ body {
   justify-content: center;
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .navbox {
   display: inline-block;

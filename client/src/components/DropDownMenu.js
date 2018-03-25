@@ -12,7 +12,7 @@ export default class DropDownMenuTask extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {value: null};
+    this.state = {value: props.dropDownValue};
   }
 
   handleChange = (event, index, value) => this.setState({value});
@@ -26,7 +26,7 @@ export default class DropDownMenuTask extends React.Component {
           onChange={this.handleChange}
           style={styles.customWidth}
           autoWidth={false}>
-          
+
           <MenuItem value={null} primaryText="Move Task To:" />
           <MenuItem value={1} primaryText="To Do" />
           <MenuItem value={2} primaryText="In Progress" />

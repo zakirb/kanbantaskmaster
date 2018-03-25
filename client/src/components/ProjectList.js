@@ -18,7 +18,6 @@ const style = {
     width: 400,
     margin: 5
   }
-
 }
 
 const mapStateToProps = state => {
@@ -79,7 +78,18 @@ class ConnectedProjectList extends Component {
     }).catch( err => console.log(err))
   }
 
+  handleSelectProject = projectId => {
+    console.log('Project ID being raised to state by select: ' + projectId)
+    axios.get('/view/findOne/project', {
+      params: {projectId}
+    }).then( result => {
+      console.log(result.data)
+      this.props.liftProjectToState(result.data)
+    }).catch( err => console.log(err))
+  }
+
   render() {
+
     if (this.props) {
       if (this.props.projects) {
         var projectCard = (
@@ -89,7 +99,7 @@ class ConnectedProjectList extends Component {
               key={index}>
               <CardHeader
                 title={<Link style={{textDecoration: 'none', color: 'black'}}to='/ViewProject'>{project.title}</Link>}
-                subtitle={project.description}
+                // subtitle={project.description}
                 actAsExpander={true}
                 showExpandableButton={true}/>
               <CardActions>
@@ -101,7 +111,7 @@ class ConnectedProjectList extends Component {
                 <h3>Tasks</h3>
                 <ul>
                   {project.tasks.map((task, index) => (
-                    <li key={index}>{task.description}</li>
+                    <li key={index}>Task: {task.description} Status: {task.task_status ? task.task_status : "not set"} </li>
                   ))}
                 </ul>
               </CardText>

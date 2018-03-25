@@ -22,8 +22,6 @@ import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 
 
-
-
 const mapStateToProps = state => {
   return {
     user: state.user,
@@ -36,11 +34,11 @@ class ConnectedNavBar extends Component {
     super()
   }
   render(){
-    const projectTestData = [
-      {title: "Workflow Project Organizer", description: "Workflow Project Organizer Description", team: ["Zakir B", "Dan V", "Tim H"], tasks: ["Build Models", "Implement Redux", "Implement Material UI"]},
-      {title: "Party Bus", description: "Party Bus Description", team: ["Zakir B", "Dan V"], tasks: ["Buy Beer", "Seek Contacts"]},
-      {title: "Project 3", description: "Project 3 Description",team: ["Zakir B", "Dan V", "Tim H"], tasks: ["Have Fun", "Get to know each other", "Try to understand this shit"]}
-    ]
+    // const projectTestData = [
+    //   {title: "Workflow Project Organizer", description: "Workflow Project Organizer Description", team: ["Zakir B", "Dan V", "Tim H"], tasks: ["Build Models", "Implement Redux", "Implement Material UI"]},
+    //   {title: "Party Bus", description: "Party Bus Description", team: ["Zakir B", "Dan V"], tasks: ["Buy Beer", "Seek Contacts"]},
+    //   {title: "Project 3", description: "Project 3 Description",team: ["Zakir B", "Dan V", "Tim H"], tasks: ["Have Fun", "Get to know each other", "Try to understand this shit"]}
+    // ]
     let theUser = this.props.user
     console.log(this.props.user)
     let navigation
@@ -49,7 +47,7 @@ class ConnectedNavBar extends Component {
       navigation = (
         <nav className="navboxx">
           <div className='nav-wrapper teal darken-3'>
-            {/* <a href='/' className='brand-logo'>Workflow Project App</a> */}
+            <h4>Workflow Project App</h4>
             <div className='navbox'>
               <Link to='/'><MenuItem primaryText="Home" /></Link>
               <Link to='/Projects'><MenuItem primaryText="Projects" /></Link>
@@ -66,15 +64,6 @@ class ConnectedNavBar extends Component {
               <Link to='/Tasks/create'><MenuItem primaryText="Create Task(TEMP)" /></Link>
               <Link to='/Tasks/edit'><MenuItem primaryText="Edit Task(TEMP)" /></Link>
             </div>
-
-
-            {/* <ul id='nav-mobile' className='right hide-on-med-and-down'>
-              <li><Link to='/'>Home</Link></li>
-              <li><Link to='/Projects'>Projects</Link></li>
-              <li><Link to='/ProjectItem'>Project Item</Link></li>
-              <li><Link to='/UserAccess'>User Profile</Link></li>
-              <li><Link to='/ViewTasks'>View Project Tasks (temp)</Link></li>
-            </ul> */}
           </div>
         </nav>
       )
@@ -85,12 +74,6 @@ class ConnectedNavBar extends Component {
             <Link to='/'><MenuItem primaryText="Workflow Project App" /></Link>
             <Link to='/'><MenuItem primaryText="Home" /></Link>
             <Link to='/UserAccess'><MenuItem primaryText="User Access" /></Link>
-
-            {/* <a href='/' className='brand-logo'>Workflow Project App</a>
-            <ul id='nav-mobile' className='right hide-on-med-and-down'>
-              <li><Link to='/'>Home</Link></li>{' '}
-              <li><Link to='/UserAccess'>User Access</Link></li>
-            </ul> */}
           </div>
         </nav>
       )
