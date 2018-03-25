@@ -11,6 +11,7 @@ import DropDownMenuTask from './DropDownMenu';
 import {Link} from 'react-router-dom';
 import TaskItem from './TaskItem';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 const style = {
 
@@ -64,14 +65,14 @@ class ConnectedKanbanBoard extends Component {
   }
 
 handleStatusChange (task, dropDownValue) {
-  // axios.put('/edit/taskstatus', {
-  //   task,
-  //   dropDownValue
-  // }).then( result => {
-  //   console.log(result)
-  // })
   console.log('this is the task', task)
   console.log('this is the dropDownValue', dropDownValue);
+  axios.put('/edit/taskstatus', {
+    task,
+    dropDownValue
+  }).then( result => {
+    console.log(result)
+  })
 }
 
   componentWillMount() {
