@@ -1,5 +1,5 @@
 // import React, { Component } from 'react';
-import React, { Component } from 'react';
+import React from 'react';
 // import Kanban from './Kanban';
 
 
@@ -20,65 +20,54 @@ const style = {
   }
 }
 
-class ProjectItem extends Component {
-  constructor(props){
-    super()
-    this.state = {
-      currentProject: ''
-    }
-  }
-  render() {
-    return (
-      <div>
-        <h2>Project Item</h2>
-        <p>A single project item</p>
-          <Card style={style.card_style}>
-            <CardHeader
-              title="Workflow Project Title"
-              subtitle="Zakir, Dan, Tim"
-            />
-            <CardActions>
-              <FlatButton label="Edit Project" />
-              <FlatButton label="Add Team Member" />
-              <FlatButton label="Add Task" />
-              <FlatButton label="Delete" />
-            </CardActions>
-            <CardText>
-              {/* <Kanban /> */}
-            </CardText>
-          </Card>
-      </div>
-    );
-  }
-}
-
-
-// const ProjectItem = (props) => (
+// class ProjectItem extends Component {
+//   constructor(props){
+//     super()
+//     this.state = {
+//       currentProject: ''
+//     }
+//   }
+//   render() {
+//     return (
 //       <div>
-//         <h1>{props.project.title}</h1>
+//         <h2>Project Item</h2>
 //         <p>A single project item</p>
 //           <Card style={style.card_style}>
 //             <CardHeader
-//               title={props.project.title}
-//               subtitle={props.project.team}
+//               title="Workflow Project Title"
+//               subtitle="Zakir, Dan, Tim"
 //             />
 //             <CardActions>
-//               <FlatButton label="Edit" />
-//               <FlatButton label="Delete" />
+//               <FlatButton label="Edit Project" />
 //             </CardActions>
 //             <CardText>
-//               THIS EXAMPLE DOES NOT EXPAND...
-//
-//                 <ul>
-//                   {props.project.tasks.map((task, index) =>
-//                       <li>{task}</li>
-//                     )}
-//                 </ul>
-//
+//               {/* <Kanban /> */}
 //             </CardText>
 //           </Card>
 //       </div>
 //     );
+//   }
+// }
+
+
+const ProjectItem = (props) => (
+      <div>
+        <h1>PROJECT TITLE</h1>
+        <h1>{props.project.title}</h1>
+        <p>A single project item</p>
+          <Card style={style.card_style}>
+            <CardHeader
+              title={props.project.title}
+            />
+            <CardActions>
+              <FlatButton label="Edit" />
+            </CardActions>
+            <CardText>
+              THIS EXAMPLE DOES NOT EXPAND...
+            </CardText>
+          </Card>
+      </div>
+    );
 
 
 export default ProjectItem;
