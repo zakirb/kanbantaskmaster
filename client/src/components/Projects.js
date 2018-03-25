@@ -23,7 +23,8 @@ const mapStateToProps = state => {
   return {
     user: state.user,
     token: state.token,
-    allProjects:state.allProjects
+    allProjects:state.allProjects,
+    currentProject: state.currentProject
   }
 }
 

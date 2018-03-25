@@ -5,8 +5,8 @@ import DatePicker from 'material-ui/DatePicker';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import { Row, Col } from 'react-flexbox-grid';
-import { liftProjectToState } from "../actions/index"
-// import { liftProjectToState, editProject } from "../actions/index"
+// import { liftProjectToState } from "../actions/index"
+import { liftProjectToState, editProject } from "../actions/index"
 // import { addProject } from "../actions/index"
 
 const style = {
@@ -25,18 +25,18 @@ const style = {
 }
 
 //// REDUX ////
-const mapDispatchToProps = dispatch => {
-  return {
-    liftProjectToState: project => dispatch(liftProjectToState(project))
-  }
-}
-
 // const mapDispatchToProps = dispatch => {
 //   return {
-//     liftProjectToState: project => dispatch(liftProjectToState(project)),
-//     editProject: project => dispatch(editProject(project))
+//     liftProjectToState: project => dispatch(liftProjectToState(project))
 //   }
 // }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    liftProjectToState: project => dispatch(liftProjectToState(project)),
+    editProject: project => dispatch(editProject(project))
+  }
+}
 
 // const mapDispatchToProps = dispatch => {
 //   return {
@@ -59,7 +59,6 @@ class ConnectedEditProjects extends Component {
     this.state = {
       title: '',
       description:'',
-      connectedDate: null,
       owner: '',
       targetDate: null,
       project: props.currentProject
@@ -67,24 +66,25 @@ class ConnectedEditProjects extends Component {
   }
 
   componentDidUpdate() {
-    console.log('BELOW IS THE CURRENT PROJECT', this.props.currentProject)
+    console.log('BELOW IS THE CURRENT PROJECT PROPS', this.props.currentProject)
     console.log('EDIT PROJECT UPDATED')
-    console.log('BELOW IS THE CURRENT PROJECT', this.state)
+    console.log('BELOW IS THE CURRENT PROJECT STATE', this.state)
 
   }
 
-  componentWillReceiveProps(){
-   if (this.state !== this.props){
-     console.log(this.state, this.props);
-     // this.setState((prevState, props){
-     //   title: props.currentProject.title,
-     //   description: ,
-     //   connectedDate: null,
-     //   owner: '',
-     //   targetDate:null,
-     //   project: props.currentProject
-     //   project: this.props.currentProject
-     // })
+
+  componentWillReceiveProps(newProps){
+   if (newProps.currentProject){
+     console.log(this.state, newProps);
+     let currentTargetDate = Date.parse(newProps.currentProject.target_date)
+     currentTargetDate = new Date(currentTargetDate)
+     console.log("THIS IS THE CURRENT TARGET DATE", currentTargetDate)
+     this.setState({
+       title: newProps.currentProject.title,
+       description: newProps.currentProject.description,
+       targetDate: currentTargetDate,
+       project: newProps.currentProject
+     })
    }
   }
 
@@ -94,14 +94,7 @@ class ConnectedEditProjects extends Component {
   }
 
   handleDateChange = (event, date) => {
-    var targetDate = {
-        year: date.getFullYear(),
-        month: date.getMonth() + 1,
-        day: date.getDate()
-      }
-
     this.setState({
-      connectedDate: date,
       targetDate: date
     })
   }
@@ -109,16 +102,23 @@ class ConnectedEditProjects extends Component {
   componentDidMount(){
     console.log("in componentDidMount editProject")
     console.log("props currentProject", this.props.currentProject)
-    // if (!this.props.currentProject){
-
-    // } else {
-    //
-    // }
+    let temp = this.props.currentProject
+    if (!this.props.currentProject){
+      console.log('error no props');
+    } else {
+      this.setState({
+        title: temp.title,
+        description: temp.description,
+        owner: this.props.user._id,
+        targetDate: temp.targetDate,
+        currentProject: temp
+      })
+    }
     //
 
     // this is our dispatcher
     // this is how to handle
-    // redux thnnk allows us to do this
+    // redux thunk allows us to do this
     // how to handle async actions
 
     // Learncode Academy redux tutorials
@@ -163,7 +163,7 @@ class ConnectedEditProjects extends Component {
   }
 
   render() {
-    const { title, description, owner, connectedDate } = this.state
+    const { title, description, owner, targetDate } = this.state
     return (
       <Row center="xs">
         <Col>
@@ -175,7 +175,7 @@ class ConnectedEditProjects extends Component {
               <p>Edit Description</p>
                 <input type='text' className="input" placeholder="Description" name='description' value={description} onChange={this.handleChange} />
               <p>Edit End Date</p>
-              <DatePicker  value={connectedDate} onChange={this.handleDateChange} hintText="End Date" container="inline" />
+              <DatePicker  value={targetDate} onChange={this.handleDateChange} hintText="End Date" container="inline" />
               <CardActions>
                 <FlatButton label="Update Project" />
               </CardActions>
