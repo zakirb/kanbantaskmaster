@@ -2,7 +2,7 @@
   text-align: center;
 }
 .kanban {
-  align-content: center;
+  /* align-content: center; */
   text-align: center;
   font-family: 'PT Sans Narrow', sans-serif;
 }
@@ -44,7 +44,7 @@ body {
 }
 .image {
   height: 500px;
-  width: 500px;
+  width: 1200px;
 }
 /* .carousel {
   align-items: center;
@@ -54,12 +54,19 @@ body {
   width: 100%;
 }
 .slide, .carousel-inner {
-  height: 500px;
+  height: 450px;
 }
 .TaskText {
   font-size: 13pt;
 }
+.col {
+  align-items: center;
+}
+.view {
+  /* align-items: center; */
+  justify-content: center;
 
+}
 
 
 
