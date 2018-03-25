@@ -67,7 +67,7 @@ class ConnectedKanbanBoard extends Component {
   componentWillReceiveProps = (newProps) => {
     console.log("THESE ARE THE NEW PROPS", newProps)
   }
-  render() {
+  
 
   handleDelete = (projectId) => {
     console.log(projectId)
@@ -149,6 +149,7 @@ class ConnectedKanbanBoard extends Component {
     }
 
 
+
     return (
   <MuiThemeProvider>
     <div>
@@ -210,7 +211,6 @@ class ConnectedKanbanBoard extends Component {
     );
   }
 }
-
 
 const KanbanBoard = connect(mapStateToProps, null)(ConnectedKanbanBoard)
 export default KanbanBoard;
