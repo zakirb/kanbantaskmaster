@@ -7,6 +7,9 @@ import 'react-bootstrap-carousel/dist/react-bootstrap-carousel.css';
 import one from './images/one.jpeg';
 import two from './images/two.jpg';
 import three from './images/three.jpeg';
+import kanban from './images/kanban.png';
+import projects from './images/projects.png';
+import combine from './images/combine.jpg';
 
 
 class ImageCarousel extends React.Component {
@@ -62,7 +65,7 @@ class ImageCarousel extends React.Component {
                 <div style={{height:500}}>
                   <img className="carouselImage"
                     style={{width:"60%",height:"60%"}}
-                    src= {one}
+                    src= {kanban}
                   />
                   <div className="carousel-caption">
 
@@ -72,7 +75,7 @@ class ImageCarousel extends React.Component {
                 <div style={{height:500}}>
                   <img className="carouselImage"
                     style={{width:"60%",height:"60%"}}
-                    src= {two}
+                    src= {projects}
                   />
                   <div className="carousel-caption">
 
@@ -80,9 +83,9 @@ class ImageCarousel extends React.Component {
                 </div>
 
                 <div style={{height:500}}>
-                  <img className="carouselImage"
-                    style={{width:"60%",height:"60%"}}
-                    src= {three}
+                  <img className= "createTaskImage"
+                    style={{width:"50%",height:"60%"}}
+                    src= {combine}
                   />
                   <div className="carousel-caption">
 
