@@ -86,9 +86,7 @@ class ConnectedEditProjects extends Component {
        project: newProps.currentProject,
        _id: newProps.currentProject._id
      })
-   } else {
-
-   }
+   } 
   }
 
   handleChange = (event) => {
