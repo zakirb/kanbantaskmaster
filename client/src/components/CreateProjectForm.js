@@ -111,7 +111,7 @@ class ConnectedCreateProjectForm extends Component {
               <DatePicker  value={connectedDate} onChange={this.handleDateChange} hintText="End Date" container="inline" />
               <CardActions>
                 <FlatButton type="submit" label="Add Project" />
-                <FlatButton label="Reset?" />
+                {/* <FlatButton label="Reset?" /> */}
               </CardActions>
             </form>
           </Card>

@@ -8,11 +8,9 @@ Team: Zakir B, Daniel V, Tim H
 - A link to your hosted working app in the URL section of your Github repo
 - A team git repository hosted on Github, with a link to your hosted project, and frequent commits from every team member dating back to the very beginning of the project.
 
-
 ## User Stories:
 - Gene is the owner of a small start-up business and needs a way to keep his handful of employees on task. {insert site name here} helps by allowing Gene to add team members and assigning tasks to each one and monitor their progress.
 - Mary is a single mother of 3 and working two jobs and uses {insert site name here} to keep track of the chores and homework her kids are doing while she’s at work. She can sign in on her phone and see what has been done and what’s remaining.
-
 
 ## Technologies Used
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
@@ -30,16 +28,26 @@ Redux, Redux-Thunk, React, React-Router, MongoDB, Mongoose, Express, Express-JWT
 Verb | Path | Action | Used for
 ------------ | ------------- | ------------ | -------------
 GET | / | read | - returns index/home page
-GET | auth/signup | read | - returns the signup and login component (if no user token)
-POST | auth/signup | create | - retrieves signup component
-GET | auth/login | read | - retrieves login component
-POST | auth/login | create | - confirms user account credentials and opens new session
-GET | auth/logout | read | - logs user out of current session
-GET | user/profile | read | - returns the user profile component
+GET | /UserAccess | read | - returns the signup and login component (if no user token), returns user profile page (if token present)
+POST | auth/signup | create | - receives data from signup component, checks for user account and returns created user or user profile page
+POST | auth/login | create | - receives data from login component confirms user account and password credentials
+POST | auth/me/from/token | create | - creates and stores access token
+GET | /projects | read | - returns project component
+POST | /project | create | - creates a new project
+DELETE | /project | delete | - deletes a project
+POST | /task | create | - creates a new task for the current project
+PUT | /taskstatus | update | - updates the status of a task for the current project
 
-GET | edit/profile/:id | read | - returns HTML form to update the user profile
+
+### CRUD Routes (incomplete)
+Verb | Path | Action | Used for
+------------ | ------------- | ------------ | -------------
+GET | edit/profile/:id | read | - returns form to update the user profile
 PUT | update/:id | update | - updates user profile data
 DELETE | delete/:id | delete | - deletes user profile and all associated data
+PUT | /project | update | - update a project
+DELETE | /task | delete | - deletes a task
+PUT | /task | update | - update a task for the current project
 
 #### Development Process
 ##### Day 1 (Sunday)
@@ -54,19 +62,19 @@ Researched topics new to the team
 - Continued developing routes and components, and building models, developed user stories, researched Material UI, mongoose and mongoD.
 
 #### Day 4 (Wednesday)
-- Seeded Projects Model, continued working on forms and implementation of Material UI, issues with the model schema delayed us, pulled some functionality from original spec.
+- Seeded Projects Model, continued working on forms and implementation of Material UI, issues with embedded docs on the model schemas delayed us, pulled some functionality from original spec.
 
 #### Day 5 (Thursday)
--
+- Continued creating components, working on the store state and connections to database, began building routes, refactoring of form items
 
 #### Day 6 (Friday)
--
+- Refactoring components, refining styles, found a race issue for edit projects and edit tasks,
 
 #### Day 7 (Saturday)
--
+- Implemented Kanban Board, working with racing conditions....
 
 #### Day 8 (Sunday)
-- 
+- Finalizing style,
 
 
 #### unsolved problems && major hurdles

@@ -60,7 +60,7 @@ h4 {
   width: 100%;
 }
 .slide, .carousel-inner {
-  height: 450px;
+  height: 300px;
 }
 .TaskText {
   font-size: 13pt;
@@ -73,7 +73,16 @@ h4 {
   justify-content: center;
 
 }
-
 .navbox {
   display: inline-block;
+}
+
+.carouselImage {
+  margin-left: 400px;
+}
+.row {
+  align-content: center;
+}
+.ProjItem {
+  text-align: center;
 }

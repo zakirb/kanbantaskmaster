@@ -7,6 +7,7 @@ import ProjectSearch from './ProjectSearch';
 import { liftAllProjectsToState } from '../actions/index'
 import { connect } from 'react-redux';
 import Paper from 'material-ui/Paper';
+import { Row, Col } from 'react-flexbox-grid';
 // import TextField from 'material-ui/TextField';
 // import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 // import FlatButton from 'material-ui/FlatButton';
@@ -22,7 +23,8 @@ const mapStateToProps = state => {
   return {
     user: state.user,
     token: state.token,
-    allProjects:state.allProjects
+    allProjects:state.allProjects,
+    currentProject: state.currentProject
   }
 }
 
@@ -111,7 +113,10 @@ class ConnectedProjects extends Component {
     //   {title: "Project 3", team: ["Zakir B", "Dan V", "Tim H"], tasks: ["Have Fun", "Get to know each other", "Try to understand this shit"]}
     // ]
     return (
-      <div className='row'>
+      <Row>
+  <Col xs={12}>
+    <Row center="xs">
+      <div className='row center-xs'>
         <Paper style={style}>
           <div className='col '>
             <h1>Projects</h1>
@@ -120,6 +125,9 @@ class ConnectedProjects extends Component {
           </div>
         </Paper>
       </div>
+    </Row>
+</Col>
+</Row>
     );
   }
 }
