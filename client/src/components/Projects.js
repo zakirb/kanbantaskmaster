@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-// import CreateProjectForm from './CreateProjectForm';
-// import ProjectItem from './ProjectItem';
 import ProjectList from './ProjectList';
 import ProjectSearch from './ProjectSearch';
 import { liftAllProjectsToState } from '../actions/index'
 import { connect } from 'react-redux';
 import Paper from 'material-ui/Paper';
 import { Row, Col } from 'react-flexbox-grid';
-// import TextField from 'material-ui/TextField';
-// import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
-// import FlatButton from 'material-ui/FlatButton';
 
 const style = {
   margin: 10,
@@ -47,8 +42,8 @@ class ConnectedProjects extends Component {
   }
 
   getProjects = () => {
-    axios.post('/view/projects', {
-      userId:this.props.user._id
+    axios.get('/view/projects', {
+      params:{userId:this.props.user._id}
     }).then( result => {
       console.log(this.props);
       console.log('did mount', result)
@@ -66,9 +61,6 @@ class ConnectedProjects extends Component {
       })
     }
   }
-
-
-
 
   componentDidUpdate() {
     console.log('PROJECTS UPDATED')
@@ -95,9 +87,8 @@ class ConnectedProjects extends Component {
       this.setState( (prevState, props) => {
         // remove items that don't contain the filter filterValue
         const filteredProjectList = this.props.allProjects.filter( project =>
-          // project.toLocaleLowerCase().includes(filterValue.toLocaleLowerCase()))
-          project.title.toLocaleLowerCase().includes(filterValue.toLocaleLowerCase()))
-        // return tnew state with the filtered fruit list and the now value of the filter
+        project.title.toLocaleLowerCase().includes(filterValue.toLocaleLowerCase()))
+        // return tnew state with the filtered list and the now value of the filter
         return {
           projectsToDisplay: filteredProjectList,
           filterValue
@@ -107,27 +98,22 @@ class ConnectedProjects extends Component {
   } // end handle filter change
 
   render() {
-    // const projectTestData = [
-    //   {title: "Workflow Project Organizer", team: ["Zakir B", "Dan V", "Tim H"], tasks: ["Build Models", "Implement Redux", "Implement Material UI"]},
-    //   {title: "Party Bus", team: ["Zakir B", "Dan V"], tasks: ["Buy Beer", "Seek Contacts"]},
-    //   {title: "Project 3", team: ["Zakir B", "Dan V", "Tim H"], tasks: ["Have Fun", "Get to know each other", "Try to understand this shit"]}
-    // ]
     return (
       <Row>
-  <Col xs={12}>
-    <Row center="xs">
-      <div className='row center-xs'>
-        <Paper style={style}>
-          <div className='col '>
-            <h1>Projects</h1>
-            <ProjectSearch value={this.state.filterValue} onChange={this.handleFilterChange}/>
-            <ProjectList projects={this.state.projectsToDisplay || this.props.allProjects}/>
-          </div>
-        </Paper>
-      </div>
-    </Row>
-</Col>
-</Row>
+        <Col xs={12}>
+          <Row center="xs">
+            <div className='row center-xs'>
+              <Paper style={style}>
+                <div className='col '>
+                  <h1>Projects</h1>
+                  <ProjectSearch value={this.state.filterValue} onChange={this.handleFilterChange}/>
+                  <ProjectList projects={this.state.projectsToDisplay || this.props.allProjects}/>
+                </div>
+              </Paper>
+            </div>
+          </Row>
+        </Col>
+      </Row>
     );
   }
 }
