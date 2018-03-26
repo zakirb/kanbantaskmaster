@@ -5,7 +5,9 @@ import DatePicker from 'material-ui/DatePicker';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import { Row, Col } from 'react-flexbox-grid';
-import { liftProjectToState } from "../actions/index"
+import { liftProjectToState } from "../actions/index";
+import {Link} from 'react-router-dom';
+import Snackbar from 'material-ui/Snackbar';
 
 
 
@@ -17,11 +19,17 @@ const style = {
   },
   card_style: {
     width: 300,
-    margin: 5,
+    margin: "0 auto",
     textAlign: 'center',
-    background: '#17CBF7'
+    background: '#17CBF7',
+    justifyContent: "center"
+  },
+  input: {
+    height: 25
   }
 }
+
+
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -45,9 +53,18 @@ class ConnectedCreateTasksForm extends Component {
       description: '',
       assignTo:'',
       targetDate:null,
-      task_status: "todo"
+      task_status: "todo",
+      snackBarOpen: false
     }
     this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (newProps) {
+      this.setState({
+        currentProject: newProps.currentProject
+      })
+    }
   }
 
   handleChange = (event) => {
@@ -63,11 +80,11 @@ class ConnectedCreateTasksForm extends Component {
 
   canBeSubmitted(){
     const { description, assignTo, targetDate } = this.state
-    console.log(targetDate)
     return (
       description.length > 0 &&
       assignTo.length > 0 &&
-      targetDate != null
+      targetDate != null &&
+      this.props.currentProject
     );
   }
 
@@ -86,24 +103,42 @@ class ConnectedCreateTasksForm extends Component {
     }).then( result => {
       console.log('RESULT AFTER POSTING FROM CreateTaskForm', result.data)
       this.props.liftProjectToState(result.data)
+      this.setState({
+        description:'',
+        assignTo:'',
+        targetDate:null,
+        task_status:"todo",
+        snackBarOpen: true
+      })
       // this.props.liftProjectToState
       // Redirect to a react route
     })
   }
 
+  handleRequestClose = () => {
+    this.setState({
+      snackBarOpen: false,
+    });
+  };
+
   render() {
     const { description, assignTo, targetDate, task_status} = this.state
     const isEnabled = this.canBeSubmitted();
+
+    if (this.state.currentProject) {
+      var kanbanLink = (<Link to='/ViewProject'><FlatButton label="Back to Project" /></Link>)
+    }
+
     return (
       <Row center="xs">
-        <Col>
+        <Col center="xs" xs={12}>
           <Card style={style.card_style} zDepth={5}>
           <form onSubmit={this.handleSubmit}>
           <h3>Create Task Form</h3>
               <p>To Do</p>
-                <input type='text' className="input" placeholder="To Do" name='description' value={description} onChange={this.handleChange} />
+                <input type='text' className="input" style={style.input} placeholder="To Do" name='description' value={description} onChange={this.handleChange} />
               <p>Team Member</p>
-                <input type='text' className="input" placeholder="Team Member" name='assignTo' value={assignTo} onChange={this.handleChange} />
+                <input type='text' className="input" style={style.input} placeholder="Team Member" name='assignTo' value={assignTo} onChange={this.handleChange} />
               <p>Task Status</p>
                 <select name="task_status" value={task_status} onChange={this.handleChange}>
                   <option value="todo">To Do</option>
@@ -119,9 +154,16 @@ class ConnectedCreateTasksForm extends Component {
                   disabled={!isEnabled}
                 />
               </CardActions>
+              {kanbanLink}
             </form>
             </Card>
           </Col>
+          <Snackbar
+            open={this.state.snackBarOpen}
+            message="Task Created"
+            autoHideDuration={4000}
+            onRequestClose={this.handleRequestClose}
+          />
         </Row>
       )
   }

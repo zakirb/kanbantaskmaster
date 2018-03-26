@@ -6,6 +6,8 @@ import {Card, CardActions} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import { Row, Col } from 'react-flexbox-grid';
 import { liftProjectToState } from "../actions/index"
+import { Link } from 'react-router-dom';
+import Snackbar from 'material-ui/Snackbar';
 
 const style = {
   card_style: {
@@ -18,6 +20,9 @@ const style = {
   layout: {
     zDepth: 10,
     margin: 10
+  },
+  input: {
+    height:25
   }
 }
 
@@ -43,11 +48,19 @@ class ConnectedCreateProjectForm extends Component {
     this.state = {
       title: '',
       description:'',
-      connectedDate: null,
       owner: '',
-      targetDate:null
+      targetDate:null,
+      snackBarOpen: false
     }
     this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (newProps) {
+      this.setState({
+        currentProject: newProps.currentProject
+      })
+    }
   }
 
   handleChange = (event) => {
@@ -56,14 +69,7 @@ class ConnectedCreateProjectForm extends Component {
   }
 
   handleDateChange = (event, date) => {
-    var targetDate = {
-        year: date.getFullYear(),
-        month: date.getMonth() + 1,
-        day: date.getDate()
-      }
-
     this.setState({
-      connectedDate: date,
       targetDate: date
     })
   }
@@ -89,18 +95,29 @@ class ConnectedCreateProjectForm extends Component {
       owner: this.props.user._id,
       targetDate: this.state.targetDate
     }).then( result => {
-      // console.log(result.data)
+      console.log(result.data)
       this.props.liftProjectToState(result.data.project)
-      console.log('THIS IS THE RESULT AFTER POSTING FROM CreateProjectForm')
-      // this.props.liftProjectToState
-      console.log('THIS IS THE RESULT AFTER PROJECT IS LIFTED')
-      // Redirect to a react route
+      this.setState({
+        title: '',
+        description:'',
+        targetDate:null,
+        snackBarOpen:true
+      })
     })
   }
+  handleRequestClose = () => {
+    this.setState({
+      snackBarOpen: false,
+    });
+  };
 
   render() {
-    const { title, description, owner, connectedDate } = this.state
+    const { title, description, owner, targetDate } = this.state
     const isEnabled = this.canBeSubmitted();
+
+    if (this.state.currentProject) {
+      var kanbanLink = (<Link to='/ViewProject'><FlatButton label="View Project" /></Link>)
+    }
 
     return (
       <Row center="xs">
@@ -109,22 +126,28 @@ class ConnectedCreateProjectForm extends Component {
             <form onSubmit={this.handleSubmit}>
               <h3>Create Project Form</h3>
               <p>Project Name</p>
-                <input type='text' className="input" placeholder="Project Name" name='title' value={title} onChange={this.handleChange} />
+                <input type='text' className="input" placeholder="Project Name" style={style.input} name='title' value={title} onChange={this.handleChange} />
               <p>Description</p>
-                <input type='text' className="input" placeholder="Description" name='description' value={description} onChange={this.handleChange} />
+                <input type='text' className="input" placeholder="Description" style={style.input} name='description' value={description} onChange={this.handleChange} />
               <p>End Date</p>
-              <DatePicker  value={connectedDate} onChange={this.handleDateChange} hintText="End Date" container="inline" />
+              <DatePicker  value={targetDate} onChange={this.handleDateChange} hintText="End Date" container="inline" />
               <CardActions>
                 <FlatButton
                   type="submit"
-                  label="Add Project"
                   disabled={!isEnabled}
+                  label="Add Project"
                 />
-                {/* <FlatButton label="Reset?" /> */}
               </CardActions>
+              {kanbanLink}
             </form>
           </Card>
         </Col>
+        <Snackbar
+          open={this.state.snackBarOpen}
+          message="Project Created"
+          autoHideDuration={4000}
+          onRequestClose={this.handleRequestClose}
+        />
       </Row>
     )
   }

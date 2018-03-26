@@ -1,6 +1,8 @@
 import React from 'react';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
+import { Row, Col } from 'react-flexbox-grid';
+
 
 const style = {
   root: {
@@ -17,28 +19,32 @@ const style = {
 
 export const UserProfile = props => {
     return (
-      <Card style={style.card_style}>
-        <CardHeader
-          title={props.user.name}
-          subtitle="Subtitle"
-          avatar="./images/user-image.png"
-        />
-        <CardMedia
-          overlay={<CardTitle title={props.user.name} subtitle={props.user.email} />}
-        >
-          <img src="./images/user-profile-example.gif" alt="Default Profile" />
-        </CardMedia>
-        <CardTitle title={props.user.name} subtitle={props.user.email} />
-        <CardText>
-          Hello, {props.user.name}!
-          Click on "Create Project" above to get your project started. Then, add tasks and you will see them on the Kanban board.
-        </CardText>
-        <CardActions>
-          <FlatButton label="Edit Profile" />
-          {/* <FlatButton label="Action2" /> */}
-          <FlatButton label="Log Out" onClick={props.logout}/>
+      <Row>
+        <Col xs={12}>
+          <Card style={style.card_style}>
+            <CardHeader
+              title={props.user.name}
+              subtitle="Subtitle"
+              avatar="./images/user-image.png"
+            />
+            <CardMedia
+              overlay={<CardTitle title={props.user.name} subtitle={props.user.email} />}
+            >
+              <img src="./images/user-profile-example.gif" alt="Default Profile" />
+            </CardMedia>
+            <CardTitle title={props.user.name} subtitle={props.user.email} />
+            <CardText>
+              Hello, {props.user.name}!
+              Click on "Create Project" above to get your project started. Then, add tasks and you will see them on the Kanban board.
+            </CardText>
+            <CardActions>
+              <FlatButton label="Edit Profile" />
+              {/* <FlatButton label="Action2" /> */}
+              <FlatButton label="Log Out" onClick={props.logout}/>
 
-        </CardActions>
-      </Card>
+            </CardActions>
+          </Card>
+        </Col>
+      </Row>
     )
 }

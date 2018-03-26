@@ -5,9 +5,9 @@ import DatePicker from 'material-ui/DatePicker';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import { Row, Col } from 'react-flexbox-grid';
-// import { liftProjectToState } from "../actions/index"
 import { liftProjectToState, editProject } from "../actions/index"
-// import { addProject } from "../actions/index"
+import Snackbar from 'material-ui/Snackbar';
+import {Link} from 'react-router-dom';
 
 const style = {
   root: {
@@ -24,12 +24,6 @@ const style = {
   }
 }
 
-//// REDUX ////
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     liftProjectToState: project => dispatch(liftProjectToState(project))
-//   }
-// }
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -38,11 +32,6 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     addProject: project => dispatch(addProject(project))
-//   }
-// }
 
 const mapStateToProps = state => {
   return {
@@ -61,7 +50,8 @@ class ConnectedEditProjects extends Component {
       description:'',
       owner: '',
       targetDate: null,
-      project: props.currentProject
+      currentProject: props.currentProject,
+      snackBarOpen: false
     }
   }
 
@@ -83,10 +73,10 @@ class ConnectedEditProjects extends Component {
        title: newProps.currentProject.title,
        description: newProps.currentProject.description,
        targetDate: currentTargetDate,
-       project: newProps.currentProject,
+       currentProject: newProps.currentProject,
        _id: newProps.currentProject._id
      })
-   } 
+   }
   }
 
   handleChange = (event) => {
@@ -99,6 +89,13 @@ class ConnectedEditProjects extends Component {
       targetDate: date
     })
   }
+
+  handleRequestClose = () => {
+    this.setState({
+      snackBarOpen: false,
+    });
+  };
+
 
   componentDidMount(){
     console.log("in componentDidMount editProject")
@@ -150,11 +147,16 @@ class ConnectedEditProjects extends Component {
     }).then( result => {
       this.props.liftProjectToState(result.data)
       console.log('THIS IS THE RESULT AFTER EDIT PROJECT FROM EditProject.js', result.data)
+      this.setState({snackBarOpen:true})
     })
   }
 
   render() {
     const { title, description, owner, targetDate } = this.state
+
+    if (this.state.currentProject) {
+      var kanbanLink = (<Link to='/ViewProject'><FlatButton label="View Project" /></Link>)
+    }
     return (
       <Row center="xs">
         <Col>
@@ -170,11 +172,18 @@ class ConnectedEditProjects extends Component {
               <CardActions>
                 <FlatButton type="submit" label="Update Project" />
               </CardActions>
+              {kanbanLink}
             </form>
           </Card>
         </Col>
         <Col>
       </Col>
+      <Snackbar
+        open={this.state.snackBarOpen}
+        message="Project Updated"
+        autoHideDuration={4000}
+        onRequestClose={this.handleRequestClose}
+      />
       </Row>
     )
   }
