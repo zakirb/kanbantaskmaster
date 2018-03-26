@@ -102,17 +102,17 @@ class ConnectedEditProjects extends Component {
   componentDidMount(){
     console.log("in componentDidMount editProject")
     console.log("props currentProject", this.props.currentProject)
-    let temp = this.props.currentProject
-    if (!this.props.currentProject){
-      console.log('error no props');
-    } else {
-      this.setState({
-        title: temp.title,
-        description: temp.description,
-        owner: this.props.user._id,
-        targetDate: temp.targetDate,
-        currentProject: temp
-      })
+    // let temp = this.props.currentProject
+    // if (!this.props.currentProject){
+    //   console.log('error no props');
+    // } else {
+    //   this.setState({
+    //     title: temp.title,
+    //     description: temp.description,
+    //     owner: this.props.user._id,
+    //     targetDate: temp.targetDate,
+    //     currentProject: temp
+    //   })
     }
     //
 
@@ -147,7 +147,7 @@ class ConnectedEditProjects extends Component {
         // currentProject: result.data
     //   })
     // })
-  }
+  
 
   handleSubmit = (event) => {
     event.preventDefault();
