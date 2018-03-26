@@ -5,6 +5,12 @@
   /* align-content: center; */
   text-align: center;
   font-family: 'PT Sans Narrow', sans-serif;
+
+}
+.kanban1 {
+  align-content: center;
+  text-align: center;
+  font-family: 'PT Sans Narrow', sans-serif;
 }
 .projectForm {
   /* align-content: center; */
@@ -85,4 +91,12 @@ h4 {
 }
 .ProjItem {
   text-align: center;
+}
+.footer{
+  text-align: center;
+  background-color: #0E8B9E;
+  margin-top: 10pt;
+}
+.linkedin {
+margin-bottom: 5pt;
 }
