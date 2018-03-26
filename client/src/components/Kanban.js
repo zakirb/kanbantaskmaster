@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
-// import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
-import {GridList, GridTile} from 'material-ui/GridList';
+// import {GridList, GridTile} from 'material-ui/GridList';
 // import Grid from 'material-ui/Grid';
 import { Row, Col } from 'react-flexbox-grid';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import '../css/App.css';
-import DropDownMenuTask from './DropDownMenu';
+// import DropDownMenuTask from './DropDownMenu';
 import {Link} from 'react-router-dom';
 import TaskItem from './TaskItem';
 import { connect } from 'react-redux';
@@ -94,7 +93,7 @@ class ConnectedKanbanBoard extends Component {
       }).then( result => {
         console.log(result.data)
         this.props.liftProjectToState(result.data)
-      })
+      }).catch( err => console.log(err))
     }
   }
 
@@ -120,7 +119,7 @@ class ConnectedKanbanBoard extends Component {
   })
   this.props.liftAllProjectsToState(newProjects)
   this.props.liftProjectToState()
-  })
+  }).catch( err => console.log(err))
 }
 
 handleEdit = (projectId) => {

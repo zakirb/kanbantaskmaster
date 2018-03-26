@@ -1,12 +1,13 @@
-Just getting the boilerplate going.
-
 # Project Workflow Organizer
 
 Project 3 - GA
 
 Team: Zakir B, Daniel V, Tim H
-- A link to your hosted working app in the URL section of your Github repo
-- A team git repository hosted on Github, with a link to your hosted project, and frequent commits from every team member dating back to the very beginning of the project.
+- [Hosted App](https://github.com/zakirb/workflow-organizer-project-3)
+
+- [Zakir B && Team Github](https://github.com/zakirb/workflow-organizer-project-3)
+- [Dan V Github](https://github.com/danielrvancura/workflow-organizer-project-3)
+- [Tim H Github](https://github.com/Tim-Hass-GA/workflow-organizer-project-3)
 
 ## User Stories:
 - Gene is the owner of a small start-up business and needs a way to keep his handful of employees on task. {insert site name here} helps by allowing Gene to add team members and assigning tasks to each one and monitor their progress.
@@ -18,9 +19,15 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 Redux, Redux-Thunk, React, React-Router, MongoDB, Mongoose, Express, Express-JWT, Passport, Bcrypt, Body-Parser, Connect-Flash, Cookie-Parser, DotEnv, JSONWebToken, Materialize UI
 
 ## Getting Started
-* Run `npm install` to install dependencies
+* Run `npm install` to install dependencies at root
+* Run `npm install` to install dependencies in /client
 
 ### Wire Frames
+title
+![Image of Wireframes](./readme_images/WireFrames-00.png)
+
+title
+![Image of Wireframes](./readme_images/WireFrames-01.png)
 
 ### Models
 
@@ -36,16 +43,15 @@ GET | /projects | read | - returns project component
 POST | /project | create | - creates a new project
 DELETE | /project | delete | - deletes a project
 POST | /task | create | - creates a new task for the current project
+PUT | /project | update | - update a project
 PUT | /taskstatus | update | - updates the status of a task for the current project
-
 
 ### CRUD Routes (incomplete)
 Verb | Path | Action | Used for
 ------------ | ------------- | ------------ | -------------
 GET | edit/profile/:id | read | - returns form to update the user profile
-PUT | update/:id | update | - updates user profile data
-DELETE | delete/:id | delete | - deletes user profile and all associated data
-PUT | /project | update | - update a project
+PUT | update/user/:id | update | - updates user profile data
+DELETE | delete/user/:id | delete | - deletes user profile and all associated data
 DELETE | /task | delete | - deletes a task
 PUT | /task | update | - update a task for the current project
 
@@ -71,10 +77,10 @@ Researched topics new to the team
 - Refactoring components, refining styles, found a race issue for edit projects and edit tasks,
 
 #### Day 7 (Saturday)
-- Implemented Kanban Board, working with racing conditions....
+- Implemented Kanban Board, battling racing conditions....
 
 #### Day 8 (Sunday)
-- Finalizing style,
+- Finalizing styling on pages, completed edit project route, cleaned up code
 
 
 #### unsolved problems && major hurdles
