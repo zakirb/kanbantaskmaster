@@ -98,7 +98,8 @@ h4 {
   margin-left: 400px;
 }
 .row {
-  align-content: center;
+  align-content: end;
+  justify-content: center;
 }
 .ProjItem {
   text-align: center;

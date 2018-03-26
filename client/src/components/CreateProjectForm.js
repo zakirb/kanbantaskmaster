@@ -7,6 +7,7 @@ import FlatButton from 'material-ui/FlatButton';
 import { Row, Col } from 'react-flexbox-grid';
 import { liftProjectToState } from "../actions/index"
 import { Link } from 'react-router-dom';
+import Snackbar from 'material-ui/Snackbar';
 
 const style = {
   card_style: {
@@ -48,7 +49,8 @@ class ConnectedCreateProjectForm extends Component {
       title: '',
       description:'',
       owner: '',
-      targetDate:null
+      targetDate:null,
+      snackBarOpen: false
     }
     this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -98,14 +100,16 @@ class ConnectedCreateProjectForm extends Component {
       this.setState({
         title: '',
         description:'',
-        targetDate:null
+        targetDate:null,
+        snackBarOpen:true
       })
-
-
-      console.log('THIS IS THE RESULT AFTER PROJECT IS LIFTED', result.data.project)
-      // Redirect to a react route
     })
   }
+  handleRequestClose = () => {
+    this.setState({
+      snackBarOpen: false,
+    });
+  };
 
   render() {
     const { title, description, owner, targetDate } = this.state
@@ -138,6 +142,12 @@ class ConnectedCreateProjectForm extends Component {
             </form>
           </Card>
         </Col>
+        <Snackbar
+          open={this.state.snackBarOpen}
+          message="Project Created"
+          autoHideDuration={4000}
+          onRequestClose={this.handleRequestClose}
+        />
       </Row>
     )
   }

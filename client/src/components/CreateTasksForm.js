@@ -6,7 +6,8 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 import FlatButton from 'material-ui/FlatButton';
 import { Row, Col } from 'react-flexbox-grid';
 import { liftProjectToState } from "../actions/index";
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import Snackbar from 'material-ui/Snackbar';
 
 
 
@@ -52,7 +53,8 @@ class ConnectedCreateTasksForm extends Component {
       description: '',
       assignTo:'',
       targetDate:null,
-      task_status: "todo"
+      task_status: "todo",
+      snackBarOpen: false
     }
     this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -105,12 +107,19 @@ class ConnectedCreateTasksForm extends Component {
         description:'',
         assignTo:'',
         targetDate:null,
-        task_status:"todo"
+        task_status:"todo",
+        snackBarOpen: true
       })
       // this.props.liftProjectToState
       // Redirect to a react route
     })
   }
+
+  handleRequestClose = () => {
+    this.setState({
+      snackBarOpen: false,
+    });
+  };
 
   render() {
     const { description, assignTo, targetDate, task_status} = this.state
@@ -149,6 +158,12 @@ class ConnectedCreateTasksForm extends Component {
             </form>
             </Card>
           </Col>
+          <Snackbar
+            open={this.state.snackBarOpen}
+            message="Task Created"
+            autoHideDuration={4000}
+            onRequestClose={this.handleRequestClose}
+          />
         </Row>
       )
   }

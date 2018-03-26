@@ -7,11 +7,12 @@ import { connect } from 'react-redux';
 import Paper from 'material-ui/Paper';
 import { Row, Col } from 'react-flexbox-grid';
 
+
 const style = {
   margin: 10,
   padding: 15,
   textAlign: 'center',
-  display: 'inline-block',
+  display: 'inline-block'
 };
 
 const mapStateToProps = state => {
@@ -102,7 +103,7 @@ class ConnectedProjects extends Component {
       <Row>
         <Col xs={12}>
           <Row center="xs">
-            <div className='row center-xs'>
+
               <Paper style={style}>
                 <div className='col '>
                   <h1>Projects</h1>
@@ -110,7 +111,7 @@ class ConnectedProjects extends Component {
                   <ProjectList projects={this.state.projectsToDisplay || this.props.allProjects}/>
                 </div>
               </Paper>
-            </div>
+
           </Row>
         </Col>
       </Row>
