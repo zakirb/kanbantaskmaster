@@ -19,6 +19,9 @@ const style = {
   layout: {
     zDepth: 10,
     margin: 10
+  },
+  input: {
+    height:25
   }
 }
 
@@ -119,9 +122,9 @@ class ConnectedCreateProjectForm extends Component {
             <form onSubmit={this.handleSubmit}>
               <h3>Create Project Form</h3>
               <p>Project Name</p>
-                <input type='text' className="input" placeholder="Project Name" name='title' value={title} onChange={this.handleChange} />
+                <input type='text' className="input" placeholder="Project Name" style={style.input} name='title' value={title} onChange={this.handleChange} />
               <p>Description</p>
-                <input type='text' className="input" placeholder="Description" name='description' value={description} onChange={this.handleChange} />
+                <input type='text' className="input" placeholder="Description" style={style.input} name='description' value={description} onChange={this.handleChange} />
               <p>End Date</p>
               <DatePicker  value={targetDate} onChange={this.handleDateChange} hintText="End Date" container="inline" />
               <CardActions>

@@ -22,6 +22,9 @@ const style = {
     textAlign: 'center',
     background: '#17CBF7',
     justifyContent: "center"
+  },
+  input: {
+    height: 25
   }
 }
 
@@ -124,9 +127,9 @@ class ConnectedCreateTasksForm extends Component {
           <form onSubmit={this.handleSubmit}>
           <h3>Create Task Form</h3>
               <p>To Do</p>
-                <input type='text' className="input" placeholder="To Do" name='description' value={description} onChange={this.handleChange} />
+                <input type='text' className="input" style={style.input} placeholder="To Do" name='description' value={description} onChange={this.handleChange} />
               <p>Team Member</p>
-                <input type='text' className="input" placeholder="Team Member" name='assignTo' value={assignTo} onChange={this.handleChange} />
+                <input type='text' className="input" style={style.input} placeholder="Team Member" name='assignTo' value={assignTo} onChange={this.handleChange} />
               <p>Task Status</p>
                 <select name="task_status" value={task_status} onChange={this.handleChange}>
                   <option value="todo">To Do</option>
