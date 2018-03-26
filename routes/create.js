@@ -33,8 +33,8 @@ router.post('/task', (req, res, next) => {
     if (err) {
       console.log('ERROR 1')
     } else {
-      console.log('PROJECT SHOULD BE HERE')
-      console.log(project)
+      // console.log('PROJECT SHOULD BE HERE')
+      // console.log(project)
 
     var newTask =  project.tasks.create({
         description: req.body.description,
@@ -43,13 +43,13 @@ router.post('/task', (req, res, next) => {
         target_date:req.body.target_date
       })
 
-
     project.tasks.push(newTask)
     project.save( (err) => {
       if (err) {
         console.log('ERROR ' + err)
       } else {
         console.log('SUCCESS PUSHING newTask')
+        console.log(project)
         res.json(project)
       }
     })

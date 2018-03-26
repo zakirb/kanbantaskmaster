@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import '../css/App.css';
-// import Projects from './Projects';
 import Signup from './Signup';
 import Login from './Login';
 import { UserProfile } from './UserProfile';
@@ -84,7 +83,6 @@ class ConnectedUserAccess extends Component {
               <UserProfile user={theUser} logout={this.props.logout} />
             </div>
           </div>
-          {/* <Projects /> */}
         </div>
         </Col>
         </Row>
@@ -95,15 +93,11 @@ class ConnectedUserAccess extends Component {
           <Col>
         <div className="login" style={style.layout}>
           <GridTile>
-            {/* <div className="col s6 m6 l6"> */}
               <Signup />
-            {/* </div> */}
           </GridTile>
 
           <GridTile>
-            {/* <div className="col s6 m6 l6"> */}
               <Login />
-            {/* </div> */}
           </GridTile>
         </div>
         </Col>

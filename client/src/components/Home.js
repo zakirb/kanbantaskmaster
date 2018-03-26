@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import Paper from 'material-ui/Paper';
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+// import Paper from 'material-ui/Paper';
+import {Card} from 'material-ui/Card';
 import { Row, Col } from 'react-flexbox-grid';
 import ImageCarousel from './Carousel.js';
 import {React_Bootstrap_Carousel} from 'react-bootstrap-carousel';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'react-bootstrap-carousel/dist/react-bootstrap-carousel.css';
+import Footer from './Footer.js';
 const style = {
 card_style: {
   width: 1250,
@@ -33,6 +34,7 @@ class Home extends Component {
         </Col>
       </Row>
         <ImageCarousel />
+        <Footer />
     </div>
 
 

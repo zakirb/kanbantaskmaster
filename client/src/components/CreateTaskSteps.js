@@ -2,7 +2,7 @@ import React from 'react';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 
-
+// TODO implement create task steps for tasks
 
 const CreateTaskSteps = (props) => (
   <div>

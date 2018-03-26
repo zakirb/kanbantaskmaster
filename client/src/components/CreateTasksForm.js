@@ -5,15 +5,10 @@ import DatePicker from 'material-ui/DatePicker';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import { Row, Col } from 'react-flexbox-grid';
-// import DropDownMenuTask from './DropDownMenu';
-// import CreateTaskSteps from './CreateTaskSteps';
-// import { addProject } from "../actions/index"
+import { liftProjectToState } from "../actions/index"
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     addProject: project => dispatch(addProject(project))
-//   }
-// }
+
+
 const style = {
   root: {
     display: 'flex',
@@ -25,6 +20,12 @@ const style = {
     margin: 5,
     textAlign: 'center',
     background: '#17CBF7'
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    liftProjectToState: project => dispatch(liftProjectToState(project))
   }
 }
 
@@ -43,7 +44,6 @@ class ConnectedCreateTasksForm extends Component {
     this.state = {
       description: '',
       assignTo:'',
-      connectedDate: null,
       targetDate:null,
       task_status: "todo"
     }
@@ -56,17 +56,20 @@ class ConnectedCreateTasksForm extends Component {
   }
 
   handleDateChange = (event, date) => {
-    var targetDate = {
-        year: date.getFullYear(),
-        month: date.getMonth() + 1,
-        day: date.getDate()
-      }
-
     this.setState({
-      connectedDate: date,
       targetDate: date
     })
   }
+
+  // canBeSubmitted(){
+  //   const { description, assignTo, targetDate } = this.state
+  //   console.log(targetDate)
+  //   return (
+  //     description.length > 0 &&
+  //     assignTo.length > 0 &&
+  //     targetDate != null
+  //   );
+  // }
 
   handleSubmit(e) {
     // if (!this.canBeSubmitted()){
@@ -81,16 +84,15 @@ class ConnectedCreateTasksForm extends Component {
       target_date:this.state.targetDate,
       project_id: this.props.currentProject._id
     }).then( result => {
-      console.log(result.data)
-      console.log('RESULT AFTER POSTING FROM CreateTaskForm')
+      console.log('RESULT AFTER POSTING FROM CreateTaskForm', result.data)
+      this.props.liftProjectToState(result.data)
       // this.props.liftProjectToState
       // Redirect to a react route
     })
   }
 
-//description, target_date, status [todo in progress in review completed], assignto, steps, tasks, projectid
   render() {
-    const { description, assignTo, connectedDate, task_status} = this.state
+    const { description, assignTo, targetDate, task_status} = this.state
     return (
       <Row center="xs">
         <Col>
@@ -102,28 +104,27 @@ class ConnectedCreateTasksForm extends Component {
               <p>Team Member</p>
                 <input type='text' className="input" placeholder="Team Member" name='assignTo' value={assignTo} onChange={this.handleChange} />
               <p>Task Status</p>
-              {/* <DropDownMenuTask /> */}
                 <select name="task_status" value={task_status} onChange={this.handleChange}>
                   <option value="todo">To Do</option>
                   <option value="progress">In Progress</option>
                   <option value="review">In Review</option>
                   <option value="completed">Completed</option>
                 </select>
-                {/* <input type='text' className="input" placeholder="Task Status" name='task_status' value={task_status} onChange={this.handleChange} /> */}
               <p>Due Date</p>
-              <DatePicker hintText="Due Date" value={connectedDate} onChange={this.handleDateChange} container="inline" />
-              {/* <CreateTaskSteps value={task_steps} onChange={this.handleChange}/> */}
+              <DatePicker hintText="Due Date" value={targetDate} onChange={this.handleDateChange} container="inline" />
               <CardActions>
-                {/* <FlatButton type="btn " label="Add New Step" /> */}
-                <FlatButton type="submit" label="Add Task" />
+                <FlatButton type="submit"
+                  label="Add Task"
+                  // disabled={!isEnabled}
+                />
               </CardActions>
             </form>
-          </Card>
-        </Col>
-      </Row>
-    )
+            </Card>
+          </Col>
+        </Row>
+      )
   }
 }
 
-const CreateTasksForm = connect(mapStateToProps, null)(ConnectedCreateTasksForm)
+const CreateTasksForm = connect(mapStateToProps, mapDispatchToProps)(ConnectedCreateTasksForm)
 export default CreateTasksForm;

@@ -2,18 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import DatePicker from 'material-ui/DatePicker';
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import {Card, CardActions} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
-// import Paper from 'material-ui/Paper';
 import { Row, Col } from 'react-flexbox-grid';
 import { liftProjectToState } from "../actions/index"
 
 const style = {
-  // root: {
-  //   display: 'flex',
-  //   flexWrap: 'wrap',
-  //   justifyContent: 'space-around',
-  // },
   card_style: {
     width: 300,
     height: 400,
@@ -74,11 +68,20 @@ class ConnectedCreateProjectForm extends Component {
     })
   }
 
+  canBeSubmitted(){
+    const { title, description, targetDate } = this.state
+    return (
+      title.length > 0 &&
+      description.length > 0 &&
+      targetDate != null
+    );
+  }
+
   handleSubmit(e) {
-    // if (!this.canBeSubmitted()){
-    //   e.preventDefault()
-    //   return;
-    // }
+    if (!this.canBeSubmitted()){
+      e.preventDefault()
+      return;
+    }
     e.preventDefault()
     axios.post('/create/project',{
       title: this.state.title,
@@ -97,6 +100,8 @@ class ConnectedCreateProjectForm extends Component {
 
   render() {
     const { title, description, owner, connectedDate } = this.state
+    const isEnabled = this.canBeSubmitted();
+
     return (
       <Row center="xs">
         <Col>
@@ -110,7 +115,11 @@ class ConnectedCreateProjectForm extends Component {
               <p>End Date</p>
               <DatePicker  value={connectedDate} onChange={this.handleDateChange} hintText="End Date" container="inline" />
               <CardActions>
-                <FlatButton type="submit" label="Add Project" />
+                <FlatButton
+                  type="submit"
+                  label="Add Project"
+                  disabled={!isEnabled}
+                />
                 {/* <FlatButton label="Reset?" /> */}
               </CardActions>
             </form>
