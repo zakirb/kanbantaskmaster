@@ -5,10 +5,9 @@ var Project = require('../models/project');
 var Task = require('../models/project')
 
 
-router.post('/projects', (req, res, next) => {
-  var userId = req.body.userId
+router.get('/projects', (req, res, next) => {
+  var userId = req.query.userId
   Project.find({"user_id":userId}, (err, projects) => {
-    console.log(projects)
     res.json(projects)
   })
 })

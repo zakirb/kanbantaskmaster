@@ -5,6 +5,7 @@ import DatePicker from 'material-ui/DatePicker';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import { Row, Col } from 'react-flexbox-grid';
+import { liftProjectToState } from "../actions/index"
 // import DropDownMenuTask from './DropDownMenu';
 // import CreateTaskSteps from './CreateTaskSteps';
 // import { addProject } from "../actions/index"
@@ -28,6 +29,12 @@ const style = {
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    liftProjectToState: project => dispatch(liftProjectToState(project))
+  }
+}
+
 const mapStateToProps = state => {
   return {
     user: state.user,
@@ -43,7 +50,6 @@ class ConnectedCreateTasksForm extends Component {
     this.state = {
       description: '',
       assignTo:'',
-      connectedDate: null,
       targetDate:null,
       task_status: "todo"
     }
@@ -56,14 +62,7 @@ class ConnectedCreateTasksForm extends Component {
   }
 
   handleDateChange = (event, date) => {
-    var targetDate = {
-        year: date.getFullYear(),
-        month: date.getMonth() + 1,
-        day: date.getDate()
-      }
-
     this.setState({
-      connectedDate: date,
       targetDate: date
     })
   }
@@ -81,8 +80,8 @@ class ConnectedCreateTasksForm extends Component {
       target_date:this.state.targetDate,
       project_id: this.props.currentProject._id
     }).then( result => {
-      console.log(result.data)
-      console.log('RESULT AFTER POSTING FROM CreateTaskForm')
+      console.log('RESULT AFTER POSTING FROM CreateTaskForm', result.data)
+      this.props.liftProjectToState(result.data)
       // this.props.liftProjectToState
       // Redirect to a react route
     })
@@ -90,7 +89,7 @@ class ConnectedCreateTasksForm extends Component {
 
 //description, target_date, status [todo in progress in review completed], assignto, steps, tasks, projectid
   render() {
-    const { description, assignTo, connectedDate, task_status} = this.state
+    const { description, assignTo, targetDate, task_status} = this.state
     return (
       <Row center="xs">
         <Col>
@@ -111,7 +110,7 @@ class ConnectedCreateTasksForm extends Component {
                 </select>
                 {/* <input type='text' className="input" placeholder="Task Status" name='task_status' value={task_status} onChange={this.handleChange} /> */}
               <p>Due Date</p>
-              <DatePicker hintText="Due Date" value={connectedDate} onChange={this.handleDateChange} container="inline" />
+              <DatePicker hintText="Due Date" value={targetDate} onChange={this.handleDateChange} container="inline" />
               {/* <CreateTaskSteps value={task_steps} onChange={this.handleChange}/> */}
               <CardActions>
                 {/* <FlatButton type="btn " label="Add New Step" /> */}
@@ -125,5 +124,5 @@ class ConnectedCreateTasksForm extends Component {
   }
 }
 
-const CreateTasksForm = connect(mapStateToProps, null)(ConnectedCreateTasksForm)
+const CreateTasksForm = connect(mapStateToProps, mapDispatchToProps)(ConnectedCreateTasksForm)
 export default CreateTasksForm;
