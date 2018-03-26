@@ -178,25 +178,24 @@ handleEdit = (projectId) => {
       }
     }
 
-
-  if (this.props.currentProject) {
-    var projectHeader = (
-      <div>
-        <Card style={style.card_style}>
-          <CardHeader
-            title={this.props.currentProject.title}
-          />
-          <CardText>
-            <p>{this.props.currentProject.description}</p>
-          </CardText>
-          <CardActions>
-              <Link to='/Projects/edit'><RaisedButton label="Edit" onClick={ () => this.handleEdit(this.state.currentProject._id)} /></Link>
-              <Link to='/Projects'><RaisedButton label="Delete" onClick={ () => this.handleDelete(this.state.currentProject._id)} /></Link>
-          </CardActions>
-        </Card>
-      </div>
-    )
-  }
+    if (this.props.currentProject) {
+      var projectHeader = (
+        <div>
+          <Card style={style.card_style}>
+            <CardHeader
+              title={this.props.currentProject.title}
+            />
+            <CardText>
+              <p>{this.props.currentProject.description}</p>
+            </CardText>
+            <CardActions>
+                <Link to='/Projects/edit'><RaisedButton label="Edit" onClick={ () => this.handleEdit(this.state.currentProject._id)} /></Link>
+                <Link to='/Projects'><RaisedButton label="Delete" onClick={ () => this.handleDelete(this.state.currentProject._id)} /></Link>
+            </CardActions>
+          </Card>
+        </div>
+      )
+    }
 
 
     return (
