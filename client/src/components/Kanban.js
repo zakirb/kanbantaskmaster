@@ -203,50 +203,50 @@ handleEdit = (projectId) => {
 
 
     return (
-  <MuiThemeProvider>
-    {projectHeader}
-      <div>
-        <h2 className="kanban">Kanban Board</h2>
-          <Row around="xs" middle="xs">
-            <Col>
-              <Row center="xs">
-                <Col>
-                  <h3 className="kanban">To Do</h3>
-                </Col>
+      <MuiThemeProvider>
+        {projectHeader}
+        <div>
+          <h2 className="kanban">Kanban Board</h2>
+          <Row>
+
+            <Col xs={12} sm={6} md={3}>
+              <Row center="xs" top="xs">
+                <h3 className="kanban">To Do</h3>
               </Row>
-              {ToDoTaskItems || <TaskItem style={style.card_styleToDo}/>}
-          </Col>
+              <Row center="xs">
+                {ToDoTaskItems || <TaskItem style={style.card_styleToDo}/>}
+              </Row>
+            </Col>
 
-        <Col>
-          <Row center="xs">
-            <Col>
-              <h3 className="kanban">In Progress</h3>
+            <Col xs={12} sm={6} md={3}>
+              <Row center="xs" top="xs">
+                <h3 className="kanban">In Progress</h3>
+              </Row>
+              <Row center="xs">
+                {InProgressTaskItems || (<TaskItem style={style.card_styleProgress} />)}
+              </Row>
+            </Col>
+
+            <Col xs={12} sm={6} md={3}>
+              <Row center="xs" top="xs">
+                <h3 className="kanban">In Review</h3>
+              </Row>
+              <Row center="xs">
+                {InReviewTaskItems || (<TaskItem style={style.card_styleReview} />)}
+              </Row>
+            </Col>
+
+            <Col xs={12} sm={6} md={3}>
+              <Row center="xs" top="xs">
+                <h3 className="kanban">Completed</h3>
+              </Row>
+              <Row center="xs">
+                {CompletedTaskItems || (<TaskItem style={style.card_styleCompleted} />)}
+              </Row>
             </Col>
           </Row>
-            {InProgressTaskItems || (<TaskItem style={style.card_styleProgress} />)}
-        </Col>
-
-        <Col>
-          <Row center="xs">
-            <Col>
-              <h3 className="kanban">In Review</h3>
-            </Col>
-          </Row>
-            {InReviewTaskItems || (<TaskItem style={style.card_styleReview} />)}
-        </Col>
-
-        <Col>
-          <Row center="xs">
-            <Col>
-              <h3 className="kanban">Completed</h3>
-            </Col>
-          </Row>
-            {CompletedTaskItems || (<TaskItem style={style.card_styleCompleted} />)}
-
-        </Col>
-      </Row>
-    </div>
-  </MuiThemeProvider>
+        </div>
+      </MuiThemeProvider>
     );
   }
 }

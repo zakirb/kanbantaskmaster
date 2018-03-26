@@ -42,8 +42,8 @@ class ConnectedProjects extends Component {
   }
 
   getProjects = () => {
-    axios.post('/view/projects', {
-      userId:this.props.user._id
+    axios.get('/view/projects', {
+      params:{userId:this.props.user._id}
     }).then( result => {
       console.log(this.props);
       console.log('did mount', result)
