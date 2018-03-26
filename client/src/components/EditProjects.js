@@ -83,8 +83,11 @@ class ConnectedEditProjects extends Component {
        title: newProps.currentProject.title,
        description: newProps.currentProject.description,
        targetDate: currentTargetDate,
-       project: newProps.currentProject
+       project: newProps.currentProject,
+       _id: newProps.currentProject._id
      })
+   } else {
+
    }
   }
 
@@ -102,19 +105,9 @@ class ConnectedEditProjects extends Component {
   componentDidMount(){
     console.log("in componentDidMount editProject")
     console.log("props currentProject", this.props.currentProject)
-    // let temp = this.props.currentProject
-    // if (!this.props.currentProject){
-    //   console.log('error no props');
-    // } else {
-    //   this.setState({
-    //     title: temp.title,
-    //     description: temp.description,
-    //     owner: this.props.user._id,
-    //     targetDate: temp.targetDate,
-    //     currentProject: temp
-    //   })
+
     }
-    //
+
 
     // this is our dispatcher
     // this is how to handle
@@ -147,18 +140,18 @@ class ConnectedEditProjects extends Component {
         // currentProject: result.data
     //   })
     // })
-  
+
 
   handleSubmit = (event) => {
     event.preventDefault();
-    axios.post('/edit/project', {
+    axios.put('/edit/project', {
       title: this.state.title,
       description: this.state.description,
-      owner: this.props.user._id,
-      targetDate: this.state.targetDate
+      target_date: this.state.targetDate,
+      _id: this.state._id
     }).then( result => {
       this.props.liftProjectToState(result.data)
-      console.log('THIS IS THE RESULT AFTER EDIT PROJECT FROM EditProject.js')
+      console.log('THIS IS THE RESULT AFTER EDIT PROJECT FROM EditProject.js', result.data)
     })
   }
 
@@ -177,7 +170,7 @@ class ConnectedEditProjects extends Component {
               <p>Edit End Date</p>
               <DatePicker  value={targetDate} onChange={this.handleDateChange} hintText="End Date" container="inline" />
               <CardActions>
-                <FlatButton label="Update Project" />
+                <FlatButton type="submit" label="Update Project" />
               </CardActions>
             </form>
           </Card>
