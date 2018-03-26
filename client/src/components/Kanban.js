@@ -75,7 +75,9 @@ class ConnectedKanbanBoard extends Component {
   }
 
   componentWillReceiveProps = (newProps) => {
-    console.log("THESE ARE THE NEW PROPS", newProps)
+    this.setState({
+      currentProject: newProps.currentProject
+    })
   }
 
   moveTask (task, task_status) {
@@ -96,6 +98,37 @@ class ConnectedKanbanBoard extends Component {
     console.log('BELOW IS STATE/PROJECT BEFORE MOUNT', this.props.currentProject)
 
   }
+
+  handleDelete = (projectId) => {
+  console.log(projectId)
+  console.log('HANDLING DELETE FUNCTION');
+  axios.delete('/destroy/project', {params:
+    {projectId}
+  }).then( result => {
+    console.log(result.data)
+
+    console.log(this.props.currentProject)
+
+  var newProjects =  this.props.currentProject.filter( (project) => {
+    if (project._id !== result.data._id) {
+      return project
+    }
+  })
+  this.props.liftAllProjectsToState(newProjects)
+  this.props.liftProjectToState()
+  })
+}
+
+handleEdit = (projectId) => {
+  console.log(projectId)
+  console.log('HANDLING EDIT FUNCTION');
+  axios.get('/view/findOne/project', {
+    params: {projectId}
+  }).then( result => {
+    console.log(result.data)
+    this.props.liftProjectToState(result.data)
+  }).catch( err => console.log(err))
+}
 
 
 
@@ -145,10 +178,30 @@ class ConnectedKanbanBoard extends Component {
     }
 
 
+  if (this.props.currentProject) {
+    var projectHeader = (
+      <div>
+        <Card style={style.card_style}>
+          <CardHeader
+            title={this.props.currentProject.title}
+          />
+          <CardText>
+            <p>{this.props.currentProject.description}</p>
+          </CardText>
+          <CardActions>
+              <Link to='/Projects/edit'><RaisedButton label="Edit" onClick={ () => this.handleEdit(this.state.currentProject._id)} /></Link>
+              <Link to='/Projects'><RaisedButton label="Delete" onClick={ () => this.handleDelete(this.state.currentProject._id)} /></Link>
+          </CardActions>
+        </Card>
+      </div>
+    )
+  }
+
 
 
     return (
   <MuiThemeProvider>
+    {projectHeader}
       <div>
         <h2 className="kanban">Kanban Board</h2>
           <Row around="xs" middle="xs">
