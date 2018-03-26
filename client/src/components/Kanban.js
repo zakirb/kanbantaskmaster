@@ -12,7 +12,7 @@ import {Link} from 'react-router-dom';
 import TaskItem from './TaskItem';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { changeTaskStatus, liftProjectToState } from '../actions/index'
+import { changeTaskStatus, liftProjectToState, liftAllProjectsToState } from '../actions/index'
 
 
 
@@ -53,7 +53,8 @@ const style = {
 
 const mapDispatchToProps = dispatch => {
   return {
-    liftProjectToState: project => dispatch(liftProjectToState(project))
+    liftProjectToState: project => dispatch(liftProjectToState(project)),
+    liftAllProjectsToState: project => dispatch(liftAllProjectsToState(project))
   }
 }
 
@@ -61,7 +62,8 @@ const mapStateToProps = state => {
   return {
     user: state.user,
     token: state.token,
-    currentProject:state.currentProject
+    currentProject:state.currentProject,
+    allProjects: state.allProjects
   }
 }
 
@@ -69,14 +71,16 @@ class ConnectedKanbanBoard extends Component {
   constructor(props){
     super(props)
     this.state = {
-      currentProject: props.currentProject
+      currentProject: props.currentProject,
+      allProjects: props.allProjects
     }
     this.moveTask = this.moveTask.bind(this)
   }
 
   componentWillReceiveProps = (newProps) => {
     this.setState({
-      currentProject: newProps.currentProject
+      currentProject : newProps.currentProject,
+      allProjects: newProps.currentProject
     })
   }
 
@@ -109,7 +113,7 @@ class ConnectedKanbanBoard extends Component {
 
     console.log(this.props.currentProject)
 
-  var newProjects =  this.props.currentProject.filter( (project) => {
+  var newProjects =  this.props.allProjects.filter( (project) => {
     if (project._id !== result.data._id) {
       return project
     }
@@ -136,7 +140,7 @@ handleEdit = (projectId) => {
 
     if (this.props.currentProject) {
       if (this.props.currentProject.tasks) {
-        console.log('currentProject at RENDER',this.props.currentProject )
+        console.log('currentProject at RENDER',this.props.currentProject, this.state.currentProject )
 
         // To Do
         var TasksToDo = this.props.currentProject.tasks.filter( task => {
