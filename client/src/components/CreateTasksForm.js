@@ -5,15 +5,8 @@ import DatePicker from 'material-ui/DatePicker';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import { Row, Col } from 'react-flexbox-grid';
-// import DropDownMenuTask from './DropDownMenu';
-// import CreateTaskSteps from './CreateTaskSteps';
-// import { addProject } from "../actions/index"
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     addProject: project => dispatch(addProject(project))
-//   }
-// }
+
 const style = {
   root: {
     display: 'flex',
@@ -42,10 +35,10 @@ class ConnectedCreateTasksForm extends Component {
     super()
     this.state = {
       description: '',
-      assignTo:'',
+      assignTo: '',
       connectedDate: null,
-      targetDate:null,
-      task_status: "todo"
+      targetDate: null,
+      task_status: ''
     }
     this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -68,6 +61,16 @@ class ConnectedCreateTasksForm extends Component {
     })
   }
 
+  // canBeSubmitted(){
+  //   const { description, assignTo, targetDate } = this.state
+  //   console.log(targetDate)
+  //   return (
+  //     description.length > 0 &&
+  //     assignTo.length > 0 &&
+  //     targetDate != null
+  //   );
+  // }
+
   handleSubmit(e) {
     // if (!this.canBeSubmitted()){
     //   e.preventDefault()
@@ -88,9 +91,10 @@ class ConnectedCreateTasksForm extends Component {
     })
   }
 
-//description, target_date, status [todo in progress in review completed], assignto, steps, tasks, projectid
   render() {
     const { description, assignTo, connectedDate, task_status} = this.state
+    // const isEnabled = this.canBeSubmitted();
+
     return (
       <Row center="xs">
         <Col>
@@ -102,26 +106,25 @@ class ConnectedCreateTasksForm extends Component {
               <p>Team Member</p>
                 <input type='text' className="input" placeholder="Team Member" name='assignTo' value={assignTo} onChange={this.handleChange} />
               <p>Task Status</p>
-              {/* <DropDownMenuTask /> */}
                 <select name="task_status" value={task_status} onChange={this.handleChange}>
                   <option value="todo">To Do</option>
                   <option value="progress">In Progress</option>
                   <option value="review">In Review</option>
                   <option value="completed">Completed</option>
                 </select>
-                {/* <input type='text' className="input" placeholder="Task Status" name='task_status' value={task_status} onChange={this.handleChange} /> */}
               <p>Due Date</p>
               <DatePicker hintText="Due Date" value={connectedDate} onChange={this.handleDateChange} container="inline" />
-              {/* <CreateTaskSteps value={task_steps} onChange={this.handleChange}/> */}
               <CardActions>
-                {/* <FlatButton type="btn " label="Add New Step" /> */}
-                <FlatButton type="submit" label="Add Task" />
+                <FlatButton type="submit"
+                  label="Add Task"
+                  // disabled={!isEnabled}
+                />
               </CardActions>
             </form>
-          </Card>
-        </Col>
-      </Row>
-    )
+            </Card>
+          </Col>
+        </Row>
+      )
   }
 }
 

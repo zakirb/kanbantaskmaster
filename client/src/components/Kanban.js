@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
-// import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
-import {GridList, GridTile} from 'material-ui/GridList';
+// import {GridList, GridTile} from 'material-ui/GridList';
 // import Grid from 'material-ui/Grid';
 import { Row, Col } from 'react-flexbox-grid';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import '../css/App.css';
-import DropDownMenuTask from './DropDownMenu';
+// import DropDownMenuTask from './DropDownMenu';
 import {Link} from 'react-router-dom';
 import TaskItem from './TaskItem';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { changeTaskStatus, liftProjectToState } from '../actions/index'
+import { changeTaskStatus, liftProjectToState, liftAllProjectsToState } from '../actions/index'
 
 
 
@@ -53,7 +52,8 @@ const style = {
 
 const mapDispatchToProps = dispatch => {
   return {
-    liftProjectToState: project => dispatch(liftProjectToState(project))
+    liftProjectToState: project => dispatch(liftProjectToState(project)),
+    liftAllProjectsToState: project => dispatch(liftAllProjectsToState(project))
   }
 }
 
@@ -61,7 +61,8 @@ const mapStateToProps = state => {
   return {
     user: state.user,
     token: state.token,
-    currentProject:state.currentProject
+    currentProject:state.currentProject,
+    allProjects: state.allProjects
   }
 }
 
@@ -69,15 +70,18 @@ class ConnectedKanbanBoard extends Component {
   constructor(props){
     super(props)
     this.state = {
-      currentProject: props.currentProject
+      currentProject: props.currentProject,
+      allProjects: props.allProjects
     }
     this.moveTask = this.moveTask.bind(this)
   }
 
   componentWillReceiveProps = (newProps) => {
-    console.log("THESE ARE THE NEW PROPS", newProps)
+    this.setState({
+      currentProject : newProps.currentProject,
+      allProjects: newProps.currentProject
+    })
   }
-
 
   moveTask (task, task_status) {
     if (task_status) {
@@ -89,7 +93,7 @@ class ConnectedKanbanBoard extends Component {
       }).then( result => {
         console.log(result.data)
         this.props.liftProjectToState(result.data)
-      })
+      }).catch( err => console.log(err))
     }
   }
 
@@ -98,13 +102,44 @@ class ConnectedKanbanBoard extends Component {
 
   }
 
+  handleDelete = (projectId) => {
+  console.log(projectId)
+  console.log('HANDLING DELETE FUNCTION');
+  axios.delete('/destroy/project', {params:
+    {projectId}
+  }).then( result => {
+    console.log(result.data)
+
+    console.log(this.props.currentProject)
+
+  var newProjects =  this.props.allProjects.filter( (project) => {
+    if (project._id !== result.data._id) {
+      return project
+    }
+  })
+  this.props.liftAllProjectsToState(newProjects)
+  this.props.liftProjectToState()
+  }).catch( err => console.log(err))
+}
+
+handleEdit = (projectId) => {
+  console.log(projectId)
+  console.log('HANDLING EDIT FUNCTION');
+  axios.get('/view/findOne/project', {
+    params: {projectId}
+  }).then( result => {
+    console.log(result.data)
+    this.props.liftProjectToState(result.data)
+  }).catch( err => console.log(err))
+}
+
 
 
   render() {
 
     if (this.props.currentProject) {
       if (this.props.currentProject.tasks) {
-        console.log('currentProject at RENDER',this.props.currentProject )
+        console.log('currentProject at RENDER',this.props.currentProject, this.state.currentProject )
 
         // To Do
         var TasksToDo = this.props.currentProject.tasks.filter( task => {
@@ -146,9 +181,30 @@ class ConnectedKanbanBoard extends Component {
     }
 
 
+  if (this.props.currentProject) {
+    var projectHeader = (
+      <div>
+        <Card style={style.card_style}>
+          <CardHeader
+            title={this.props.currentProject.title}
+          />
+          <CardText>
+            <p>{this.props.currentProject.description}</p>
+          </CardText>
+          <CardActions>
+              <Link to='/Projects/edit'><RaisedButton label="Edit" onClick={ () => this.handleEdit(this.state.currentProject._id)} /></Link>
+              <Link to='/Projects'><RaisedButton label="Delete" onClick={ () => this.handleDelete(this.state.currentProject._id)} /></Link>
+          </CardActions>
+        </Card>
+      </div>
+    )
+  }
+
+
 
     return (
   <MuiThemeProvider>
+    {projectHeader}
       <div>
         <h2 className="kanban">Kanban Board</h2>
           <Row around="xs" middle="xs">

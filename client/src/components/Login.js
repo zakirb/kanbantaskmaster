@@ -30,7 +30,7 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-
+//// CONNECTEDLOGIN ////
 class ConnectedLogin extends Component {
   constructor(props) {
     super()
@@ -83,7 +83,6 @@ class ConnectedLogin extends Component {
     const isEnabled = this.canBeSubmitted();
 
     return (
-
       <Card className="signup" style={style} zDepth={4}>
         <h2>Log In</h2>
         <form onSubmit={this.handleSubmit}>
@@ -115,10 +114,7 @@ class ConnectedLogin extends Component {
           {/* <input type='submit' value='Log In' /> */}
         </form>
       </Card>
-
     )
-
-
   }
 }
 const Login = connect(mapStateToProps, mapDispatchToProps)(ConnectedLogin)

@@ -27,13 +27,6 @@ const mapStateToProps = state => {
   }
 }
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     liftAllProjectsToState: (projects) => dispatch(liftAllProjectsToState(projects)),
-//     liftProjectToState: project => dispatch(liftProjectToState(project))
-//   }
-// }
-
 const mapDispatchToProps = dispatch => {
   return {
     liftAllProjectsToState: (projects) => dispatch(liftAllProjectsToState(projects)),
@@ -65,8 +58,6 @@ class ConnectedProjectList extends Component {
       }
     })
     this.props.liftAllProjectsToState(newProjects)
-
-
     })
   }
 
@@ -101,8 +92,7 @@ class ConnectedProjectList extends Component {
               style={style.card_style}
               key={index}>
               <CardHeader
-                title={<Link  onClick={() => this.handleSelectProject(project._id)} style={{textDecoration: 'none', color: 'black'}}to='/ViewProject'>{project.title}</Link>}
-                // subtitle={project.description}
+                title={<Link onClick={() => this.handleSelectProject(project._id)} style={{textDecoration: 'none', color: 'black'}}to='/ViewProject'>{project.title}</Link>}
                 actAsExpander={true}
                 showExpandableButton={true}/>
               <CardActions>
@@ -128,9 +118,7 @@ class ConnectedProjectList extends Component {
         {projectCard}
       </div>
     )
-
   }
-
 }
 
 const ProjectList = connect(mapStateToProps, mapDispatchToProps)(ConnectedProjectList)
