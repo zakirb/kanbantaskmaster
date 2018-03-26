@@ -70,8 +70,8 @@ class ConnectedNavBar extends Component {
         <nav>
 
           <div className='nav-wrapper teal darken-3'>
-            <Link to='/'><MenuItem primaryText="Home" /></Link>
-            <Link to='/UserAccess'><MenuItem primaryText="User Access" /></Link>
+            <Link to='/'><FlatButton label="Home" /></Link>
+            <Link to='/UserAccess'><FlatButton label="User Access" /></Link>
           </div>
         </nav>
       )
