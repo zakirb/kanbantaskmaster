@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
+// import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
-// import {GridList, GridTile} from 'material-ui/GridList';
+import {GridList, GridTile} from 'material-ui/GridList';
 // import Grid from 'material-ui/Grid';
 import { Row, Col } from 'react-flexbox-grid';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import '../css/App.css';
-// import DropDownMenuTask from './DropDownMenu';
+import DropDownMenuTask from './DropDownMenu';
 import {Link} from 'react-router-dom';
 import TaskItem from './TaskItem';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { changeTaskStatus, liftProjectToState, liftAllProjectsToState } from '../actions/index'
+import { changeTaskStatus, liftProjectToState } from '../actions/index'
 
 
 
@@ -52,8 +53,7 @@ const style = {
 
 const mapDispatchToProps = dispatch => {
   return {
-    liftProjectToState: project => dispatch(liftProjectToState(project)),
-    liftAllProjectsToState: project => dispatch(liftAllProjectsToState(project))
+    liftProjectToState: project => dispatch(liftProjectToState(project))
   }
 }
 
@@ -61,8 +61,7 @@ const mapStateToProps = state => {
   return {
     user: state.user,
     token: state.token,
-    currentProject:state.currentProject,
-    allProjects: state.allProjects
+    currentProject:state.currentProject
   }
 }
 
@@ -70,18 +69,17 @@ class ConnectedKanbanBoard extends Component {
   constructor(props){
     super(props)
     this.state = {
-      currentProject: props.currentProject,
-      allProjects: props.allProjects
+      currentProject: props.currentProject
     }
     this.moveTask = this.moveTask.bind(this)
   }
 
   componentWillReceiveProps = (newProps) => {
     this.setState({
-      currentProject : newProps.currentProject,
-      allProjects: newProps.currentProject
+      currentProject: newProps.currentProject
     })
   }
+
 
   moveTask (task, task_status) {
     if (task_status) {
@@ -93,7 +91,7 @@ class ConnectedKanbanBoard extends Component {
       }).then( result => {
         console.log(result.data)
         this.props.liftProjectToState(result.data)
-      }).catch( err => console.log(err))
+      })
     }
   }
 
@@ -112,14 +110,14 @@ class ConnectedKanbanBoard extends Component {
 
     console.log(this.props.currentProject)
 
-  var newProjects =  this.props.allProjects.filter( (project) => {
+  var newProjects =  this.props.currentProject.filter( (project) => {
     if (project._id !== result.data._id) {
       return project
     }
   })
   this.props.liftAllProjectsToState(newProjects)
   this.props.liftProjectToState()
-  }).catch( err => console.log(err))
+  })
 }
 
 handleEdit = (projectId) => {
@@ -139,7 +137,7 @@ handleEdit = (projectId) => {
 
     if (this.props.currentProject) {
       if (this.props.currentProject.tasks) {
-        console.log('currentProject at RENDER',this.props.currentProject, this.state.currentProject )
+        console.log('currentProject at RENDER',this.props.currentProject )
 
         // To Do
         var TasksToDo = this.props.currentProject.tasks.filter( task => {
@@ -181,53 +179,71 @@ handleEdit = (projectId) => {
     }
 
 
+  if (this.props.currentProject) {
+    var projectHeader = (
+      <div>
+        <Card style={style.card_style}>
+          <CardHeader
+            title={this.props.currentProject.title}
+          />
+          <CardText>
+            <p>{this.props.currentProject.description}</p>
+          </CardText>
+          <CardActions>
+              <Link to='/Projects/edit'><RaisedButton label="Edit" onClick={ () => this.handleEdit(this.state.currentProject._id)} /></Link>
+              <Link to='/Projects'><RaisedButton label="Delete" onClick={ () => this.handleDelete(this.state.currentProject._id)} /></Link>
+          </CardActions>
+        </Card>
+      </div>
+    )
+  }
 
 
     return (
-      <MuiThemeProvider>
-        {projectHeader}
-        <div>
-          <h2 className="kanban">Kanban Board</h2>
-          <Row>
-
-            <Col xs={12} sm={6} md={3}>
-              <Row center="xs" top="xs">
-                <h3 className="kanban">To Do</h3>
-              </Row>
+  <MuiThemeProvider>
+    {projectHeader}
+      <div>
+        <h2 className="kanban">Kanban Board</h2>
+          <Row around="xs" middle="xs">
+            <Col>
               <Row center="xs">
-                {ToDoTaskItems || <TaskItem style={style.card_styleToDo}/>}
+                <Col>
+                  <h3 className="kanban">To Do</h3>
+                </Col>
               </Row>
-            </Col>
+              {ToDoTaskItems || <TaskItem style={style.card_styleToDo}/>}
+          </Col>
 
-            <Col xs={12} sm={6} md={3}>
-              <Row center="xs" top="xs">
-                <h3 className="kanban">In Progress</h3>
-              </Row>
-              <Row center="xs">
-                {InProgressTaskItems || (<TaskItem style={style.card_styleProgress} />)}
-              </Row>
-            </Col>
-
-            <Col xs={12} sm={6} md={3}>
-              <Row center="xs" top="xs">
-                <h3 className="kanban">In Review</h3>
-              </Row>
-              <Row center="xs">
-                {InReviewTaskItems || (<TaskItem style={style.card_styleReview} />)}
-              </Row>
-            </Col>
-
-            <Col xs={12} sm={6} md={3}>
-              <Row center="xs" top="xs">
-                <h3 className="kanban">Completed</h3>
-              </Row>
-              <Row center="xs">
-                {CompletedTaskItems || (<TaskItem style={style.card_styleCompleted} />)}
-              </Row>
+        <Col>
+          <Row center="xs">
+            <Col>
+              <h3 className="kanban">In Progress</h3>
             </Col>
           </Row>
-        </div>
-      </MuiThemeProvider>
+            {InProgressTaskItems || (<TaskItem style={style.card_styleProgress} />)}
+        </Col>
+
+        <Col>
+          <Row center="xs">
+            <Col>
+              <h3 className="kanban">In Review</h3>
+            </Col>
+          </Row>
+            {InReviewTaskItems || (<TaskItem style={style.card_styleReview} />)}
+        </Col>
+
+        <Col>
+          <Row center="xs">
+            <Col>
+              <h3 className="kanban">Completed</h3>
+            </Col>
+          </Row>
+            {CompletedTaskItems || (<TaskItem style={style.card_styleCompleted} />)}
+
+        </Col>
+      </Row>
+    </div>
+  </MuiThemeProvider>
     );
   }
 }
