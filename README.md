@@ -21,6 +21,11 @@ Redux, Redux-Thunk, React, React-Router, MongoDB, Mongoose, Express, Express-JWT
 * Run `npm install` to install dependencies
 
 ### Wire Frames
+title
+![Image of Wireframes](./readme_images/WireFrames-00.png)
+
+title
+![Image of Wireframes](./readme_images/WireFrames-01.png)
 
 ### Models
 
