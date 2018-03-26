@@ -11,6 +11,7 @@ class Footer extends Component {
   render() {
     return (
       <div className='footer'>
+        <h2>About the owners</h2>
         <Row around="xs" middle="xs">
 
           <Col xs={4}>
@@ -27,10 +28,10 @@ class Footer extends Component {
             </Row>
             <Row>
               <Col xs={6}>
-                <img src={github} />
+                <a href='https://github.com/zakirb'><img src={github} /></a>
               </Col>
               <Col xs={6}>
-                <img className='linkedin' src={linkedin} />
+                <a href='https://www.linkedin.com/in/zakir-butte/'><img  src={linkedin} /></a>
               </Col>
             </Row>
           </Col>
@@ -45,15 +46,15 @@ class Footer extends Component {
             <Row>
               <Col xs={12}>
                 <h3>Daniel Vancura</h3>
-                <p>Lorem  asdfmsodfosdkfsog sgm oskgo ksgo msogksvomos mo kgsomsgd omgso kgsgo m</p>
+                <p></p>
               </Col>
             </Row>
             <Row>
               <Col xs={6}>
-                <img src= {github}/>
+                <a href='https://github.com/danielrvancura'><img src= {github}/></a>
               </Col>
               <Col xs={6}>
-                <img className='linkedin' src= {linkedin}  />
+                 <a href='https://www.linkedin.com/in/daniel-vancura/'> <img src= {linkedin} /></a>
               </Col>
             </Row>
           </Col>
@@ -73,10 +74,10 @@ class Footer extends Component {
             </Row>
             <Row>
               <Col xs={6}>
-                <img src= {github}/>
+                <a href='https://github.com/Tim-Hass-GA'><img src= {github}/></a>
               </Col>
               <Col xs={6}>
-                <img className='linkedin' src= {linkedin} />
+              <a href='https://www.linkedin.com/in/tim-h-hass/'>  <img src= {linkedin} /></a>
               </Col>
             </Row>
           </Col>

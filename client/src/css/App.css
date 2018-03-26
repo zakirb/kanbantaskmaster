@@ -94,9 +94,14 @@ h4 {
 }
 .footer{
   text-align: center;
-  background-color: #0E8B9E;
+  background-color: #EC917A;
   margin-top: 10pt;
 }
 .linkedin {
 margin-bottom: 5pt;
+}
+.createTaskImage {
+margin-left: 470px;
+height: 50%;
+width: 50%;
 }
