@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
+// import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
-// import {GridList, GridTile} from 'material-ui/GridList';
+import {GridList, GridTile} from 'material-ui/GridList';
 // import Grid from 'material-ui/Grid';
 import { Row, Col } from 'react-flexbox-grid';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import '../css/App.css';
-// import DropDownMenuTask from './DropDownMenu';
+import DropDownMenuTask from './DropDownMenu';
 import {Link} from 'react-router-dom';
 import TaskItem from './TaskItem';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { changeTaskStatus, liftProjectToState, liftAllProjectsToState } from '../actions/index'
+import { changeTaskStatus, liftProjectToState, liftAllProjectsToState } from '../actions/index';
+
 
 
 
@@ -61,8 +63,7 @@ const mapStateToProps = state => {
   return {
     user: state.user,
     token: state.token,
-    currentProject:state.currentProject,
-    allProjects: state.allProjects
+    currentProject:state.currentProject
   }
 }
 
@@ -70,18 +71,17 @@ class ConnectedKanbanBoard extends Component {
   constructor(props){
     super(props)
     this.state = {
-      currentProject: props.currentProject,
-      allProjects: props.allProjects
+      currentProject: props.currentProject
     }
     this.moveTask = this.moveTask.bind(this)
   }
 
   componentWillReceiveProps = (newProps) => {
     this.setState({
-      currentProject : newProps.currentProject,
-      allProjects: newProps.currentProject
+      currentProject: newProps.currentProject
     })
   }
+
 
   moveTask (task, task_status) {
     if (task_status) {
@@ -93,7 +93,7 @@ class ConnectedKanbanBoard extends Component {
       }).then( result => {
         console.log(result.data)
         this.props.liftProjectToState(result.data)
-      }).catch( err => console.log(err))
+      })
     }
   }
 
@@ -112,14 +112,14 @@ class ConnectedKanbanBoard extends Component {
 
     console.log(this.props.currentProject)
 
-  var newProjects =  this.props.allProjects.filter( (project) => {
+  var newProjects =  this.props.currentProject.filter( (project) => {
     if (project._id !== result.data._id) {
       return project
     }
   })
   this.props.liftAllProjectsToState(newProjects)
   this.props.liftProjectToState()
-  }).catch( err => console.log(err))
+  })
 }
 
 handleEdit = (projectId) => {
@@ -139,7 +139,7 @@ handleEdit = (projectId) => {
 
     if (this.props.currentProject) {
       if (this.props.currentProject.tasks) {
-        console.log('currentProject at RENDER',this.props.currentProject, this.state.currentProject )
+        console.log('currentProject at RENDER',this.props.currentProject )
 
         // To Do
         var TasksToDo = this.props.currentProject.tasks.filter( task => {
@@ -193,6 +193,22 @@ handleEdit = (projectId) => {
             <CardActions>
                 <Link to='/Projects/edit'><RaisedButton label="Edit" onClick={ () => this.handleEdit(this.state.currentProject._id)} /></Link>
                 <Link to='/Projects'><RaisedButton label="Delete" onClick={ () => this.handleDelete(this.state.currentProject._id)} /></Link>
+                <Link to='/Tasks/create'><RaisedButton label="Create Task" onClick={ () => this.handleEdit(this.state.currentProject._id)} /></Link>
+            </CardActions>
+          </Card>
+        </div>
+      )
+    } else {
+      var projectHeader = (
+        <div>
+          <Card style={style.card_style}>
+            <CardText>
+              <h3>No Project Selected</h3>
+            </CardText>
+            <CardActions>
+              {/* <Link to='/Projects/create'>Create Project</Link> */}
+                {/* <Link to='/Projects'><RaisedButton label="Delete" onClick={ () => this.handleDelete(this.state.currentProject._id)} /></Link>
+                <Link to='/Tasks/create'><RaisedButton label="Create Task" onClick={ () => this.handleEdit(this.state.currentProject._id)} /></Link> */}
             </CardActions>
           </Card>
         </div>
@@ -201,7 +217,7 @@ handleEdit = (projectId) => {
 
 
     return (
-      <MuiThemeProvider>
+  <MuiThemeProvider>
         {projectHeader}
         <div>
           <h2 className="kanban">Kanban Board</h2>

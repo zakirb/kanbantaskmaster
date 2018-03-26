@@ -15,7 +15,17 @@ import CreateTasksForm from './CreateTasksForm';
 import EditProjects from './EditProjects';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
+import DropDownMenu from 'material-ui/DropDownMenu';
+import FlatButton from 'material-ui/FlatButton';
 
+const style = {
+  height: 20,
+  width: 20,
+  margin: .5,
+  padding: 5,
+  textAlign: 'center',
+  display: 'inline-block'
+};
 
 const mapStateToProps = state => {
   return {
@@ -36,23 +46,32 @@ class ConnectedNavBar extends Component {
       console.log("user is real")
       navigation = (
         <nav className="navboxx">
-          <div className='nav-wrapper teal darken-3'>
+          {/* <h4>Workflow Project App</h4> */}
+
+          {/* <Menu> */}
             <div className='navbox'>
-              <Link to='/'><MenuItem primaryText="Home" /></Link>
-              <Link to='/Projects'><MenuItem primaryText="Projects" /></Link>
-              <Link to='/Projects/create'><MenuItem primaryText="Create Project" /></Link>
-              <Link to='/Tasks/create'><MenuItem primaryText="Create Task" /></Link>
-              <Link to='/UserAccess'><MenuItem primaryText="User Profile" /></Link>
+              {/* <Link to='/'><MenuItem primaryText="Home" /></Link> */}
+              {/* <Link to='/Projects'><MenuItem primaryText="Projects" /></Link> */}
+              {/* <Link to='/Projects/create'><MenuItem primaryText="Create Project" /></Link> */}
+              {/* <Link to='/Tasks/create'><MenuItem primaryText="Create Task" /></Link> */}
+              {/* <Link to='/UserAccess'><MenuItem primaryText="User Profile" /></Link> */}
+
+
+              <Link to='/'><FlatButton label='Home' /></Link>
+              <Link to='/Projects'><FlatButton label='Projects' /></Link>
+              <Link to='/Projects/create'><FlatButton label='Create Project' /></Link>
+              <Link to='/UserAccess'><FlatButton label='User Profile' /></Link>
             </div>
-          </div>
+          {/* </Menu> */}
         </nav>
       )
     } else {
       navigation = (
         <nav>
+
           <div className='nav-wrapper teal darken-3'>
-            <Link to='/'><MenuItem primaryText="Home" /></Link>
-            <Link to='/UserAccess'><MenuItem primaryText="User Access" /></Link>
+            <Link to='/'><FlatButton label="Home" /></Link>
+            <Link to='/UserAccess'><FlatButton label="User Access" /></Link>
           </div>
         </nav>
       )
@@ -60,10 +79,12 @@ class ConnectedNavBar extends Component {
     return (
       <Router>
         <div>
-          <h4>Workflow Project App</h4>
-          <Menu>
+          <h4 style={{float: 'right', paddingRight: 20}}>Workflow Project App</h4>
+
+          {/* <DropDownMenu> */}
             {navigation}
-          </Menu>
+          {/* </DropDownMenu> */}
+
           <br />
           <Route exact path='/' render={() => <Home />} />
           <Route exact path='/Projects' render={() => <Projects />} />
