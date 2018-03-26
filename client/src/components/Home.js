@@ -25,7 +25,7 @@ class Home extends Component {
             <Card  className="home" style={style.card_style}  zDepth={5}>
               <div className='col s12 z-depth-3'>
                 <h1 className="home">Task Master</h1>
-                <h2 className="home">Welcome to Task Master! Our site was developed to help organize projects more efficiently
+                <h2 className="home" style={{margin:10, padding:10}}>Welcome to Task Master! Our site was developed to help organize projects more efficiently
                 based on Scrum principles. Whether you’re in a business setting or a working parent, our site helps you monitor
                 the progress of each project. Simply sign up and you can begin creating projects and assigning tasks.</h2>
               </div>
