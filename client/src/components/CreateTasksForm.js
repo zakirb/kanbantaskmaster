@@ -61,21 +61,21 @@ class ConnectedCreateTasksForm extends Component {
     })
   }
 
-  // canBeSubmitted(){
-  //   const { description, assignTo, targetDate } = this.state
-  //   console.log(targetDate)
-  //   return (
-  //     description.length > 0 &&
-  //     assignTo.length > 0 &&
-  //     targetDate != null
-  //   );
-  // }
+  canBeSubmitted(){
+    const { description, assignTo, targetDate } = this.state
+    console.log(targetDate)
+    return (
+      description.length > 0 &&
+      assignTo.length > 0 &&
+      targetDate != null
+    );
+  }
 
   handleSubmit(e) {
-    // if (!this.canBeSubmitted()){
-    //   e.preventDefault()
-    //   return;
-    // }
+    if (!this.canBeSubmitted()){
+      e.preventDefault()
+      return;
+    }
     e.preventDefault()
     axios.post('/create/task',{
       description: this.state.description,
@@ -93,6 +93,7 @@ class ConnectedCreateTasksForm extends Component {
 
   render() {
     const { description, assignTo, targetDate, task_status} = this.state
+    const isEnabled = this.canBeSubmitted();
     return (
       <Row center="xs">
         <Col>
@@ -115,7 +116,7 @@ class ConnectedCreateTasksForm extends Component {
               <CardActions>
                 <FlatButton type="submit"
                   label="Add Task"
-                  // disabled={!isEnabled}
+                  disabled={!isEnabled}
                 />
               </CardActions>
             </form>

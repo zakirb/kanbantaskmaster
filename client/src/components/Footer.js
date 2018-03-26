@@ -6,6 +6,7 @@ import three from './images/three.jpeg';
 import github from './images/GitHub.png';
 import linkedin from './images/linkedin.png';
 import daniel from './images/Daniel.jpg';
+import tim from './images/Tim_Hass.jpg';
 
 class Footer extends Component {
   render() {
@@ -62,7 +63,7 @@ class Footer extends Component {
           <Col xs={4}>
             <Row>
               <Col xs={12}>
-                <img src={one} />
+                <img src={tim} />
               </Col>
             </Row>
             <Row>

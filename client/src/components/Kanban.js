@@ -191,6 +191,22 @@ handleEdit = (projectId) => {
             <CardActions>
                 <Link to='/Projects/edit'><RaisedButton label="Edit" onClick={ () => this.handleEdit(this.state.currentProject._id)} /></Link>
                 <Link to='/Projects'><RaisedButton label="Delete" onClick={ () => this.handleDelete(this.state.currentProject._id)} /></Link>
+                <Link to='/Tasks/create'><RaisedButton label="Create Task" onClick={ () => this.handleEdit(this.state.currentProject._id)} /></Link>
+            </CardActions>
+          </Card>
+        </div>
+      )
+    } else {
+      var projectHeader = (
+        <div>
+          <Card style={style.card_style}>
+            <CardText>
+              <h3>No Project Selected</h3>
+            </CardText>
+            <CardActions>
+              {/* <Link to='/Projects/create'>Create Project</Link> */}
+                {/* <Link to='/Projects'><RaisedButton label="Delete" onClick={ () => this.handleDelete(this.state.currentProject._id)} /></Link>
+                <Link to='/Tasks/create'><RaisedButton label="Create Task" onClick={ () => this.handleEdit(this.state.currentProject._id)} /></Link> */}
             </CardActions>
           </Card>
         </div>

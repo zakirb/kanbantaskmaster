@@ -23,11 +23,11 @@ Redux, Redux-Thunk, React, React-Router, MongoDB, Mongoose, Express, Express-JWT
 * Run `npm install` to install dependencies in /client
 
 ### Wire Frames
-title
-![Image of Wireframes](./readme_images/WireFrames-00.png)
 
-title
-![Image of Wireframes](./readme_images/WireFrames-01.png)
+![Image of Wireframes](./readme_image/WireFrames-00.png)
+
+
+![Image of Wireframes](./readme_image/WireFrames-01.png)
 
 ### Models
 
@@ -35,7 +35,7 @@ title
 Verb | Path | Action | Used for
 ------------ | ------------- | ------------ | -------------
 GET | / | read | - returns index/home page
-GET | /UserAccess | read | - returns the signup and login component (if no user token), returns user profile page (if token present)
+GET | /useraccess | read | - returns the signup and login component (if no user token), returns user profile page (if token present)
 POST | auth/signup | create | - receives data from signup component, checks for user account and returns created user or user profile page
 POST | auth/login | create | - receives data from login component confirms user account and password credentials
 POST | auth/me/from/token | create | - creates and stores access token

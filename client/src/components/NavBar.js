@@ -41,7 +41,7 @@ class ConnectedNavBar extends Component {
               <Link to='/'><MenuItem primaryText="Home" /></Link>
               <Link to='/Projects'><MenuItem primaryText="Projects" /></Link>
               <Link to='/Projects/create'><MenuItem primaryText="Create Project" /></Link>
-              <Link to='/Tasks/create'><MenuItem primaryText="Create Task" /></Link>
+              {/* <Link to='/Tasks/create'><MenuItem primaryText="Create Task" /></Link> */}
               <Link to='/UserAccess'><MenuItem primaryText="User Profile" /></Link>
             </div>
           </div>
