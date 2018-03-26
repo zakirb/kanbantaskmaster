@@ -7,24 +7,25 @@ import github from './images/GitHub.png';
 import linkedin from './images/linkedin.png';
 import daniel from './images/Daniel.jpg';
 import tim from './images/Tim_Hass.jpg';
+import zakir from './images/Zakir_Butte.jpg';
 
 class Footer extends Component {
   render() {
     return (
       <div className='footer'>
-        <h2>About the owners</h2>
+        <h2>Our Team</h2>
         <Row around="xs" middle="xs">
 
           <Col xs={4}>
             <Row>
               <Col xs={12}>
-                <img src={one} />
+                <img src={zakir} className='teamMemberImage' />
               </Col>
             </Row>
             <Row>
               <Col xs={12}>
                 <h3>Zakir Butte</h3>
-                <p>Lorem  asdfmsodfosdkfsog sgm oskgo ksgo msogksvomos mo kgsomsgd omgso kgsgo m</p>
+                <p></p>
               </Col>
             </Row>
             <Row>
@@ -41,7 +42,7 @@ class Footer extends Component {
           <Col xs={4}>
             <Row>
               <Col xs={12}>
-                <img src={daniel} />
+                <img src={daniel} className='teamMemberImage' />
               </Col>
             </Row>
             <Row>
@@ -64,13 +65,13 @@ class Footer extends Component {
           <Col xs={4}>
             <Row>
               <Col xs={12}>
-                <img src={tim} />
+                <img src={tim} className='teamMemberImage' />
               </Col>
             </Row>
             <Row>
               <Col xs={12}>
                 <h3>Tim Hass</h3>
-                <p>Lorem  asdfmsodfosdkfsog sgm oskgo ksgo msogksvomos mo kgsomsgd omgso kgsgo m</p>
+                <p></p>
               </Col>
             </Row>
             <Row>

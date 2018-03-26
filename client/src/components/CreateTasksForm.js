@@ -5,7 +5,8 @@ import DatePicker from 'material-ui/DatePicker';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import { Row, Col } from 'react-flexbox-grid';
-import { liftProjectToState } from "../actions/index"
+import { liftProjectToState } from "../actions/index";
+import {Link} from 'react-router-dom'
 
 
 
@@ -17,11 +18,14 @@ const style = {
   },
   card_style: {
     width: 300,
-    margin: 5,
+    margin: "0 auto",
     textAlign: 'center',
-    background: '#17CBF7'
+    background: '#17CBF7',
+    justifyContent: "center"
   }
 }
+
+
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -50,6 +54,14 @@ class ConnectedCreateTasksForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
+  componentWillReceiveProps(newProps) {
+    if (newProps) {
+      this.setState({
+        currentProject: newProps.currentProject
+      })
+    }
+  }
+
   handleChange = (event) => {
     var key = event.target.name
     this.setState({ [key]: event.target.value})
@@ -63,11 +75,11 @@ class ConnectedCreateTasksForm extends Component {
 
   canBeSubmitted(){
     const { description, assignTo, targetDate } = this.state
-    console.log(targetDate)
     return (
       description.length > 0 &&
       assignTo.length > 0 &&
-      targetDate != null
+      targetDate != null &&
+      this.props.currentProject
     );
   }
 
@@ -86,6 +98,12 @@ class ConnectedCreateTasksForm extends Component {
     }).then( result => {
       console.log('RESULT AFTER POSTING FROM CreateTaskForm', result.data)
       this.props.liftProjectToState(result.data)
+      this.setState({
+        description:'',
+        assignTo:'',
+        targetDate:null,
+        task_status:"todo"
+      })
       // this.props.liftProjectToState
       // Redirect to a react route
     })
@@ -94,9 +112,14 @@ class ConnectedCreateTasksForm extends Component {
   render() {
     const { description, assignTo, targetDate, task_status} = this.state
     const isEnabled = this.canBeSubmitted();
+
+    if (this.state.currentProject) {
+      var kanbanLink = (<Link to='/ViewProject'><FlatButton label="Back to Project" /></Link>)
+    }
+
     return (
       <Row center="xs">
-        <Col>
+        <Col center="xs" xs={12}>
           <Card style={style.card_style} zDepth={5}>
           <form onSubmit={this.handleSubmit}>
           <h3>Create Task Form</h3>
@@ -119,6 +142,7 @@ class ConnectedCreateTasksForm extends Component {
                   disabled={!isEnabled}
                 />
               </CardActions>
+              {kanbanLink}
             </form>
             </Card>
           </Col>

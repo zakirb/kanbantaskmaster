@@ -6,6 +6,7 @@ import {Card, CardActions} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import { Row, Col } from 'react-flexbox-grid';
 import { liftProjectToState } from "../actions/index"
+import { Link } from 'react-router-dom';
 
 const style = {
   card_style: {
@@ -43,11 +44,18 @@ class ConnectedCreateProjectForm extends Component {
     this.state = {
       title: '',
       description:'',
-      connectedDate: null,
       owner: '',
       targetDate:null
     }
     this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (newProps) {
+      this.setState({
+        currentProject: newProps.currentProject
+      })
+    }
   }
 
   handleChange = (event) => {
@@ -56,14 +64,7 @@ class ConnectedCreateProjectForm extends Component {
   }
 
   handleDateChange = (event, date) => {
-    var targetDate = {
-        year: date.getFullYear(),
-        month: date.getMonth() + 1,
-        day: date.getDate()
-      }
-
     this.setState({
-      connectedDate: date,
       targetDate: date
     })
   }
@@ -89,18 +90,27 @@ class ConnectedCreateProjectForm extends Component {
       owner: this.props.user._id,
       targetDate: this.state.targetDate
     }).then( result => {
-      // console.log(result.data)
+      console.log(result.data)
       this.props.liftProjectToState(result.data.project)
-      console.log('THIS IS THE RESULT AFTER POSTING FROM CreateProjectForm')
-      // this.props.liftProjectToState
-      console.log('THIS IS THE RESULT AFTER PROJECT IS LIFTED')
+      this.setState({
+        title: '',
+        description:'',
+        targetDate:null
+      })
+
+
+      console.log('THIS IS THE RESULT AFTER PROJECT IS LIFTED', result.data.project)
       // Redirect to a react route
     })
   }
 
   render() {
-    const { title, description, owner, connectedDate } = this.state
+    const { title, description, owner, targetDate } = this.state
     const isEnabled = this.canBeSubmitted();
+
+    if (this.state.currentProject) {
+      var kanbanLink = (<Link to='/ViewProject'><FlatButton label="View Project" /></Link>)
+    }
 
     return (
       <Row center="xs">
@@ -113,15 +123,15 @@ class ConnectedCreateProjectForm extends Component {
               <p>Description</p>
                 <input type='text' className="input" placeholder="Description" name='description' value={description} onChange={this.handleChange} />
               <p>End Date</p>
-              <DatePicker  value={connectedDate} onChange={this.handleDateChange} hintText="End Date" container="inline" />
+              <DatePicker  value={targetDate} onChange={this.handleDateChange} hintText="End Date" container="inline" />
               <CardActions>
                 <FlatButton
                   type="submit"
-                  label="Add Project"
                   disabled={!isEnabled}
+                  label="Add Project"
                 />
-                {/* <FlatButton label="Reset?" /> */}
               </CardActions>
+              {kanbanLink}
             </form>
           </Card>
         </Col>

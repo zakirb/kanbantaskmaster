@@ -32,7 +32,14 @@
 .home {
   text-align: center;
   font-family: 'PT Sans Narrow', sans-serif;
-  align-content: center;
+  align-items: center;
+  margin: 10px;
+  padding: 10px;
+}
+@media (max-width:768px) {
+  .home {
+    font-size:3vw
+  }
 }
 .signup {
   /* position: relative; */
@@ -82,6 +89,10 @@ h4 {
 .navbox {
   display: inline-block;
 }
+.nav-item {
+  display: inline-block;
+  width: 10%;
+}
 
 .carouselImage {
   margin-left: 400px;
@@ -94,7 +105,7 @@ h4 {
 }
 .footer{
   text-align: center;
-  background-color: #EC917A;
+  background-color: #AAA;
   margin-top: 10pt;
 }
 .linkedin {
@@ -104,4 +115,20 @@ margin-bottom: 5pt;
 margin-left: 470px;
 height: 50%;
 width: 50%;
+}
+
+.teamMemberImage {
+  width: 70%;
+}
+
+.blackBox {
+  background: black;
+}
+
+.blueBox {
+  background: blue;
+}
+
+.redBox {
+  background: red;
 }
