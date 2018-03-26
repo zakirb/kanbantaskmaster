@@ -11,6 +11,10 @@ import DropDownMenuTask from './DropDownMenu';
 import {Link} from 'react-router-dom';
 import TaskItem from './TaskItem';
 import { connect } from 'react-redux';
+import axios from 'axios';
+import { changeTaskStatus, liftProjectToState } from '../actions/index'
+
+
 
 const style = {
 
@@ -35,13 +39,21 @@ const style = {
     background: '#ff7455'
 
   },
-  card_styleFinished: {
+
+  card_styleCompleted: {
     width: 340,
+
     margin: 10,
     textAlign: 'center',
     background: '#17F76A',
     justifyContent: 'center'
 
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    liftProjectToState: project => dispatch(liftProjectToState(project))
   }
 }
 
@@ -55,50 +67,82 @@ const mapStateToProps = state => {
 
 class ConnectedKanbanBoard extends Component {
   constructor(props){
-    super()
+    super(props)
     this.state = {
       currentProject: props.currentProject
     }
+    this.moveTask = this.moveTask.bind(this)
   }
+
+  componentWillReceiveProps = (newProps) => {
+    console.log("THESE ARE THE NEW PROPS", newProps)
+  }
+
+  moveTask (task, task_status) {
+    if (task_status) {
+      console.log('this is the task', task)
+      console.log('this is the task_status', task_status);
+      axios.put('/edit/taskstatus', {
+        task,
+        task_status
+      }).then( result => {
+        console.log(result.data)
+        this.props.liftProjectToState(result.data)
+      })
+    }
+  }
+
+  componentWillMount() {
+    console.log('BELOW IS STATE/PROJECT BEFORE MOUNT', this.props.currentProject)
+
+  }
+
+
+
   render() {
-    console.log('currentProject')
-    console.log(this.state.currentProject)
 
-  To Do
-  var TasksToDo = this.props.currentProject.tasks.filter( task => {
-    return task.task_status === "ToDo"
-  })
-  var ToDoTaskItems = TasksToDo.map(task => {
-    return <TaskItem style={style.card_styleToDo} />
-  })
+    if (this.props.currentProject) {
+      if (this.props.currentProject.tasks) {
+        console.log('currentProject at RENDER',this.props.currentProject )
 
-  In Progress
-  var TasksInProgress = this.props.currentProject.tasks.filter( task => {
-    return task.task_status === "InProgress"
-  })
-  var InProgressTaskItems = TasksInProgress.map(task => {
-    <TaskItem style={style.card_styleProgress} />
-  })
-
-  In Review
-  var TasksInReview = this.props.currentProject.tasks.filter( task => {
-    return task.task_status === "InReview"
-  })
-  var InReviewTaskItems = TasksInReview.map(task => {
-    <TaskItem style={style.card_styleReview} />
-  })
-
-  Finished
-  var TasksFinished = this.props.currentProject.tasks.filter( task => {
-    return task.task_status === "Finished"
-  })
-  var FinishedTaskItems = TasksFinished.map(task => {
-    <TaskItem style={style.card_styleFinished} />
-  })
-
-
-
-// console.log(ToDoTaskItems)
+        // To Do
+        var TasksToDo = this.props.currentProject.tasks.filter( task => {
+          return task.task_status === "todo"
+        })
+        if (TasksToDo.length > 0) {
+          var ToDoTaskItems = TasksToDo.map( (task, index) => {
+            return <TaskItem style={style.card_styleToDo} task={task} moveTask={this.moveTask} key={index} />
+          })
+        }
+        // In Progress
+        var TasksInProgress = this.props.currentProject.tasks.filter( task => {
+          return task.task_status === "progress"
+        })
+        if (TasksInProgress.length > 0) {
+          var InProgressTaskItems = TasksInProgress.map( (task, index) => {
+            return <TaskItem style={style.card_styleProgress} task={task} moveTask={this.moveTask} key={index} />
+          })
+        }
+        // In Review
+        var TasksInReview = this.props.currentProject.tasks.filter( task => {
+          return task.task_status === "review"
+        })
+        if (TasksInReview.length > 0) {
+          var InReviewTaskItems = TasksInReview.map( (task, index) => {
+            return <TaskItem style={style.card_styleReview} task={task} moveTask={this.moveTask} key={index} />
+          })
+        }
+        // Completed
+        var TasksCompleted = this.props.currentProject.tasks.filter( task => {
+          return task.task_status === "completed"
+        })
+        if (TasksCompleted.length > 0) {
+          var CompletedTaskItems = TasksCompleted.map( (task, index) => {
+            return <TaskItem style={style.card_styleCompleted} task={task} moveTask={this.moveTask} key={index} />
+          })
+        }
+      }
+    }
 
 
 
@@ -114,7 +158,7 @@ class ConnectedKanbanBoard extends Component {
                   <h3 className="kanban">To Do</h3>
                 </Col>
               </Row>
-                <TaskItem style={style.card_styleToDo} />
+              {ToDoTaskItems || <TaskItem style={style.card_styleToDo}/>}
           </Col>
 
         <Col>
@@ -123,7 +167,7 @@ class ConnectedKanbanBoard extends Component {
               <h3 className="kanban">In Progress</h3>
             </Col>
           </Row>
-            <TaskItem style={style.card_styleProgress} />
+            {InProgressTaskItems || (<TaskItem style={style.card_styleProgress} />)}
         </Col>
 
         <Col>
@@ -132,16 +176,16 @@ class ConnectedKanbanBoard extends Component {
               <h3 className="kanban">In Review</h3>
             </Col>
           </Row>
-            <TaskItem style={style.card_styleReview} />
+            {InReviewTaskItems || (<TaskItem style={style.card_styleReview} />)}
         </Col>
 
         <Col>
           <Row center="xs">
             <Col>
-              <h3 className="kanban">Finished</h3>
+              <h3 className="kanban">Completed</h3>
             </Col>
           </Row>
-            <TaskItem style={style.card_styleFinished} />
+            {CompletedTaskItems || (<TaskItem style={style.card_styleCompleted} />)}
 
         </Col>
       </Row>
@@ -149,8 +193,8 @@ class ConnectedKanbanBoard extends Component {
   </MuiThemeProvider>
     );
   }
+}
 
 
-
-const KanbanBoard = connect(mapStateToProps, null)(ConnectedKanbanBoard)
+const KanbanBoard = connect(mapStateToProps, mapDispatchToProps)(ConnectedKanbanBoard)
 export default KanbanBoard;
