@@ -1,10 +1,5 @@
-// import React, { Component } from 'react';
 import React, { Component } from 'react';
 import { Row, Col } from 'react-flexbox-grid';
-// import Kanban from './Kanban';
-
-
-// import TextField from 'material-ui/TextField';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 

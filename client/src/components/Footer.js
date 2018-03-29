@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'react-flexbox-grid';
-import one from './images/one.jpeg';
-import two from './images/two.jpg';
-import three from './images/three.jpeg';
 import github from './images/GitHub.png';
 import linkedin from './images/linkedin.png';
 import daniel from './images/Daniel.jpg';
