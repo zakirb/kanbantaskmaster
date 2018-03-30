@@ -2,7 +2,6 @@
   text-align: center;
 }
 .kanban {
-  /* align-content: center; */
   text-align: center;
   font-family: 'PT Sans Narrow', sans-serif;
 
@@ -42,13 +41,9 @@
   }
 }
 .signup {
-  /* position: relative; */
   width: 50%;
   top: 50%;
-  /* left: 50%; */
-  /* margin: -100px 0 0 -150px; */
   font-family: 'PT Sans Narrow', sans-serif;
-  /* align-content: center; */
 }
 
 body {
@@ -65,10 +60,6 @@ h4 {
   height: 500px;
   width: 1200px;
 }
-/* .carousel {
-  align-items: center;
-  position: fixed;
-} */
 .carousel-inner .items {
   width: 100%;
 }
@@ -82,7 +73,6 @@ h4 {
   align-items: center;
 }
 .view {
-  /* align-items: center; */
   justify-content: center;
 
 }
@@ -93,9 +83,10 @@ h4 {
   display: inline-block;
   width: 10%;
 }
-
 .carouselImage {
-  margin-left: 400px;
+  margin-left: 160px;
+  height: 600px;
+  margin-bottom: 50px;
 }
 .row {
   align-content: end;
@@ -113,9 +104,8 @@ h4 {
 margin-bottom: 5pt;
 }
 .createTaskImage {
-margin-left: 470px;
-height: 50%;
-width: 50%;
+margin-left: 250px;
+height: 600px;
 }
 
 .teamMemberImage {

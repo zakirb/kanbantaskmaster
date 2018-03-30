@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
 import {Card, CardActions, CardText} from 'material-ui/Card';
-// import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
-// import { Row, Col } from 'react-flexbox-grid';
-// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import '../css/App.css';
 import DropDownMenuTask from './DropDownMenu';
-// import {Link} from 'react-router-dom';
-
-
 
 export default class TaskItem extends Component {
   constructor(props) {

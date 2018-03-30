@@ -3,7 +3,7 @@ import axios from 'axios';
 import { liftTokenToState, logout } from '../actions/index'
 import { connect } from 'react-redux';
 
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import {Card} from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 
