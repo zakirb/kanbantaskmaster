@@ -3,7 +3,7 @@
 Project 3 - GA
 
 Team: Zakir B, Daniel V, Tim H
-- [Hosted App](https://github.com/zakirb/workflow-organizer-project-3)
+- [Hosted App](https://kanbantaskmaster.herokuapp.com/)
 
 - [Zakir B && Team Github](https://github.com/zakirb/workflow-organizer-project-3)
 - [Dan V Github](https://github.com/danielrvancura/workflow-organizer-project-3)
@@ -26,10 +26,14 @@ Redux, Redux-Thunk, React, React-Router, MongoDB, Mongoose, Express, Express-JWT
 
 ![Image of Wireframes](./readme_image/WireFrames-00.png)
 
-
 ![Image of Wireframes](./readme_image/WireFrames-01.png)
 
 ### Models
+
+![Image of Wireframes](./readme_image/app-mongodb-models.png)
+
+![Image of Wireframes](./readme_image/app-general-workflow.png)
+
 
 ### CRUD Routes
 Verb | Path | Action | Used for
