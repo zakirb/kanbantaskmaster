@@ -2,11 +2,6 @@ import React from 'react';
 import {React_Bootstrap_Carousel} from 'react-bootstrap-carousel';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'react-bootstrap-carousel/dist/react-bootstrap-carousel.css';
-// import ReactDOM from 'react-dom';
-// import { Carousel } from 'react-responsive-carousel';
-import one from './images/one.jpeg';
-import two from './images/two.jpg';
-import three from './images/three.jpeg';
 import kanban from './images/kanban.png';
 import projects from './images/projects.png';
 import combine from './images/combine.jpg';
@@ -82,9 +77,9 @@ class ImageCarousel extends React.Component {
                   </div>
                 </div>
 
-                <div style={{height:500}}>
+                  <div style={{height:500}}>
                   <img className= "createTaskImage"
-                    style={{width:"50%",height:"60%"}}
+                    style={{width:"60%",height:"60%"}}
                     src= {combine}
                   />
                   <div className="carousel-caption">
@@ -101,41 +96,5 @@ class ImageCarousel extends React.Component {
     }
 };
 
-
-// const ImageCarousel = props => {
-//     return (
-//         <div className="container carousel">
-//             <div id="myCarousel" className="carousel slide" data-ride="carousel">
-//                 <ol className="carousel-indicators">
-//                     <li data-target="#myCarousel" data-slide-to="0" className="active"></li>
-//                     <li data-target="#myCarousel" data-slide-to="1"></li>
-//                     <li data-target="#myCarousel" data-slide-to="2"></li>
-//                 </ol>
-//                 <div className="carousel-inner">
-//                     <div className="items active">
-//                         <img className="image" src= {three} alt= "one" />
-//                     </div>
-//
-//                     <div className="items">
-//                         <img className="image" src= {two} alt= "two" />
-//                     </div>
-//
-//                     <div className="items">
-//                         <img className="image" src= {three} alt= "three" />
-//                     </div>
-//                 </div>
-//                 <a className="left carousel-control" href="#myCarousel" data-slide="prev">
-//                     <span className="glyphicon glyphicon-chevron-left"></span>
-//                     <span className="sr-only">Previous</span>
-//                 </a>
-//                 <a className="right carousel-control" href="#myCarousel" data-slide="next">
-//                     <span className="glyphicon glyphicon-chevron-right"></span>
-//                     <span className="sr-only">Next</span>
-//
-//                 </a>
-//           </div>
-//         </div>
-//     )
-// }
 
 export default ImageCarousel;

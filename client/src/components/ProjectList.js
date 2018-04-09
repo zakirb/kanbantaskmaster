@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import { liftAllProjectsToState, editProject } from "../actions/index"
-// import { liftAllProjectsToState } from "../actions/index"
-// import TextField from 'material-ui/TextField';
 import { liftProjectToState } from '../actions/index'
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';

@@ -3,7 +3,7 @@
 Project 3 - GA
 
 Team: Zakir B, Daniel V, Tim H
-- [Hosted App](https://github.com/zakirb/workflow-organizer-project-3)
+- [Hosted App](https://kanbantaskmaster.herokuapp.com/)
 
 - [Zakir B && Team Github](https://github.com/zakirb/workflow-organizer-project-3)
 - [Dan V Github](https://github.com/danielrvancura/workflow-organizer-project-3)
@@ -26,10 +26,14 @@ Redux, Redux-Thunk, React, React-Router, MongoDB, Mongoose, Express, Express-JWT
 
 ![Image of Wireframes](./readme_image/WireFrames-00.png)
 
-
 ![Image of Wireframes](./readme_image/WireFrames-01.png)
 
 ### Models
+
+![Image of Wireframes](./readme_image/app-mongodb-models.png)
+
+![Image of Wireframes](./readme_image/app-general-workflow.png)
+
 
 ### CRUD Routes
 Verb | Path | Action | Used for
@@ -57,12 +61,12 @@ PUT | /task | update | - update a task for the current project
 
 #### Development Process
 ##### Day 1 (Sunday)
-- Brainstorm ideas for project, decided on technologies, design wireframes, discussed data/model needs and app workflow,
+- Brainstorm ideas for project, decided on technologies, design wireframes, discussed data/model needs and app workflow.
 - Created GitHub repo and set up local branches, discussed the workflow for the week, milestones
-Researched topics new to the team
+Researched topics new to the team.
 
 ##### Day 2 (Monday)
-- Imported agreed upon technologies, refactored existing pages with some Material-UI examples, created site skeleton, begin building navigation, models and basic views, refactoring views and adding needed components, implemented redux and store.
+- Imported agreed upon technologies, refactored existing pages with some Material-UI examples, created site skeleton, begin building. navigation, models and basic views, refactoring views and adding needed components, implemented redux and store.
 
 #### Day 3 (Tuesday)
 - Continued developing routes and components, and building models, developed user stories, researched Material UI, mongoose and mongoD.
@@ -71,17 +75,28 @@ Researched topics new to the team
 - Seeded Projects Model, continued working on forms and implementation of Material UI, issues with embedded docs on the model schemas delayed us, pulled some functionality from original spec.
 
 #### Day 5 (Thursday)
-- Continued creating components, working on the store state and connections to database, began building routes, refactoring of form items
+- Continued creating components, working on the store state and connections to database, began building routes, refactoring of form items.
 
 #### Day 6 (Friday)
-- Refactoring components, refining styles, found a race issue for edit projects and edit tasks,
+- Refactoring components, refining styles, found a race issue for edit projects and edit tasks, completed project delete routes.
 
 #### Day 7 (Saturday)
-- Implemented Kanban Board, battling racing conditions....
+- Implemented Kanban Board, battling racing conditions...., began working on READ ME documentation.
 
 #### Day 8 (Sunday)
-- Finalizing styling on pages, completed edit project route, cleaned up code
+- Finalizing styling on pages, completed edit project route, cleaned up code and console logs.
 
+#### Unsolved Problems
+- More styling of user interface for better user experience.
+- Heroku deployment (app is deployed, but there are a few issues to resolve (today)).
 
-#### unsolved problems && major hurdles
-- racing issues
+#### Major Hurdles
+- Some racing issues
+- Mongo/Mongoose Models
+
+#### Next Steps
+- refactor Kanban board for drag and drop operations.
+- refactor User model to allow users to upload images
+- user profile edit route
+- add task steps to model and refactor to include task steps
+- add project teams model to allow for group collaboration on project tasks

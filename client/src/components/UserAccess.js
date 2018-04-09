@@ -6,8 +6,6 @@ import { UserProfile } from './UserProfile';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { liftTokenToState, logout } from '../actions/index'
-// import {div, divActions, divHeader, divMedia, divTitle, divText} from 'material-ui/div';
-// import {GridList, GridTile} from 'material-ui/GridList';
 import {GridTile} from 'material-ui/GridList';
 import { Row, Col } from 'react-flexbox-grid';
 

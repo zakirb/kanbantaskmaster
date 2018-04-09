@@ -13,19 +13,8 @@ import { connect } from 'react-redux';
 import CreateProjectForm from './CreateProjectForm';
 import CreateTasksForm from './CreateTasksForm';
 import EditProjects from './EditProjects';
-import Menu from 'material-ui/Menu';
-import MenuItem from 'material-ui/MenuItem';
-import DropDownMenu from 'material-ui/DropDownMenu';
 import FlatButton from 'material-ui/FlatButton';
 
-const style = {
-  height: 20,
-  width: 20,
-  margin: .5,
-  padding: 5,
-  textAlign: 'center',
-  display: 'inline-block'
-};
 
 const mapStateToProps = state => {
   return {
