@@ -5,6 +5,7 @@ import 'react-bootstrap-carousel/dist/react-bootstrap-carousel.css';
 import kanban from './images/kanban.png';
 import projects from './images/projects.png';
 import combine from './images/combine.jpg';
+import combine2 from './images/projectcreate.png';
 
 
 class ImageCarousel extends React.Component {
@@ -42,12 +43,6 @@ class ImageCarousel extends React.Component {
     render() {
       let {leftIcon,rightIcon}=this.state;
       return(
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-md-12">
-
-            </div>
-            <div className="col-md-12">
               <React_Bootstrap_Carousel
                 animation={true}
                 slideshowSpeed={7000}
@@ -55,43 +50,20 @@ class ImageCarousel extends React.Component {
                 rightIcon={rightIcon}
                 onSelect={this.onSelect}
                 ref={r=>this.slider=r}
-                className="carousel-fade"
-              >
-                <div style={{height:500}}>
-                  <img className="carouselImage"
-                    style={{width:"60%",height:"60%"}}
-                    src= {kanban}
-                  />
-                  <div className="carousel-caption">
+                className="carousel-fade" >
 
-                  </div>
+                <div className='carousel-image-container kanbanImage'>
+                  <img className="carousel-image kanban-image" src= {kanban}/>
                 </div>
 
-                <div style={{height:500}}>
-                  <img className="carouselImage"
-                    style={{width:"60%",height:"60%"}}
-                    src= {projects}
-                  />
-                  <div className="carousel-caption">
-
-                  </div>
+                <div className='carousel-image-container'>
+                  <img className="carousel-image" src= {projects}/>
                 </div>
 
-                  <div style={{height:500}}>
-                  <img className= "createTaskImage"
-                    style={{width:"60%",height:"60%"}}
-                    src= {combine}
-                  />
-                  <div className="carousel-caption">
-
-                  </div>
+                  <div className='carousel-image-container'>
+                    <img className= "carousel-image" src={combine2}/>
                 </div>
-
-
               </React_Bootstrap_Carousel>
-            </div>
-          </div>
-        </div>
       );
     }
 };

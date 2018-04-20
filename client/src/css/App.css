@@ -21,13 +21,13 @@
   width: 200px;
   border-color: silver;
 }
-.item {
+/* .item {
   position: absolute;
   top: 50%;
   left: 50%;
   margin: -100px 0 0 -150px;
   font-family: 'PT Sans Narrow', sans-serif;
-}
+} */
 .home {
   text-align: center;
   font-family: 'PT Sans Narrow', sans-serif;
@@ -60,12 +60,7 @@ h4 {
   height: 500px;
   width: 1200px;
 }
-.carousel-inner .items {
-  width: 100%;
-}
-.slide, .carousel-inner {
-  height: 300px;
-}
+
 .TaskText {
   font-size: 13pt;
 }
@@ -83,18 +78,29 @@ h4 {
   display: inline-block;
   width: 10%;
 }
-.carouselImage {
-  margin-left: 160px;
-  height: 600px;
-  margin-bottom: 50px;
+
+.carousel-image {
+  border: solid black 1px;
+  max-height: 100%;
+  max-width: 100%;
+  /* padding: 0;
+  margin: 0; */
 }
-.row {
-  align-content: end;
+@media (max-width: 900px) {
+  .carousel-image {
+    height:30vw;
+  }
+}
+
+
+.carousel-image-container {
+  height: 45%;
+  display: flex;
   justify-content: center;
+  align-content: center;
 }
-.ProjItem {
-  text-align: center;
-}
+
+
 .footer{
   text-align: center;
   background-color: #AAA;
@@ -103,10 +109,7 @@ h4 {
 .linkedin {
 margin-bottom: 5pt;
 }
-.createTaskImage {
-margin-left: 250px;
-height: 600px;
-}
+
 
 .teamMemberImage {
   width: 70%;
