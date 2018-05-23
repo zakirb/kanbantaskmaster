@@ -106,6 +106,7 @@ class ConnectedProjects extends Component {
               <Paper style={style}>
                 <div>
                   <h1>Projects</h1>
+                  <p>Click a project title to view its Kanban Board</p>
                   <ProjectSearch value={this.state.filterValue} onChange={this.handleFilterChange}/>
                   <ProjectList projects={this.state.projectsToDisplay || this.props.allProjects}/>
                 </div>
