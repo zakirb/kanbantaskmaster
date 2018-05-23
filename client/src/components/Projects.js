@@ -9,8 +9,7 @@ import { Row, Col } from 'react-flexbox-grid';
 
 
 const style = {
-  margin: 10,
-  padding: 15,
+  width:100 + "%",
   textAlign: 'center',
   display: 'inline-block'
 };
@@ -100,21 +99,21 @@ class ConnectedProjects extends Component {
 
   render() {
     return (
-      <Row>
-        <Col xs={12}>
-          <Row center="xs">
+      // <Row>
+      //   <Col xs={12}>
+          // <Row center="xs">
 
               <Paper style={style}>
-                <div className='col '>
+                <div>
                   <h1>Projects</h1>
                   <ProjectSearch value={this.state.filterValue} onChange={this.handleFilterChange}/>
                   <ProjectList projects={this.state.projectsToDisplay || this.props.allProjects}/>
                 </div>
               </Paper>
 
-          </Row>
-        </Col>
-      </Row>
+          // </Row>
+      //   </Col>
+      // </Row>
     );
   }
 }

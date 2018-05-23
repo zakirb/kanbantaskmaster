@@ -6,6 +6,8 @@
   font-family: 'PT Sans Narrow', sans-serif;
 
 }
+
+
 .kanban1 {
   align-content: center;
   text-align: center;
@@ -45,9 +47,12 @@
   top: 50%;
   font-family: 'PT Sans Narrow', sans-serif;
 }
+.cardHeader div {
+  background-color: red;
+}
 
 body {
-  color: red;
+
 
 }
 
@@ -64,13 +69,8 @@ h4 {
 .TaskText {
   font-size: 13pt;
 }
-.col {
-  align-items: center;
-}
-.view {
-  justify-content: center;
 
-}
+
 .navbox {
   display: inline-block;
 }
