@@ -6,6 +6,7 @@ import { liftProjectToState } from '../actions/index'
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import { connect } from 'react-redux';
+import { Row, Col } from 'react-flexbox-grid';
 
 const style = {
   root: {
@@ -89,10 +90,10 @@ class ConnectedProjectList extends Component {
             <Card
               style={style.card_style}
               key={index}>
-              <CardHeader
-                title={<Link onClick={() => this.handleSelectProject(project._id)} style={{textDecoration: 'none', color: 'black'}}to='/ViewProject'>{project.title}</Link>}
-                actAsExpander={true}
-                showExpandableButton={true}/>
+                <CardHeader
+                  title={<Link onClick={() => this.handleSelectProject(project._id)} style={{textDecoration: 'none', color: 'black', marginRight: -90 + "px"}} to='/ViewProject'>{project.title}</Link>}
+                  actAsExpander={true}
+                  showExpandableButton={true}/>
               <CardActions>
                 <Link to='/Projects/edit'><FlatButton label="Edit" onClick={ () => this.handleEdit(project._id)} /></Link>
                 <Link to='/Projects'><FlatButton label="Delete" onClick={ () => this.handleDelete(project._id)} /></Link>
@@ -112,9 +113,9 @@ class ConnectedProjectList extends Component {
       }
     }
     return (
-      <div className="row">
+      <Row center='xs'>
         {projectCard}
-      </div>
+      </Row>
     )
   }
 }

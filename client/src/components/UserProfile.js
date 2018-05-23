@@ -24,14 +24,10 @@ export const UserProfile = props => {
           <Card style={style.card_style}>
             <CardHeader
               title={props.user.name}
-              subtitle="Subtitle"
+              textStyle={{padding:0, marginLeft: 10 + "px", marginTop: 10 + "px"}}
               avatar="./images/user-image.png"
             />
-            <CardMedia
-              overlay={<CardTitle title={props.user.name} subtitle={props.user.email} />}
-            >
-              <img src="./images/user-profile-example.gif" alt="Default Profile" />
-            </CardMedia>
+          
             <CardTitle title={props.user.name} subtitle={props.user.email} />
             <CardText>
               Hello, {props.user.name}!
